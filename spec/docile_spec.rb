@@ -4,6 +4,36 @@ describe Docile do
 
   context :dsl_eval do
 
+    it "should return the DSL object" do
+      Docile.dsl_eval([]) do
+        push 1
+        push 2
+        pop
+        push 3
+      end.should == [1, 3]
+    end
+
+    Pizza = Struct.new(:cheese, :pepperoni, :bacon, :sauce)
+
+    class PizzaBuilder
+      def cheese(v=true);    @cheese    = v; end
+      def pepperoni(v=true); @pepperoni = v; end
+      def bacon(v=true);     @bacon     = v; end
+      def sauce(v=nil);      @sauce     = v; end
+      def build
+        Pizza.new(!!@cheese, !!@pepperoni, !!@bacon, @sauce)
+      end
+    end
+
+    it "should handle a Builder pattern" do
+      @sauce = :extra
+      Docile.dsl_eval(PizzaBuilder.new) do
+        bacon
+        cheese
+        sauce @sauce
+      end.build.should == Pizza.new(true, false, true, :extra)
+    end
+
     class InnerDSL
       def initialize; @b = 'b'; end
       attr_accessor :b
@@ -19,15 +49,6 @@ describe Docile do
 
     def outer(&block)
       Docile.dsl_eval(OuterDSL.new, &block)
-    end
-
-    it "should return the DSL object" do
-      Docile.dsl_eval([]) do
-        push 1
-        push 2
-        pop
-        push 3
-      end.should == [1, 3]
     end
 
     context "methods" do
