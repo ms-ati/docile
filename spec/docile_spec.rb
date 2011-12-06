@@ -30,8 +30,7 @@ describe Docile do
       end.should == [1, 3]
     end
 
-    context "methods"
-
+    context "methods" do
       it "should find method of outer dsl in outer dsl scope" do
         outer { a.should == 'a' }
       end
@@ -40,36 +39,44 @@ describe Docile do
         outer { inner { b.should == 'b' } }
       end
 
-      #it "should find method of outer dsl in inner dsl scope" do
-      #  outer { inner { a.should == 'a' } }
-      #end
-      #
-      #it "should find method of block's context in outer dsl scope" do
-      #  def c; 'c'; end
-      #  outer { c.should == 'c' }
-      #end
-      #
-      #it "should find method of block's context in inner dsl scope" do
-      #  def c; 'c'; end
-      #  outer { inner { c.should == 'c' } }
+      it "should find method of outer dsl in inner dsl scope" do
+        outer { inner { a.should == 'a' } }
+      end
+
+      it "should find method of block's context in outer dsl scope" do
+        def c; 'c'; end
+        outer { c.should == 'c' }
+      end
+
+      it "should find method of block's context in inner dsl scope" do
+        def c; 'c'; end
+        outer { inner { c.should == 'c' } }
+      end
+
+      it "should find method of outer dsl in preference to block context" do
+        def a; 'not a'; end
+        outer { a.should == 'a' }
+      end
+    end
+
+    context "local variables" do
+      it "should find local variable from block context in outer dsl scope" do
+        foo = 'foo'
+        outer { foo.should == 'foo' }
+      end
+
+      it "should find local variable from block definition in inner dsl scope" do
+        bar = 'bar'
+        outer { inner { bar.should == 'bar' } }
+      end
+    end
+
+    context "instance variables" do
+      #it "should find instance variable from block definition in inner dsl scope" do
+      #  @iv1 = 'iv1'; outer { inner { @iv1.should == 'iv1' } }
       #end
     end
 
-  #  it "should find local variable from block context in outer dsl scope" do
-  #    foo = 'foo'
-  #    outer { foo.should == 'foo' }
-  #  end
-  #
-  #
-  #
-  #  it "should find local variable from block definition in inner dsl scope" do
-  #    bar = 'bar'
-  #    outer { inner { bar.should == 'bar' } }
-  #  end
-  #
-  #  it "should find instance variable from block definition in inner dsl scope" do
-  #    @iv1 = 'iv1'; outer { inner { @iv1.should == 'iv1' } }
-  #  end
-  #end
+  end
 
 end
