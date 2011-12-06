@@ -18,7 +18,13 @@ module Docile
   # @return [Object]     the given DSL object
   def dsl_eval(dsl, &block)
     block_context = eval("self", block.binding)
-    FallbackContextProxy.new(dsl, block_context).instance_eval(&block)
+    proxy_context = FallbackContextProxy.new(dsl, block_context)
+    block_context.instance_variables.each { |ivar| proxy_context.instance_variable_set(ivar, block_context.instance_variable_get(ivar)) }
+    begin
+      proxy_context.instance_eval(&block)
+    ensure
+      block_context.instance_variables.each { |ivar| block_context.instance_variable_set(ivar, proxy_context.instance_variable_get(ivar)) }
+    end
     dsl
   end
   module_function :dsl_eval

@@ -72,8 +72,14 @@ describe Docile do
     end
 
     context "instance variables" do
+      it "should find instance variable from block definition in outer dsl scope" do
+        @iv1 = 'iv1'; outer { @iv1.should == 'iv1' }
+      end
+
       #it "should find instance variable from block definition in inner dsl scope" do
-      #  @iv1 = 'iv1'; outer { inner { @iv1.should == 'iv1' } }
+      #  @iv2 = 'iv2'; outer { inner {
+      #    @iv2.should == 'iv2'
+      #  } }
       #end
     end
 

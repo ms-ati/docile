@@ -2,7 +2,9 @@ require 'set'
 
 module Docile
   class FallbackContextProxy
-    BASIC_METHODS = Set[:==, :equal?, :"!", :"!=", :instance_eval, :object_id, :__send__, :__id__]
+    BASIC_METHODS = Set[:==, :equal?, :"!", :"!=",
+                        :instance_eval, :instance_variable_get, :instance_variable_set,
+                        :object_id, :__send__, :__id__]
 
     instance_methods.each do |method|
       unless BASIC_METHODS.include?(method.to_sym)
