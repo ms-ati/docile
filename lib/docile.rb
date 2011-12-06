@@ -5,13 +5,14 @@ module Docile
   # Executes a block in the context of an object whose interface represents a DSL.
   #
   # Example of using an Array as a DSL:
-  #   Docile.dsl_eval [] do
-  #     push 1
-  #     push 2
-  #     pop
-  #     push 3
-  #   end
-  #   #=> [1, 3]
+  #
+  #     Docile.dsl_eval [] do
+  #       push 1
+  #       push 2
+  #       pop
+  #       push 3
+  #     end
+  #     #=> [1, 3]
   #
   # @param dsl [Object]  an object whose methods represent a DSL
   # @param block [Proc]  a block to execute in the DSL context
