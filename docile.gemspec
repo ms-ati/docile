@@ -8,8 +8,8 @@ Gem::Specification.new do |s|
   s.authors     = ["Marc Siegel"]
   s.email       = ["msiegel@usainnov.com"]
   s.homepage    = "http://docile.github.com"
-  s.summary     = "Docile helps keep your DSLs tame and well-behaved'"
-  s.description = "Docile handles ruby DSL evaluation best-practices so you can concentrate on your project"
+  s.summary     = "Docile keeps your Ruby DSL's tame and well-behaved"
+  s.description = "Docile turns any Ruby object into a DSL. Especially useful with the Builder pattern."
 
   s.rubyforge_project = "docile"
 
@@ -19,6 +19,10 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
 
   s.add_development_dependency "rspec", "~> 2.7.0"
+
+  # Github flavored markdown in YARD documentation
+  # http://blog.nikosd.com/2011/11/github-flavored-markdown-in-yard.html
   s.add_development_dependency "yard"
   s.add_development_dependency "redcarpet"
+  s.add_development_dependency "github-markup"
 end
