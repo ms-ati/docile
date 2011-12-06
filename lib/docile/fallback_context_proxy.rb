@@ -2,12 +2,14 @@ require 'set'
 
 module Docile
   class FallbackContextProxy
-    BASIC_METHODS = Set[:==, :equal?, :"!", :"!=",
-                        :instance_eval, :instance_variable_get, :instance_variable_set,
-                        :object_id, :__send__, :__id__]
+    NON_PROXIED_METHODS = Set[:object_id, :__send__, :__id__, :==, :equal?, :"!", :"!=", :instance_eval,
+                              :instance_variables, :instance_variable_get, :instance_variable_set,
+                              :remove_instance_variable]
+
+    NON_PROXIED_INSTANCE_VARIABLES = Set[:@__receiver__, :@__fallback__]
 
     instance_methods.each do |method|
-      unless BASIC_METHODS.include?(method.to_sym)
+      unless NON_PROXIED_METHODS.include?(method.to_sym)
         undef_method(method)
       end
     end
@@ -24,6 +26,11 @@ module Docile
     # Special case due to `Kernel#sub`'s existence
     def sub(*args, &block)
       __proxy_method__(:sub, *args, &block)
+    end
+
+    # Special case to allow proxy instance variables
+    def instance_variables
+      super - NON_PROXIED_INSTANCE_VARIABLES.to_a
     end
 
     def method_missing(method, *args, &block)
