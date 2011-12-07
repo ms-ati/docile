@@ -97,7 +97,7 @@ describe Docile do
         @iv1 = 'iv1'; outer { @iv1.should == 'iv1' }
       end
 
-      it "should write instance variable assigned in block into outer dsl scope" do
+      it "should proxy instance variable assignments in block in outer dsl scope back into block's context" do
         @iv1 = 'foo'; outer { @iv1 = 'bar' }; @iv1.should == 'bar'
       end
 
@@ -105,7 +105,7 @@ describe Docile do
         @iv2 = 'iv2'; outer { inner { @iv2.should == 'iv2' } }
       end
 
-      it "should find instance variable from block definition in inner dsl scope" do
+      it "should proxy instance variable assignments in block in inner dsl scope back into block's context" do
         @iv2 = 'foo'; outer { inner { @iv2 = 'bar' } }; @iv2.should == 'bar'
       end
     end
