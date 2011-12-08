@@ -1,9 +1,7 @@
 --title 'Docile Documentation'
 
 --no-private
---hide-void-return
+--main=README.md
 
 --markup-provider=redcarpet
 --markup=markdown
-
---main=README.md
