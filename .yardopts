@@ -5,3 +5,5 @@
 
 --markup-provider=redcarpet
 --markup=markdown
+
+--main=README.md

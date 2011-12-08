@@ -13,7 +13,7 @@ Let's make our Ruby DSLs more docile...
 Let's treat an Array's methods as its own DSL:
 
 ``` ruby
-Docile.dsl_eval [] do
+Docile.dsl_eval([]) do
   push 1
   push 2
   pop
@@ -36,7 +36,7 @@ Then you can use this same PizzaBuilder class as a DSL:
 
 ``` ruby
 @sauce_level = :extra
-pizza = Docile.dsl_eval PizzaBuilder.new do
+pizza = Docile.dsl_eval(PizzaBuilder.new) do
   cheese
   pepperoni
   sauce @sauce_level
