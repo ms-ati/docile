@@ -8,6 +8,8 @@ Let's make our Ruby DSLs more docile...
 
 [1]: http://www.google.com/search?q=docile+definition   "Google"
 
+[![Build Status](https://travis-ci.org/ms-ati/docile.png)](https://travis-ci.org/ms-ati/docile)
+
 ## Usage
 
 Let's treat an Array's methods as its own DSL:
@@ -64,6 +66,7 @@ $ gem install docile
 ## Documentation
 
 Documentation hosted on *rubydoc.info*: [Docile Documentation](http://rubydoc.info/gems/docile)
+
 Or, read the code hosted on *github.com*: [Docile Code](https://github.com/ms-ati/docile)
 
 ## Note on Patches/Pull Requests
