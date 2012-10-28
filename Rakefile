@@ -12,3 +12,5 @@ YARD::Rake::YardocTask.new do |t|
 end
 
 RSpec::Core::RakeTask.new
+
+task :default => [:spec]
