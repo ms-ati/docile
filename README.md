@@ -9,6 +9,7 @@ Let's make our Ruby DSLs more docile...
 [1]: http://www.google.com/search?q=docile+definition   "Google"
 
 [![Build Status](https://travis-ci.org/ms-ati/docile.png)](https://travis-ci.org/ms-ati/docile)
+[![Dependency Status](https://gemnasium.com/ms-ati/docile.png)](https://gemnasium.com/ms-ati/docile)
 
 ## Usage
 
