@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=640" />
+
+    <link rel="stylesheet" href="stylesheets/core.css" media="screen"/>
+    <link rel="stylesheet" href="stylesheets/mobile.css" media="handheld, only screen and (max-device-width:640px)"/>
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css"/>
+
+    <script type="text/javascript" src="javascripts/modernizr.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script type="text/javascript" src="javascripts/headsmart.min.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function () {
+        $('#main_content').headsmart()
+      })
+    </script>
+    <title>Docile by ms-ati</title>
+  </head>
+
+  <body>
+    <a id="forkme_banner" href="https://github.com/ms-ati/docile">View on GitHub</a>
+    <div class="shell">
+
+      <header>
+        <span class="ribbon-outer">
+          <span class="ribbon-inner">
+            <h1>Docile</h1>
+            <h2>Docile keeps your Ruby DSL's tame and well-behaved</h2>
+          </span>
+          <span class="left-tail"></span>
+          <span class="right-tail"></span>
+        </span>
+      </header>
+
+      <section id="downloads">
+        <span class="inner">
+          <a href="https://github.com/ms-ati/docile/zipball/master" class="zip"><em>download</em> .ZIP</a><a href="https://github.com/ms-ati/docile/tarball/master" class="tgz"><em>download</em> .TGZ</a>
+        </span>
+      </section>
+
+
+      <span class="banner-fix"></span>
+
+
+      <section id="main_content">
+        <h1>Docile</h1>
+
+<p>Definition: <em>Ready to accept control or instruction; submissive</em> [<a href="http://www.google.com/search?q=docile+definition" title="Google">1</a>]</p>
+
+<p>Tired of overly complex DSL libraries and hairy meta-programming?</p>
+
+<p>Let's make our Ruby DSLs more docile...</p>
+
+<h2>Usage</h2>
+
+<p>Let's treat an Array's methods as its own DSL:</p>
+
+<div class="highlight"><pre><span class="no">Docile</span><span class="o">.</span><span class="n">dsl_eval</span><span class="p">(</span><span class="o">[]</span><span class="p">)</span> <span class="k">do</span>
+  <span class="n">push</span> <span class="mi">1</span>
+  <span class="n">push</span> <span class="mi">2</span>
+  <span class="n">pop</span>
+  <span class="n">push</span> <span class="mi">3</span>
+<span class="k">end</span>
+<span class="c1">#=&gt; [1, 3]</span>
+</pre></div>
+
+<p>Mutating (changing) the array is fine, but what you probably really want as your DSL is actually a <a href="http://stackoverflow.com/questions/328496/when-would-you-use-the-builder-pattern" title="Builder Pattern">Builder Pattern</a>.</p>
+
+<p>For example, if you have a PizzaBuilder class that can already build a Pizza:</p>
+
+<div class="highlight"><pre><span class="vi">@sauce_level</span> <span class="o">=</span> <span class="ss">:extra</span>
+<span class="n">pizza</span> <span class="o">=</span> <span class="no">PizzaBuilder</span><span class="o">.</span><span class="n">new</span><span class="o">.</span><span class="n">cheese</span><span class="o">.</span><span class="n">pepperoni</span><span class="o">.</span><span class="n">sauce</span><span class="p">(</span><span class="vi">@sauce_level</span><span class="p">)</span><span class="o">.</span><span class="n">build</span>
+<span class="c1">#=&gt; #&lt;Pizza:0x00001009dc398 @cheese=true, @pepperoni=true, @bacon=false, @sauce=:extra&gt;</span>
+</pre></div>
+
+<p>Then you can use this same PizzaBuilder class as a DSL:</p>
+
+<div class="highlight"><pre><span class="vi">@sauce_level</span> <span class="o">=</span> <span class="ss">:extra</span>
+<span class="n">pizza</span> <span class="o">=</span> <span class="no">Docile</span><span class="o">.</span><span class="n">dsl_eval</span><span class="p">(</span><span class="no">PizzaBuilder</span><span class="o">.</span><span class="n">new</span><span class="p">)</span> <span class="k">do</span>
+  <span class="n">cheese</span>
+  <span class="n">pepperoni</span>
+  <span class="n">sauce</span> <span class="vi">@sauce_level</span>
+<span class="k">end</span><span class="o">.</span><span class="n">build</span>
+<span class="c1">#=&gt; #&lt;Pizza:0x00001009dc398 @cheese=true, @pepperoni=true, @bacon=false, @sauce=:extra&gt;</span>
+</pre></div>
+
+<p>It's just that easy!</p>
+
+<h2>Features</h2>
+
+<ol>
+<li> method lookup falls back from the DSL object to the block's context</li>
+<li> local variable lookup falls back from the DSL object to the block's context</li>
+<li> instance variables are from the block's context only</li>
+<li> nested dsl evaluation</li>
+</ol><h2>Installation</h2>
+
+<div class="highlight"><pre><span class="nv">$ </span>gem install docile
+</pre></div>
+
+<h2>Documentation</h2>
+
+<p>Documentation hosted on <em>rubydoc.info</em>: <a href="http://rubydoc.info/gems/docile">Docile Documentation</a>
+Or, read the code hosted on <em>github.com</em>: <a href="https://github.com/ms-ati/docile">Docile Code</a></p>
+
+<h2>Note on Patches/Pull Requests</h2>
+
+<ul>
+<li>Fork the project.</li>
+<li>Setup your development environment with: gem install bundler; bundle install</li>
+<li>Make your feature addition or bug fix.</li>
+<li>Add tests for it. This is important so I don't break it in a
+future version unintentionally.</li>
+<li>Commit, do not mess with rakefile, version, or history.
+(if you want to have your own version, that is fine but bump version in a commit by itself I can ignore when I pull)</li>
+<li>Send me a pull request. Bonus points for topic branches.</li>
+</ul><h2>Copyright</h2>
+
+<p>Copyright (c) 2011 Marc Siegel. See LICENSE for details.</p>
+      </section>
+
+      <footer>
+        <span class="ribbon-outer">
+          <span class="ribbon-inner">
+            <p>this project by <a href="https://github.com/ms-ati">ms-ati</a> can be found on <a href="https://github.com/ms-ati/docile">GitHub</a></p>
+          </span>
+          <span class="left-tail"></span>
+          <span class="right-tail"></span>
+        </span>
+        <p>Generated with <a href="http://pages.github.com">GitHub Pages</a> using Merlot</p>
+        <span class="octocat"></span>
+      </footer>
+
+    </div>
+
+    
+  </body>
+</html>
