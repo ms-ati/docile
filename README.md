@@ -87,4 +87,4 @@ A 1.0 release is coming soon! Just as soon as everything is working on ruby 1.8.
 
 ## Copyright
 
-Copyright (c) 2011 Marc Siegel. See LICENSE for details.
+Copyright (c) 2012 Marc Siegel. See LICENSE for details.
