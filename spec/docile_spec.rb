@@ -77,6 +77,7 @@ describe Docile do
       it "should find method of outer dsl in preference to block context" do
         def a; 'not a'; end
         outer { a.should == 'a' }
+        outer { inner { a.should == 'a' } }
       end
     end
 
