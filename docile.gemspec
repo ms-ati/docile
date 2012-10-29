@@ -20,7 +20,7 @@ Gem::Specification.new do |s|
 
   # Running rspec tests from rake
   s.add_development_dependency "rake", "~> 0.9.2"
-  s.add_development_dependency "rspec", "~> 2.7.0"
+  s.add_development_dependency "rspec", "~> 2.11.0"
 
   # Github flavored markdown in YARD documentation
   # http://blog.nikosd.com/2011/11/github-flavored-markdown-in-yard.html
