@@ -72,7 +72,7 @@ Or, read the code hosted on *github.com*: [Docile Code](https://github.com/ms-at
 
 ## Status
 
-A 1.0 release is coming soon! Just as soon as everything is working on ruby 1.8.7 (and jruby + rubinius in 1.8 mode)...
+Version 1.0 works on [all ruby versions](https://github.com/ms-ati/docile/blob/master/.travis.yml).
 
 ## Note on Patches/Pull Requests
 
