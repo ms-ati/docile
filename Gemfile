@@ -3,7 +3,8 @@ source "https://rubygems.org"
 # Specify gem's dependencies in docile.gemspec
 gemspec
 
-# Explicitly require rake for Travis CI, since we're excluding dev deps
+# Explicitly require test gems for Travis CI, since we're excluding dev dependencies
 group :test do
-  gem "rake"
+  gem "rake", "~> 0.9.2"
+  gem "rspec", "~> 2.7.0"
 end

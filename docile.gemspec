@@ -18,8 +18,9 @@ Gem::Specification.new do |s|
   s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
   s.require_paths = ["lib"]
 
+  # Running rspec tests from rake
+  s.add_development_dependency "rake", "~> 0.9.2"
   s.add_development_dependency "rspec", "~> 2.7.0"
-  s.add_development_dependency "rake"
 
   # Github flavored markdown in YARD documentation
   # http://blog.nikosd.com/2011/11/github-flavored-markdown-in-yard.html
