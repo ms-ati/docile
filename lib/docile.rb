@@ -14,9 +14,9 @@ module Docile
   #     end
   #     #=> [1, 3]
   #
-  # @param dsl [Object]  an object whose methods represent a DSL
-  # @param block [Proc]  a block to execute in the DSL context
-  # @return    [Object]  the dsl object, after execution of the block
+  # @param dsl   [Object] an object whose methods represent a DSL
+  # @param block [Proc]   a block to execute in the DSL context
+  # @return      [Object] the dsl object, after execution of the block
   def dsl_eval(dsl, &block)
     block_context = eval("self", block.binding)
     proxy_context = FallbackContextProxy.new(dsl, block_context)
