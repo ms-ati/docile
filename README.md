@@ -11,43 +11,75 @@ Let's make our Ruby DSLs more docile...
 [![Build Status](https://travis-ci.org/ms-ati/docile.png)](https://travis-ci.org/ms-ati/docile)
 [![Dependency Status](https://gemnasium.com/ms-ati/docile.png)](https://gemnasium.com/ms-ati/docile)
 
-## Usage
+## Basic Usage
 
-Let's treat an Array's methods as its own DSL:
+Let's say that we want to make a DSL for modifying Array objects.
+Wouldn't it be great if we could just treat the methods of Array as a DSL?
 
-``` ruby
-Docile.dsl_eval([]) do
+```ruby
+with_array([]) do
   push 1
   push 2
   pop
   push 3
 end
-#=> [1, 3]
+# => [1, 3]
 ```
 
-Mutating (changing) the array is fine, but what you probably really want as your DSL is actually a [Builder Pattern][2].
-
-For example, if you have a PizzaBuilder class that can already build a Pizza:
-
+No problem, just define the method `make_array` like this:
 ``` ruby
+def with_array(arr=[], &block)
+  Docile.dsl_eval(arr, &block)
+end
+```
+
+Easy!
+
+## Advanced Usage
+
+Mutating (changing) an Array instance is fine, but what usually makes a good DSL is a [Builder Pattern][2].
+
+For example, let's say you want a DSL to specify how you want to build a Pizza:
+```ruby
 @sauce_level = :extra
+
+pizza do
+  cheese
+  pepperoni
+  sauce @sauce_level
+end
+# => #<Pizza:0x00001009dc398 @cheese=true, @pepperoni=true, @bacon=false, @sauce=:extra>
+```
+
+And let's say we have a PizzaBuilder, which builds a Pizza like this:
+```ruby
+Pizza = Struct.new(:cheese, :pepperoni, :bacon, :sauce)
+
+class PizzaBuilder
+  def cheese(v=true); @cheese = v; end
+  def pepperoni(v=true); @pepperoni = v; end
+  def bacon(v=true); @bacon = v; end
+  def sauce(v=nil); @sauce = v; end
+  def build
+    Pizza.new(!!@cheese, !!@pepperoni, !!@bacon, @sauce)
+  end
+end
+
+@sauce_level = :extra
+
 pizza = PizzaBuilder.new.cheese.pepperoni.sauce(@sauce_level).build
 #=> #<Pizza:0x00001009dc398 @cheese=true, @pepperoni=true, @bacon=false, @sauce=:extra>
 ```
 
-Then you can use this same PizzaBuilder class as a DSL:
+Then implement your DSL like this:
 
 ``` ruby
-@sauce_level = :extra
-pizza = Docile.dsl_eval(PizzaBuilder.new) do
-  cheese
-  pepperoni
-  sauce @sauce_level
-end.build
-#=> #<Pizza:0x00001009dc398 @cheese=true, @pepperoni=true, @bacon=false, @sauce=:extra>
+def pizza(&block)
+  Docile.dsl_eval(PizzaBuilder.new, &block).build
+end
 ```
 
-It's just that easy!
+It's just that easy! 
 
 [2]: http://stackoverflow.com/questions/328496/when-would-you-use-the-builder-pattern  "Builder Pattern"
 
