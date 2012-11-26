@@ -65,9 +65,7 @@ class PizzaBuilder
   end
 end
 
-@sauce_level = :extra
-
-pizza = PizzaBuilder.new.cheese.pepperoni.sauce(@sauce_level).build
+PizzaBuilder.new.cheese.pepperoni.sauce(:extra).build
 #=> #<Pizza:0x00001009dc398 @cheese=true, @pepperoni=true, @bacon=false, @sauce=:extra>
 ```
 
