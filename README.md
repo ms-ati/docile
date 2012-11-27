@@ -26,7 +26,7 @@ end
 # => [1, 3]
 ```
 
-No problem, just define the method `make_array` like this:
+No problem, just define the method `with_array` like this:
 ``` ruby
 def with_array(arr=[], &block)
   Docile.dsl_eval(arr, &block)
