@@ -57,40 +57,71 @@
 <p><a href="https://travis-ci.org/ms-ati/docile"><img src="https://travis-ci.org/ms-ati/docile.png" alt="Build Status"></a>
 <a href="https://gemnasium.com/ms-ati/docile"><img src="https://gemnasium.com/ms-ati/docile.png" alt="Dependency Status"></a></p>
 
-<h2>Usage</h2>
+<h2>Basic Usage</h2>
 
-<p>Let's treat an Array's methods as its own DSL:</p>
+<p>Let's say that we want to make a DSL for modifying Array objects.
+Wouldn't it be great if we could just treat the methods of Array as a DSL?</p>
 
-<div class="highlight"><pre><span class="no">Docile</span><span class="o">.</span><span class="n">dsl_eval</span><span class="p">(</span><span class="o">[]</span><span class="p">)</span> <span class="k">do</span>
+<div class="highlight"><pre><span class="n">with_array</span><span class="p">(</span><span class="o">[]</span><span class="p">)</span> <span class="k">do</span>
   <span class="n">push</span> <span class="mi">1</span>
   <span class="n">push</span> <span class="mi">2</span>
   <span class="n">pop</span>
   <span class="n">push</span> <span class="mi">3</span>
 <span class="k">end</span>
-<span class="c1">#=&gt; [1, 3]</span>
+<span class="c1"># =&gt; [1, 3]</span>
 </pre></div>
 
-<p>Mutating (changing) the array is fine, but what you probably really want as your DSL is actually a <a href="http://stackoverflow.com/questions/328496/when-would-you-use-the-builder-pattern" title="Builder Pattern">Builder Pattern</a>.</p>
+<p>No problem, just define the method <code>with_array</code> like this:</p>
 
-<p>For example, if you have a PizzaBuilder class that can already build a Pizza:</p>
-
-<div class="highlight"><pre><span class="vi">@sauce_level</span> <span class="o">=</span> <span class="ss">:extra</span>
-<span class="n">pizza</span> <span class="o">=</span> <span class="no">PizzaBuilder</span><span class="o">.</span><span class="n">new</span><span class="o">.</span><span class="n">cheese</span><span class="o">.</span><span class="n">pepperoni</span><span class="o">.</span><span class="n">sauce</span><span class="p">(</span><span class="vi">@sauce_level</span><span class="p">)</span><span class="o">.</span><span class="n">build</span>
-<span class="c1">#=&gt; #&lt;Pizza:0x00001009dc398 @cheese=true, @pepperoni=true, @bacon=false, @sauce=:extra&gt;</span>
+<div class="highlight"><pre><span class="k">def</span> <span class="nf">with_array</span><span class="p">(</span><span class="n">arr</span><span class="o">=[]</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">block</span><span class="p">)</span>
+  <span class="no">Docile</span><span class="o">.</span><span class="n">dsl_eval</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">block</span><span class="p">)</span>
+<span class="k">end</span>
 </pre></div>
 
-<p>Then you can use this same PizzaBuilder class as a DSL:</p>
+<p>Easy!</p>
+
+<h2>Advanced Usage</h2>
+
+<p>Mutating (changing) an Array instance is fine, but what usually makes a good DSL is a <a href="http://stackoverflow.com/questions/328496/when-would-you-use-the-builder-pattern" title="Builder Pattern">Builder Pattern</a>.</p>
+
+<p>For example, let's say you want a DSL to specify how you want to build a Pizza:</p>
 
 <div class="highlight"><pre><span class="vi">@sauce_level</span> <span class="o">=</span> <span class="ss">:extra</span>
-<span class="n">pizza</span> <span class="o">=</span> <span class="no">Docile</span><span class="o">.</span><span class="n">dsl_eval</span><span class="p">(</span><span class="no">PizzaBuilder</span><span class="o">.</span><span class="n">new</span><span class="p">)</span> <span class="k">do</span>
+
+<span class="n">pizza</span> <span class="k">do</span>
   <span class="n">cheese</span>
   <span class="n">pepperoni</span>
   <span class="n">sauce</span> <span class="vi">@sauce_level</span>
-<span class="k">end</span><span class="o">.</span><span class="n">build</span>
+<span class="k">end</span>
+<span class="c1"># =&gt; #&lt;Pizza:0x00001009dc398 @cheese=true, @pepperoni=true, @bacon=false, @sauce=:extra&gt;</span>
+</pre></div>
+
+<p>And let's say we have a PizzaBuilder, which builds a Pizza like this:</p>
+
+<div class="highlight"><pre><span class="no">Pizza</span> <span class="o">=</span> <span class="no">Struct</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="ss">:cheese</span><span class="p">,</span> <span class="ss">:pepperoni</span><span class="p">,</span> <span class="ss">:bacon</span><span class="p">,</span> <span class="ss">:sauce</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">PizzaBuilder</span>
+  <span class="k">def</span> <span class="nf">cheese</span><span class="p">(</span><span class="n">v</span><span class="o">=</span><span class="kp">true</span><span class="p">);</span> <span class="vi">@cheese</span> <span class="o">=</span> <span class="n">v</span><span class="p">;</span> <span class="k">end</span>
+  <span class="k">def</span> <span class="nf">pepperoni</span><span class="p">(</span><span class="n">v</span><span class="o">=</span><span class="kp">true</span><span class="p">);</span> <span class="vi">@pepperoni</span> <span class="o">=</span> <span class="n">v</span><span class="p">;</span> <span class="k">end</span>
+  <span class="k">def</span> <span class="nf">bacon</span><span class="p">(</span><span class="n">v</span><span class="o">=</span><span class="kp">true</span><span class="p">);</span> <span class="vi">@bacon</span> <span class="o">=</span> <span class="n">v</span><span class="p">;</span> <span class="k">end</span>
+  <span class="k">def</span> <span class="nf">sauce</span><span class="p">(</span><span class="n">v</span><span class="o">=</span><span class="kp">nil</span><span class="p">);</span> <span class="vi">@sauce</span> <span class="o">=</span> <span class="n">v</span><span class="p">;</span> <span class="k">end</span>
+  <span class="k">def</span> <span class="nf">build</span>
+    <span class="no">Pizza</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="o">!!</span><span class="vi">@cheese</span><span class="p">,</span> <span class="o">!!</span><span class="vi">@pepperoni</span><span class="p">,</span> <span class="o">!!</span><span class="vi">@bacon</span><span class="p">,</span> <span class="vi">@sauce</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="no">PizzaBuilder</span><span class="o">.</span><span class="n">new</span><span class="o">.</span><span class="n">cheese</span><span class="o">.</span><span class="n">pepperoni</span><span class="o">.</span><span class="n">sauce</span><span class="p">(</span><span class="ss">:extra</span><span class="p">)</span><span class="o">.</span><span class="n">build</span>
 <span class="c1">#=&gt; #&lt;Pizza:0x00001009dc398 @cheese=true, @pepperoni=true, @bacon=false, @sauce=:extra&gt;</span>
 </pre></div>
 
-<p>It's just that easy!</p>
+<p>Then implement your DSL like this:</p>
+
+<div class="highlight"><pre><span class="k">def</span> <span class="nf">pizza</span><span class="p">(</span><span class="o">&amp;</span><span class="n">block</span><span class="p">)</span>
+  <span class="no">Docile</span><span class="o">.</span><span class="n">dsl_eval</span><span class="p">(</span><span class="no">PizzaBuilder</span><span class="o">.</span><span class="n">new</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">block</span><span class="p">)</span><span class="o">.</span><span class="n">build</span>
+<span class="k">end</span>
+</pre></div>
+
+<p>It's just that easy! </p>
 
 <h2>Features</h2>
 
