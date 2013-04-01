@@ -175,4 +175,4 @@ Version 1.0 works on [all ruby versions](https://github.com/ms-ati/docile/blob/m
 
 ## Copyright
 
-Copyright (c) 2012 Marc Siegel. See LICENSE for details.
+Copyright (c) 2012-2013 Marc Siegel. See LICENSE for details.
