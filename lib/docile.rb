@@ -15,6 +15,7 @@ module Docile
   #     #=> [1, 3]
   #
   # @param dsl   [Object] an object whose methods represent a DSL
+  # @param args  [Array]  arguments to be passed to the block
   # @param block [Proc]   a block to execute in the DSL context
   # @return      [Object] the dsl object, after execution of the block
   def dsl_eval(dsl, *args, &block)
