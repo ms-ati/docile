@@ -2,7 +2,7 @@ require 'set'
 
 module Docile
   class FallbackContextProxy
-    NON_PROXIED_METHODS = Set[:object_id, :__send__, :__id__, :==, :equal?, :"!", :"!=", :instance_eval,
+    NON_PROXIED_METHODS = Set[:object_id, :__send__, :__id__, :==, :equal?, :"!", :"!=", :instance_exec,
                               :instance_variables, :instance_variable_get, :instance_variable_set,
                               :remove_instance_variable]
 
