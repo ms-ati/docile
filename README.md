@@ -137,6 +137,8 @@ def send_request path, request
 end
 ```
 
+[3]: http://www.sinatrarb.com "Sinatra"
+
 ## Features
 
   1.  method lookup falls back from the DSL object to the block's context
