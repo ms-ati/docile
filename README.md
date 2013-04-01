@@ -160,7 +160,7 @@ Or, read the code hosted on *github.com*: [Docile Code](https://github.com/ms-at
 
 ## Status
 
-Version 1.0 works on [all ruby versions](https://github.com/ms-ati/docile/blob/master/.travis.yml).
+Version 1.0.x works on [all ruby versions since 1.8.7](https://github.com/ms-ati/docile/blob/master/.travis.yml).
 
 ## Note on Patches/Pull Requests
 
