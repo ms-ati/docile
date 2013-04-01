@@ -190,9 +190,14 @@ describe Docile do
         x(third).should == 'Got a third thing'
       end
 
+      respond '/params' do |arg|
+        params[arg].should == 2
+      end
+
       send_request '/path', 1
       send_request '/new_bike', 'ten speed'
       send_request '/third', 'third thing'
+      send_request '/params', :b
 
       @first.should == 1
       @second.should == 'Got a new ten speed'
