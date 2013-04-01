@@ -145,6 +145,58 @@ describe Docile do
       end
     end
 
+    class DispatchScope
+      def params
+        { :a => 1, :b => 2, :c => 3 }
+      end
+    end
+
+    class MessageDispatch
+      include Singleton
+
+      def initialize
+        @responders = {}
+      end
+
+      def add_responder path, &block
+        @responders[path] = block
+      end
+
+      def dispatch path, request
+        Docile.dsl_eval(DispatchScope.new, request, &@responders[path])
+      end
+    end
+
+    def respond path, &block
+      MessageDispatch.instance.add_responder path, &block
+    end
+
+    def send_request path, request
+      MessageDispatch.instance.dispatch path, request
+    end
+
+    it "should handle the dispatch pattern" do
+      @first = @second = nil
+      respond '/path' do |request|
+        @first = request
+      end
+
+      respond '/new_bike' do |bike|
+        @second = "Got a new #{bike}"
+      end
+
+      def x(y) ; "Got a #{y}"; end
+      respond '/third' do |third|
+        x(third).should == 'Got a third thing'
+      end
+
+      send_request '/path', 1
+      send_request '/new_bike', 'ten speed'
+      send_request '/third', 'third thing'
+
+      @first.should == 1
+      @second.should == 'Got a new ten speed'
+    end
   end
 
 end
