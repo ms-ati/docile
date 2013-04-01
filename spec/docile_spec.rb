@@ -45,10 +45,44 @@ describe Docile do
       def inner(&block)
         Docile.dsl_eval(InnerDSL.new, &block)
       end
+
+      def inner_with_params(param,&block)
+        Docile.dsl_eval(InnerDSL.new, param, :foo, &block)
+      end
     end
 
     def outer(&block)
       Docile.dsl_eval(OuterDSL.new, &block)
+    end
+
+    def parameterized(*args,&block)
+      Docile.dsl_eval(OuterDSL.new, *args, &block)
+    end
+
+    context "parameters" do
+      it "should pass parameters to the block" do
+        parameterized(1,2,3) do |x,y,z|
+          x.should == 1
+          y.should == 2
+          z.should == 3
+        end
+      end
+
+      it "should find parameters before methods" do
+        parameterized(1) { |a| a.should == 1 }
+      end
+
+      it "should find outer parameters in inner dsl scope" do
+        parameterized(1,2,3) do |a,b,c|
+          inner_with_params(c) do |d,e|
+            a.should == 1
+            b.should == 2
+            c.should == 3
+            d.should == c
+            e.should == :foo
+          end
+        end
+      end
     end
 
     context "methods" do
