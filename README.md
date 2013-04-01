@@ -81,6 +81,62 @@ It's just that easy!
 
 [2]: http://stackoverflow.com/questions/328496/when-would-you-use-the-builder-pattern  "Builder Pattern"
 
+## Block parameters
+
+Parameters can be passed to the DSL block.
+
+Supposing you want to make some sort of cheap [Sinatra][3] knockoff:
+```ruby
+@last_request = nil
+respond '/path' do |request|
+  puts "Request received: #{request}"
+  @last_request = request
+end
+
+def ride bike
+  # Play with your new bike
+end
+
+respond '/new_bike' do |bike|
+  ride(bike)
+end
+```
+
+You'd put together a dispatcher something like this:
+```ruby
+require 'singleton'
+
+class DispatchScope
+  def a_method_you_can_call_from_inside_the_block
+    :useful_huh?
+  end
+end
+
+class MessageDispatch
+  include Singleton
+
+  def initialize
+    @responders = {}
+  end
+
+  def add_responder path, &block
+    @responders[path] = block
+  end
+
+  def dispatch path, request
+    Docile.dsl_eval(DispatchScope.new, request, &@responders[path])
+  end
+end
+
+def respond path, &handler
+  MessageDispatch.instance.add_responder path, handler
+end
+
+def send_request path, request
+  MessageDispatch.instance.dispatch path, request
+end
+```
+
 ## Features
 
   1.  method lookup falls back from the DSL object to the block's context
