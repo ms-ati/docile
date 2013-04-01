@@ -45,10 +45,44 @@ describe Docile do
       def inner(&block)
         Docile.dsl_eval(InnerDSL.new, &block)
       end
+
+      def inner_with_params(param,&block)
+        Docile.dsl_eval(InnerDSL.new, param, :foo, &block)
+      end
     end
 
     def outer(&block)
       Docile.dsl_eval(OuterDSL.new, &block)
+    end
+
+    def parameterized(*args,&block)
+      Docile.dsl_eval(OuterDSL.new, *args, &block)
+    end
+
+    context "parameters" do
+      it "should pass parameters to the block" do
+        parameterized(1,2,3) do |x,y,z|
+          x.should == 1
+          y.should == 2
+          z.should == 3
+        end
+      end
+
+      it "should find parameters before methods" do
+        parameterized(1) { |a| a.should == 1 }
+      end
+
+      it "should find outer parameters in inner dsl scope" do
+        parameterized(1,2,3) do |a,b,c|
+          inner_with_params(c) do |d,e|
+            a.should == 1
+            b.should == 2
+            c.should == 3
+            d.should == c
+            e.should == :foo
+          end
+        end
+      end
     end
 
     context "methods" do
@@ -111,6 +145,65 @@ describe Docile do
       end
     end
 
+    class DispatchScope
+      def params
+        { :a => 1, :b => 2, :c => 3 }
+      end
+    end
+
+    class MessageDispatch
+      include Singleton
+
+      def initialize
+        @responders = {}
+      end
+
+      def add_responder path, &block
+        @responders[path] = block
+      end
+
+      def dispatch path, request
+        Docile.dsl_eval(DispatchScope.new, request, &@responders[path])
+      end
+    end
+
+    def respond path, &block
+      MessageDispatch.instance.add_responder path, &block
+    end
+
+    def send_request path, request
+      MessageDispatch.instance.dispatch path, request
+    end
+
+    it "should handle the dispatch pattern" do
+      @first = @second = nil
+      respond '/path' do |request|
+        @first = request
+      end
+
+      respond '/new_bike' do |bike|
+        @second = "Got a new #{bike}"
+      end
+
+      def x(y) ; "Got a #{y}"; end
+      respond '/third' do |third|
+        x(third).should == 'Got a third thing'
+      end
+
+      fourth = nil
+      respond '/params' do |arg|
+        fourth = params[arg]
+      end
+
+      send_request '/path', 1
+      send_request '/new_bike', 'ten speed'
+      send_request '/third', 'third thing'
+      send_request '/params', :b
+
+      @first.should == 1
+      @second.should == 'Got a new ten speed'
+      fourth.should == 2
+    end
   end
 
 end
