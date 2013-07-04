@@ -8,6 +8,7 @@ Let's make our Ruby DSLs more docile...
 
 [1]: http://www.google.com/search?q=docile+definition   "Google"
 
+[![Gem Version](https://badge.fury.io/rb/docile.png)](http://badge.fury.io/rb/docile)
 [![Build Status](https://travis-ci.org/ms-ati/docile.png)](https://travis-ci.org/ms-ati/docile)
 [![Dependency Status](https://gemnasium.com/ms-ati/docile.png)](https://gemnasium.com/ms-ati/docile)
 [![Code Climate](https://codeclimate.com/github/ms-ati/docile.png)](https://codeclimate.com/github/ms-ati/docile)
