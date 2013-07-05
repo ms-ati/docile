@@ -19,15 +19,6 @@ module Docile
       @__fallback__ = fallback
     end
 
-    def id
-      @__receiver__.__send__(:id)
-    end
-
-    # Special case due to `Kernel#sub`'s existence
-    def sub(*args, &block)
-      __proxy_method__(:sub, *args, &block)
-    end
-
     # Special case to allow proxy instance variables
     def instance_variables
       # Ruby 1.8.x returns string names, convert to symbols
