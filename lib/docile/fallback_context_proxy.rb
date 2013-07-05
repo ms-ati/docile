@@ -33,11 +33,7 @@ module Docile
       begin
         @__receiver__.__send__(method.to_sym, *args, &block)
       rescue ::NoMethodError => e
-        begin
-          @__fallback__.__send__(method.to_sym, *args, &block)
-        rescue ::NoMethodError
-          raise(e)
-        end
+        @__fallback__.__send__(method.to_sym, *args, &block)
       end
     end
   end
