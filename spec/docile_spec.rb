@@ -42,11 +42,12 @@ describe Docile do
     class OuterDSL
       def initialize; @a = 'a'; end
       attr_accessor :a
+
       def inner(&block)
         Docile.dsl_eval(InnerDSL.new, &block)
       end
 
-      def inner_with_params(param,&block)
+      def inner_with_params(param, &block)
         Docile.dsl_eval(InnerDSL.new, param, :foo, &block)
       end
     end
@@ -55,7 +56,7 @@ describe Docile do
       Docile.dsl_eval(OuterDSL.new, &block)
     end
 
-    def parameterized(*args,&block)
+    def parameterized(*args, &block)
       Docile.dsl_eval(OuterDSL.new, *args, &block)
     end
 
@@ -204,6 +205,7 @@ describe Docile do
       @second.should == 'Got a new ten speed'
       fourth.should == 2
     end
+
   end
 
 end
