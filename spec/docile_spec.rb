@@ -13,6 +13,11 @@ describe Docile do
       end.should == [1, 3]
     end
 
+    it "should use the __id__ method of the proxy object" do
+      arr = []
+      Docile.dsl_eval(arr) { __id__.should_not == arr.__id__ }
+    end
+
     Pizza = Struct.new(:cheese, :pepperoni, :bacon, :sauce)
 
     class PizzaBuilder
