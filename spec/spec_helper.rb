@@ -1,6 +1,8 @@
 require 'rubygems'
 require 'rspec'
 require 'singleton'
+require 'coveralls'
+Coveralls.wear!
 
 test_dir = File.dirname(__FILE__)
 $LOAD_PATH.unshift test_dir unless $LOAD_PATH.include?(test_dir)
