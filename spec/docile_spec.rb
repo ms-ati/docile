@@ -18,6 +18,10 @@ describe Docile do
       Docile.dsl_eval(arr) { __id__.should_not == arr.__id__ }
     end
 
+    it "should raise NoMethodError if the DSL object doesn't implement the method" do
+      expect { Docile.dsl_eval([]) { no_such_method } }.to raise_error(NoMethodError)
+    end
+
     Pizza = Struct.new(:cheese, :pepperoni, :bacon, :sauce)
 
     class PizzaBuilder
