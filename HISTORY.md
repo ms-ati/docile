@@ -1,5 +1,9 @@
 # HISTORY
 
+## [v1.0.3 (Jul 6, 2013)](http://github.com/ms-ati/docile/compare/v1.0.2...v1.0.3)
+
+  - instrument code coverage via SimpleCov and publish to Coveralls.io
+
 ## [v1.0.2 (Apr 1, 2013)](http://github.com/ms-ati/docile/compare/v1.0.1...v1.0.2)
 
   - allow passing parameters to DSL blocks (thanks @dslh!)
