@@ -9,7 +9,9 @@ SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter[
   SimpleCov::Formatter::HTMLFormatter,
   Coveralls::SimpleCov::Formatter
 ]
-SimpleCov.start
+SimpleCov.start do
+  add_filter "/spec/"
+end
 
 test_dir = File.dirname(__FILE__)
 $LOAD_PATH.unshift test_dir unless $LOAD_PATH.include?(test_dir)
