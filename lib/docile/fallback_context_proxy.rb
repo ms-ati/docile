@@ -21,8 +21,8 @@ module Docile
 
     # Special case to allow proxy instance variables
     def instance_variables
-      # Ruby 1.8.x returns string names, convert to symbols
-      super.map(&:to_sym) - NON_PROXIED_INSTANCE_VARIABLES.to_a
+      # Ruby 1.8.x returns string names, convert to symbols for compatibility
+      super.select { |v| !NON_PROXIED_INSTANCE_VARIABLES.include?(v.to_sym) }
     end
 
     def method_missing(method, *args, &block)
