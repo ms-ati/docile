@@ -10,9 +10,7 @@ module Docile
     NON_PROXIED_INSTANCE_VARIABLES = Set[:@__receiver__, :@__fallback__]
 
     instance_methods.each do |method|
-      unless NON_PROXIED_METHODS.include?(method.to_sym)
-        undef_method(method)
-      end
+      undef_method(method) unless NON_PROXIED_METHODS.include?(method.to_sym)
     end
 
     def initialize(receiver, fallback)
@@ -20,7 +18,6 @@ module Docile
       @__fallback__ = fallback
     end
 
-    # Special case to allow proxy instance variables
     def instance_variables
       # Ruby 1.8.x returns string names, convert to symbols for compatibility
       super.select { |v| !NON_PROXIED_INSTANCE_VARIABLES.include?(v.to_sym) }
@@ -31,11 +28,9 @@ module Docile
     end
 
     def __proxy_method__(method, *args, &block)
-      begin
-        @__receiver__.__send__(method.to_sym, *args, &block)
-      rescue ::NoMethodError => e
-        @__fallback__.__send__(method.to_sym, *args, &block)
-      end
+      @__receiver__.__send__(method.to_sym, *args, &block)
+    rescue ::NoMethodError => e
+      @__fallback__.__send__(method.to_sym, *args, &block)
     end
   end
 end
