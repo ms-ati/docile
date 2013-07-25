@@ -1,5 +1,11 @@
 # HISTORY
 
+## [v1.0.4 (Jul 25, 2013)](http://github.com/ms-ati/docile/compare/v1.0.3...v1.0.4)
+
+  - simplify and clarify code
+  - fix a minor bug where FallbackContextProxy#instance_variables would return
+    symbols rather than strings on Ruby 1.8.x
+
 ## [v1.0.3 (Jul 6, 2013)](http://github.com/ms-ati/docile/compare/v1.0.2...v1.0.3)
 
   - instrument code coverage via SimpleCov and publish to Coveralls.io
