@@ -217,4 +217,18 @@ describe Docile do
 
   end
 
+  context "FallbackContextProxy#instance_variables" do
+
+    it "should preserve the class (String or Symbol) normally returned by current ruby version" do
+      @a = 1
+      expected_type = instance_variables.first.class
+
+      fcp = Docile::FallbackContextProxy.new(nil, nil)
+      fcp.instance_variable_set(:@foo, "foo")
+
+      fcp.instance_variables.first.class.should == expected_type
+    end
+
+  end
+
 end
