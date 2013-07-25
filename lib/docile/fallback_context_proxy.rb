@@ -24,10 +24,6 @@ module Docile
     end
 
     def method_missing(method, *args, &block)
-      __proxy_method__(method, *args, &block)
-    end
-
-    def __proxy_method__(method, *args, &block)
       @__receiver__.__send__(method.to_sym, *args, &block)
     rescue ::NoMethodError => e
       @__fallback__.__send__(method.to_sym, *args, &block)
