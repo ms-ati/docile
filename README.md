@@ -30,6 +30,7 @@ end
 ```
 
 No problem, just define the method `with_array` like this:
+
 ``` ruby
 def with_array(arr=[], &block)
   Docile.dsl_eval(arr, &block)
@@ -43,6 +44,7 @@ Easy!
 Mutating (changing) an Array instance is fine, but what usually makes a good DSL is a [Builder Pattern][2].
 
 For example, let's say you want a DSL to specify how you want to build a Pizza:
+
 ```ruby
 @sauce_level = :extra
 
@@ -55,6 +57,7 @@ end
 ```
 
 And let's say we have a PizzaBuilder, which builds a Pizza like this:
+
 ```ruby
 Pizza = Struct.new(:cheese, :pepperoni, :bacon, :sauce)
 
@@ -89,6 +92,7 @@ It's just that easy!
 Parameters can be passed to the DSL block.
 
 Supposing you want to make some sort of cheap [Sinatra][3] knockoff:
+
 ```ruby
 @last_request = nil
 respond '/path' do |request|
@@ -106,6 +110,7 @@ end
 ```
 
 You'd put together a dispatcher something like this:
+
 ```ruby
 require 'singleton'
 
