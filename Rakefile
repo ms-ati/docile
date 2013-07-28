@@ -1,7 +1,17 @@
+require "rake/clean"
 require "bundler/gem_tasks"
 require "rspec/core/rake_task"
 
-# Don't require doc generation gems on Travis
+# Default task for `rake` is to run rspec
+task :default => [:spec]
+
+# Use default rspec rake task
+RSpec::Core::RakeTask.new
+
+# Configure `rake clobber` to delete all generated files
+CLOBBER.include("pkg", "doc", "coverage")
+
+# Only configure yard doc generation when *not* on Travis
 if ENV['CI'] != 'true'
   require "github/markup"
   require "redcarpet"
@@ -14,7 +24,3 @@ if ENV['CI'] != 'true'
     t.options = %w(--markup-provider=redcarpet --markup=markdown --main=README.md)
   end
 end
-
-RSpec::Core::RakeTask.new
-
-task :default => [:spec]
