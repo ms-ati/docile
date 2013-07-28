@@ -1,18 +1,20 @@
 # Docile
-
-Definition: *Ready to accept control or instruction; submissive* [[1]]
-
-Tired of overly complex DSL libraries and hairy meta-programming?
-
-Let's make our Ruby DSLs more docile...
-
-[1]: http://www.google.com/search?q=docile+definition   "Google"
-
 [![Gem Version](https://badge.fury.io/rb/docile.png)](http://badge.fury.io/rb/docile)
 [![Build Status](https://travis-ci.org/ms-ati/docile.png)](https://travis-ci.org/ms-ati/docile)
 [![Dependency Status](https://gemnasium.com/ms-ati/docile.png)](https://gemnasium.com/ms-ati/docile)
 [![Code Climate](https://codeclimate.com/github/ms-ati/docile.png)](https://codeclimate.com/github/ms-ati/docile)
 [![Coverage Status](https://coveralls.io/repos/ms-ati/docile/badge.png)](https://coveralls.io/r/ms-ati/docile)
+
+Ruby makes it possible to very really expressive **Domain Specific
+Languages**, or **DSL** for short. However, it requires some deep knowledge and
+somewhat hairy meta-programming to get the interface just right.
+
+"Docile" means *Ready to accept control or instruction; submissive* [[1]]
+
+Instead of each Ruby project reinventing this wheel, let's make our Ruby DSL
+coding a bit more docile...
+
+[1]: http://www.google.com/search?q=docile+definition   "Google"
 
 ## Basic Usage
 
