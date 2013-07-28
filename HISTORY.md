@@ -1,5 +1,10 @@
 # HISTORY
 
+## [v1.0.5 (Jul 28, 2013)](http://github.com/ms-ati/docile/compare/v1.0.4...v1.0.5)
+
+  - achieve 100% yard docs coverage
+  - fix rendering of docs at http://rubydoc.info/gems/docile
+
 ## [v1.0.4 (Jul 25, 2013)](http://github.com/ms-ati/docile/compare/v1.0.3...v1.0.4)
 
   - simplify and clarify code
