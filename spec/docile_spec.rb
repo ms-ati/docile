@@ -246,6 +246,30 @@ describe Docile do
 
   end
 
+  describe "#dsl_eval_immutable" do
+
+    context "when DSL context object is a String" do
+      let(:original) { "Hello, world!" }
+      let!(:result) { execute_non_mutating_dsl_against_string }
+
+      def execute_non_mutating_dsl_against_string
+        Docile.dsl_eval_immutable(original) do
+          reverse
+          upcase
+        end
+      end
+
+      pending "doesn't modify the original string" do
+         original.should == "Hello, world!"
+      end
+
+      pending "chains the commands in the block against the DSL context object" do
+         result.should == "!DLROW ,OLLEH"
+      end
+    end
+
+  end
+
 end
 
 describe Docile::FallbackContextProxy do
