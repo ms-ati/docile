@@ -5,7 +5,7 @@
 [![Code Climate](https://codeclimate.com/github/ms-ati/docile.png)](https://codeclimate.com/github/ms-ati/docile)
 [![Coverage Status](https://coveralls.io/repos/ms-ati/docile/badge.png)](https://coveralls.io/r/ms-ati/docile)
 
-Ruby makes it possible to very really expressive **Domain Specific
+Ruby makes it possible to create very expressive **Domain Specific
 Languages**, or **DSL** for short. However, it requires some deep knowledge and
 somewhat hairy meta-programming to get the interface just right.
 
