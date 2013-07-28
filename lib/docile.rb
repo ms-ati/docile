@@ -1,34 +1,53 @@
 require "docile/version"
 require "docile/fallback_context_proxy"
 
+# Docile keeps your Ruby DSLs tame and well-behaved
+# @see http://ms-ati.github.com/docile/
 module Docile
-  # Executes a block in the context of an object whose interface represents a DSL.
+  # Execute a block in the context of an object whose methods represent the
+  # commands in a DSL.
   #
-  # Example of using an Array as a DSL:
+  # @note Use with an *imperative* DSL (commands modify the context object)
   #
-  #     Docile.dsl_eval [] do
-  #       push 1
-  #       push 2
-  #       pop
-  #       push 3
-  #     end
-  #     #=> [1, 3]
+  # Use this method to execute an *imperative* DSL, which means that:
   #
-  # @param dsl   [Object] an object whose methods represent a DSL
+  #   1. each command mutates the state of the DSL context object
+  #   2. the return values of the commands are ignored
+  #
+  # @example Use a String as a DSL
+  #   Docile.dsl_eval("Hello, world!") do
+  #     reverse!
+  #     upcase!
+  #   end
+  #   #=> "!DLROW ,OLLEH"
+  #
+  # @example Use an Array as a DSL
+  #   Docile.dsl_eval([]) do
+  #     push 1
+  #     push 2
+  #     pop
+  #     push 3
+  #   end
+  #   #=> [1, 3]
+  #
+  # @param dsl   [Object] context object whose methods make up the DSL
   # @param args  [Array]  arguments to be passed to the block
-  # @param block [Proc]   a block to execute in the DSL context
-  # @return      [Object] the dsl object, after execution of the block
+  # @yield                the block of DSL commands to be executed against the
+  #                         `dsl` context object
+  # @return      [Object] the `dsl` context object after executing the block
   def dsl_eval(dsl, *args, &block)
     block_context = eval("self", block.binding)
     proxy_context = FallbackContextProxy.new(dsl, block_context)
     begin
       block_context.instance_variables.each do |ivar|
-        proxy_context.instance_variable_set(ivar, block_context.instance_variable_get(ivar))
+        value_from_block = block_context.instance_variable_get(ivar)
+        proxy_context.instance_variable_set(ivar, value_from_block)
       end
-      proxy_context.instance_exec(*args,&block)
+      proxy_context.instance_exec(*args, &block)
     ensure
       block_context.instance_variables.each do |ivar|
-        block_context.instance_variable_set(ivar, proxy_context.instance_variable_get(ivar))
+        value_from_dsl_proxy = proxy_context.instance_variable_get(ivar)
+        block_context.instance_variable_set(ivar, value_from_dsl_proxy)
       end
     end
     dsl
