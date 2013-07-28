@@ -37,27 +37,21 @@ module Docile
   #                         `dsl` context object
   # @return      [Object] the `dsl` context object after executing the block
   def dsl_eval(dsl, *args, &block)
-    block_context = eval("self", block.binding)
-    proxy_context = FallbackContextProxy.new(dsl, block_context)
-    begin
-      block_context.instance_variables.each do |ivar|
-        value_from_block = block_context.instance_variable_get(ivar)
-        proxy_context.instance_variable_set(ivar, value_from_block)
-      end
-      proxy_context.instance_exec(*args, &block)
-    ensure
-      block_context.instance_variables.each do |ivar|
-        value_from_dsl_proxy = proxy_context.instance_variable_get(ivar)
-        block_context.instance_variable_set(ivar, value_from_dsl_proxy)
-      end
-    end
+    exec_in_proxy_context(dsl, FallbackContextProxy, *args, &block)
     dsl
   end
   module_function :dsl_eval
 
   def dsl_eval_immutable(dsl, *args, &block)
+    exec_in_proxy_context(dsl, ChainingFallbackContextProxy, *args, &block)
+  end
+  module_function :dsl_eval_immutable
+
+  private
+
+  def exec_in_proxy_context(dsl, proxy_type, *args, &block)
     block_context = eval("self", block.binding)
-    proxy_context = ChainingFallbackContextProxy.new(dsl, block_context)
+    proxy_context = proxy_type.new(dsl, proxy_type.new(dsl, block_context))
     begin
       block_context.instance_variables.each do |ivar|
         value_from_block = block_context.instance_variable_get(ivar)
@@ -71,5 +65,5 @@ module Docile
       end
     end
   end
-  module_function :dsl_eval_immutable
+  module_function :exec_in_proxy_context
 end
