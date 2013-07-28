@@ -259,11 +259,11 @@ describe Docile do
         end
       end
 
-      pending "doesn't modify the original string" do
+      it "doesn't modify the original string" do
          original.should == "Hello, world!"
       end
 
-      pending "chains the commands in the block against the DSL context object" do
+      it "chains the commands in the block against the DSL context object" do
          result.should == "!DLROW ,OLLEH"
       end
     end

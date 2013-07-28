@@ -1,5 +1,6 @@
 require "docile/version"
 require "docile/fallback_context_proxy"
+require "docile/chaining_fallback_context_proxy"
 
 # Docile keeps your Ruby DSLs tame and well-behaved
 # @see http://ms-ati.github.com/docile/
@@ -53,4 +54,22 @@ module Docile
     dsl
   end
   module_function :dsl_eval
+
+  def dsl_eval_immutable(dsl, *args, &block)
+    block_context = eval("self", block.binding)
+    proxy_context = ChainingFallbackContextProxy.new(dsl, block_context)
+    begin
+      block_context.instance_variables.each do |ivar|
+        value_from_block = block_context.instance_variable_get(ivar)
+        proxy_context.instance_variable_set(ivar, value_from_block)
+      end
+      proxy_context.instance_exec(*args, &block)
+    ensure
+      block_context.instance_variables.each do |ivar|
+        value_from_dsl_proxy = proxy_context.instance_variable_get(ivar)
+        block_context.instance_variable_set(ivar, value_from_dsl_proxy)
+      end
+    end
+  end
+  module_function :dsl_eval_immutable
 end
