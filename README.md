@@ -149,10 +149,12 @@ end
 
 ## Features
 
-  1.  method lookup falls back from the DSL object to the block's context
-  2.  local variable lookup falls back from the DSL object to the block's context
-  3.  instance variables are from the block's context only
-  4.  nested dsl evaluation
+  1.  Method lookup falls back from the DSL object to the block's context
+  2.  Local variable lookup falls back from the DSL object to the block's
+        context
+  3.  Instance variables are from the block's context only
+  4.  Nested DSL evaluation, correctly chaining method and variable handling
+        from the inner to the outer DSL scopes
 
 ## Installation
 
@@ -173,12 +175,14 @@ Version 1.0.x works on [all ruby versions since 1.8.7](https://github.com/ms-ati
 ## Note on Patches/Pull Requests
 
   * Fork the project.
-  * Setup your development environment with: gem install bundler; bundle install
+  * Setup your development environment with:
+      `gem install bundler; bundle install`
   * Make your feature addition or bug fix.
-  * Add tests for it. This is important so I don't break it in a
-    future version unintentionally.
+  * Add tests for it. This is important so I don't break it in a future version
+      unintentionally.
   * Commit, do not mess with rakefile, version, or history.
-    (if you want to have your own version, that is fine but bump version in a commit by itself I can ignore when I pull)
+      (if you want to have your own version, that is fine but bump version in a
+      commit by itself I can ignore when I pull)
   * Send me a pull request. Bonus points for topic branches.
 
 ## Copyright
