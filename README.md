@@ -6,7 +6,7 @@
 [![Coverage Status](https://coveralls.io/repos/ms-ati/docile/badge.png)](https://coveralls.io/r/ms-ati/docile)
 
 Ruby makes it possible to create very expressive **Domain Specific
-Languages**, or **DSL** for short. However, it requires some deep knowledge and
+Languages**, or **DSL**'s for short. However, it requires some deep knowledge and
 somewhat hairy meta-programming to get the interface just right.
 
 "Docile" means *Ready to accept control or instruction; submissive* [[1]]
