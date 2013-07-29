@@ -1,0 +1,34 @@
+module Docile
+  # @api private
+  #
+  # A namespace for functions relating to the execution of a block agsinst a
+  # proxy object.
+  module Execution
+    # Execute a block in the context of an object whose methods represent the
+    # commands in a DSL, using a specific proxy class.
+    #
+    # @param dsl        [Object] context object whose methods make up the
+    #                            (initial) DSL
+    # @param proxy_type [Class]  class to instantiate as the proxy context
+    # @param args       [Array]  arguments to be passed to the block
+    # @yield                     the block of DSL commands to be executed
+    # @return           [Object] the return value of the block
+    def exec_in_proxy_context(dsl, proxy_type, *args, &block)
+      block_context = eval("self", block.binding)
+      proxy_context = proxy_type.new(dsl, proxy_type.new(dsl, block_context))
+      begin
+        block_context.instance_variables.each do |ivar|
+          value_from_block = block_context.instance_variable_get(ivar)
+          proxy_context.instance_variable_set(ivar, value_from_block)
+        end
+        proxy_context.instance_exec(*args, &block)
+      ensure
+        block_context.instance_variables.each do |ivar|
+          value_from_dsl_proxy = proxy_context.instance_variable_get(ivar)
+          block_context.instance_variable_set(ivar, value_from_dsl_proxy)
+        end
+      end
+    end
+    module_function :exec_in_proxy_context
+  end
+end
