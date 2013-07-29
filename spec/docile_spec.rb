@@ -248,8 +248,8 @@ describe Docile do
 
   describe "#dsl_eval_immutable" do
 
-    context "when DSL context object is a String" do
-      let(:original) { "Hello, world!" }
+    context "when DSL context object is a frozen String" do
+      let(:original) { "I'm immutable!".freeze }
       let!(:result) { execute_non_mutating_dsl_against_string }
 
       def execute_non_mutating_dsl_against_string
@@ -260,14 +260,29 @@ describe Docile do
       end
 
       it "doesn't modify the original string" do
-         original.should == "Hello, world!"
+         original.should == "I'm immutable!"
       end
 
       it "chains the commands in the block against the DSL context object" do
-         result.should == "!DLROW ,OLLEH"
+         result.should == "!ELBATUMMI M'I"
       end
     end
 
+    context "when DSL context object is a number" do
+      let(:original) { 84.5 }
+      let!(:result) { execute_non_mutating_dsl_against_number }
+
+      def execute_non_mutating_dsl_against_number
+        Docile.dsl_eval_immutable(original) do
+          fdiv(2)
+          floor
+        end
+      end
+
+      it "chains the commands in the block against the DSL context object" do
+         result.should == 42
+      end
+    end
   end
 
 end
