@@ -16,7 +16,9 @@ coding a bit more docile...
 
 [1]: http://www.google.com/search?q=docile+definition   "Google"
 
-## Basic Usage
+## Usage
+
+### Basic
 
 Let's say that we want to make a DSL for modifying Array objects.
 Wouldn't it be great if we could just treat the methods of Array as a DSL?
@@ -41,7 +43,7 @@ end
 
 Easy!
 
-## Advanced Usage
+### Advanced
 
 Mutating (changing) an Array instance is fine, but what usually makes a good DSL is a [Builder Pattern][2].
 
@@ -89,7 +91,7 @@ It's just that easy!
 
 [2]: http://stackoverflow.com/questions/328496/when-would-you-use-the-builder-pattern  "Builder Pattern"
 
-## Block parameters
+### Block parameters
 
 Parameters can be passed to the DSL block.
 
@@ -149,7 +151,7 @@ end
 
 [3]: http://www.sinatrarb.com "Sinatra"
 
-## Functional-Style DSL Objects
+### Functional-Style DSL Objects
 
 Sometimes, you want to use an object as a DSL, but it doesn't quite fit the
 [imperative](http://en.wikipedia.org/wiki/Imperative_programming) pattern shown
@@ -204,11 +206,10 @@ All set!
 $ gem install docile
 ```
 
-## Documentation
-
-Documentation hosted on *rubydoc.info*: [Docile Documentation](http://rubydoc.info/gems/docile)
-
-Or, read the code hosted on *github.com*: [Docile Code](https://github.com/ms-ati/docile)
+## Links
+* [Source](https://github.com/ms-ati/docile)
+* [Documentation](http://rubydoc.info/gems/docile)
+* [Bug Tracker](https://github.com/ms-ati/docile/issues)
 
 ## Status
 
