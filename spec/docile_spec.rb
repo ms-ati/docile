@@ -2,7 +2,7 @@ require "spec_helper"
 
 describe Docile do
 
-  describe "#dsl_eval" do
+  describe ".dsl_eval" do
 
     context "when DSL context object is an Array" do
       let(:array) { [] }
@@ -246,7 +246,7 @@ describe Docile do
 
   end
 
-  describe "#dsl_eval_immutable" do
+  describe ".dsl_eval_immutable" do
 
     context "when DSL context object is a frozen String" do
       let(:original) { "I'm immutable!".freeze }
