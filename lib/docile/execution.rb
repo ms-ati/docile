@@ -9,7 +9,9 @@ module Docile
     #
     # @param dsl        [Object] context object whose methods make up the
     #                            (initial) DSL
-    # @param proxy_type [Class]  class to instantiate as the proxy context
+    # @param proxy_type [FallbackContextProxy,
+    #                    ChainingFallbackContextProxy]
+    #                            class to instantiate as the proxy context
     # @param args       [Array]  arguments to be passed to the block
     # @yield                     the block of DSL commands to be executed
     # @return           [Object] the return value of the block

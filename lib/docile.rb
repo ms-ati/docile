@@ -3,7 +3,7 @@ require "docile/execution"
 require "docile/fallback_context_proxy"
 require "docile/chaining_fallback_context_proxy"
 
-# Docile keeps your Ruby DSLs tame and well-behaved
+# Docile keeps your Ruby DSLs tame and well-behaved.
 module Docile
   extend Execution
 
@@ -57,12 +57,12 @@ module Docile
   #   2. Each command returns the next DSL context object
   #   3. The final return value is the value returned by the last command
   #
-  # @example Use a String as a DSL
-  #   Docile.dsl_eval_immutable("Hello, world!") do
+  # @example Use a frozen String as a DSL
+  #   Docile.dsl_eval_immutable("I'm immutable!".freeze) do
   #     reverse
   #     upcase
   #   end
-  #   #=> "!DLROW ,OLLEH"
+  #   #=> "!ELBATUMMI M'I"
   #
   # @example Use a Float as a DSL
   #   Docile.dsl_eval_immutable(84.5) do
