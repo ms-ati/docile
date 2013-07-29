@@ -166,11 +166,16 @@ order to enforce [immutability](http://en.wikipedia.org/wiki/Immutable_object).
 Wouldn't it be great if we could just treat these methods as a DSL as well?
 
 ```ruby
-with_immutable_string("I'm immutable!".freeze) do
+s = "I'm immutable!".freeze
+
+with_immutable_string(s) do
   reverse
   upcase
 end
 #=> "!ELBATUMMI M'I"
+
+s
+#=> "I'm immutable!"
 ```
 
 No problem, just define the method `with_immutable_string` like this:
