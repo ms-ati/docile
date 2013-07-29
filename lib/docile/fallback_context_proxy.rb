@@ -7,6 +7,10 @@ module Docile
   # Will attempt to forward all method calls first to the primary receiver,
   # and then to the fallback receiver if the primary does not handle that
   # method.
+  #
+  # This is useful for implementing DSL evaluation in the context of an object.
+  #
+  # @see Docile#dsl_eval
   class FallbackContextProxy
     # The set of methods which will **not** be proxied, but instead answered
     # by this object directly.
