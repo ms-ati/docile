@@ -28,12 +28,12 @@ with_array([]) do
   pop
   push 3
 end
-# => [1, 3]
+#=> [1, 3]
 ```
 
 No problem, just define the method `with_array` like this:
 
-``` ruby
+```ruby
 def with_array(arr=[], &block)
   Docile.dsl_eval(arr, &block)
 end
@@ -55,7 +55,7 @@ pizza do
   pepperoni
   sauce @sauce_level
 end
-# => #<Pizza:0x00001009dc398 @cheese=true, @pepperoni=true, @bacon=false, @sauce=:extra>
+#=> #<Pizza:0x00001009dc398 @cheese=true, @pepperoni=true, @bacon=false, @sauce=:extra>
 ```
 
 And let's say we have a PizzaBuilder, which builds a Pizza like this:
@@ -85,7 +85,7 @@ def pizza(&block)
 end
 ```
 
-It's just that easy! 
+It's just that easy!
 
 [2]: http://stackoverflow.com/questions/328496/when-would-you-use-the-builder-pattern  "Builder Pattern"
 
@@ -149,6 +149,40 @@ end
 
 [3]: http://www.sinatrarb.com "Sinatra"
 
+## Functional-Style DSL Objects
+
+Sometimes, you want to use an object as a DSL, but it doesn't quite fit the
+[imperative](http://en.wikipedia.org/wiki/Imperative_programming) pattern shown
+above.
+
+Instead of methods like
+[Array#push](http://www.ruby-doc.org/core-2.0/Array.html#method-i-push), which
+modifies the object at hand, it has methods like
+[String#reverse](http://www.ruby-doc.org/core-2.0/String.html#method-i-reverse),
+which returns a new object without touching the original. Perhaps it's even
+[frozen](http://www.ruby-doc.org/core-2.0/Object.html#method-i-freeze) in
+order to enforce [immutability](http://en.wikipedia.org/wiki/Immutable_object).
+
+Wouldn't it be great if we could just treat these methods as a DSL as well?
+
+```ruby
+with_immutable_string("I'm immutable!".freeze) do
+  reverse
+  upcase
+end
+#=> "!ELBATUMMI M'I"
+```
+
+No problem, just define the method `with_immutable_string` like this:
+
+```ruby
+def with_immutable_string(str="", &block)
+  Docile.dsl_eval_immutable(str, &block)
+end
+```
+
+All set!
+
 ## Features
 
   1.  Method lookup falls back from the DSL object to the block's context
@@ -157,6 +191,7 @@ end
   3.  Instance variables are from the block's context only
   4.  Nested DSL evaluation, correctly chaining method and variable handling
         from the inner to the outer DSL scopes
+  5.  Alternatives for both imperative and functional styles of DSL objects
 
 ## Installation
 
