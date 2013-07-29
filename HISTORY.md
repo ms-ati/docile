@@ -1,5 +1,9 @@
 # HISTORY
 
+## [v1.1.0 (Jul 29, 2013)](http://github.com/ms-ati/docile/compare/v1.0.5...v1.1.0)
+
+  - add functional-style DSL objects via `Docile#dsl_eval_immutable`
+
 ## [v1.0.5 (Jul 28, 2013)](http://github.com/ms-ati/docile/compare/v1.0.4...v1.0.5)
 
   - achieve 100% yard docs coverage
