@@ -1,6 +1,8 @@
 require "docile/fallback_context_proxy"
 
 module Docile
+  # @api private
+  #
   # Operates in the same manner as {FallbackContextProxy}, but replacing
   # the primary `receiver` object with the result of each proxied method.
   #

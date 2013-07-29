@@ -1,6 +1,8 @@
 require 'set'
 
 module Docile
+  # @api private
+  #
   # A proxy object with a primary receiver as well as a secondary
   # fallback receiver.
   #
