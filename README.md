@@ -66,10 +66,10 @@ And let's say we have a PizzaBuilder, which builds a Pizza like this:
 Pizza = Struct.new(:cheese, :pepperoni, :bacon, :sauce)
 
 class PizzaBuilder
-  def cheese(v=true); @cheese = v; end
-  def pepperoni(v=true); @pepperoni = v; end
-  def bacon(v=true); @bacon = v; end
-  def sauce(v=nil); @sauce = v; end
+  def cheese(v=true); @cheese = v; self; end
+  def pepperoni(v=true); @pepperoni = v; self; end
+  def bacon(v=true); @bacon = v; self; end
+  def sauce(v=nil); @sauce = v; self; end
   def build
     Pizza.new(!!@cheese, !!@pepperoni, !!@bacon, @sauce)
   end
