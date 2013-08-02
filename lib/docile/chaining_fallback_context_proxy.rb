@@ -9,7 +9,7 @@ module Docile
   # This is useful for implementing DSL evaluation for immutable context
   # objects.
   #
-  # @see Docile#dsl_eval_immutable
+  # @see Docile.dsl_eval_immutable
   class ChainingFallbackContextProxy < FallbackContextProxy
     # Proxy methods as in {FallbackContextProxy#method_missing}, replacing
     # `receiver` with the returned value.

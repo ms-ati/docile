@@ -12,7 +12,7 @@ module Docile
   #
   # This is useful for implementing DSL evaluation in the context of an object.
   #
-  # @see Docile#dsl_eval
+  # @see Docile.dsl_eval
   class FallbackContextProxy
     # The set of methods which will **not** be proxied, but instead answered
     # by this object directly.
