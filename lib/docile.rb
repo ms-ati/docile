@@ -36,7 +36,7 @@ module Docile
   #
   # @param dsl   [Object] context object whose methods make up the DSL
   # @param args  [Array]  arguments to be passed to the block
-  # @yield                the block of DSL commands to be executed against the
+  # @param block [Proc]   the block of DSL commands to be executed against the
   #                         `dsl` context object
   # @return      [Object] the `dsl` context object after executing the block
   def dsl_eval(dsl, *args, &block)
@@ -74,7 +74,7 @@ module Docile
   # @param dsl   [Object] immutable context object whose methods make up the
   #                       initial DSL
   # @param args  [Array]  arguments to be passed to the block
-  # @yield                the block of DSL commands to be executed against the
+  # @param block [Proc]   the block of DSL commands to be executed against the
   #                         `dsl` context object and successor return values
   # @return      [Object] the return value of the final command in the block
   def dsl_eval_immutable(dsl, *args, &block)
