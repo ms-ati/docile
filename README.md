@@ -213,7 +213,7 @@ $ gem install docile
 
 ## Status
 
-Version 1.0.x works on [all ruby versions since 1.8.7](https://github.com/ms-ati/docile/blob/master/.travis.yml).
+Works on [all ruby versions since 1.8.7](https://github.com/ms-ati/docile/blob/master/.travis.yml).
 
 ## Note on Patches/Pull Requests
 
