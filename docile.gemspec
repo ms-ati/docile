@@ -10,6 +10,7 @@ Gem::Specification.new do |s|
   s.homepage    = "http://ms-ati.github.com/docile/"
   s.summary     = "Docile keeps your Ruby DSL's tame and well-behaved"
   s.description = "Docile turns any Ruby object into a DSL. Especially useful with the Builder pattern."
+  s.license     = "MIT"
 
   s.rubyforge_project = "docile"
 
