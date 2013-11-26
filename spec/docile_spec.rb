@@ -1,10 +1,10 @@
-require "spec_helper"
+require 'spec_helper'
 
 describe Docile do
 
-  describe ".dsl_eval" do
+  describe '.dsl_eval' do
 
-    context "when DSL context object is an Array" do
+    context 'when DSL context object is an Array' do
       let(:array) { [] }
       let!(:result) { execute_dsl_against_array }
 
@@ -17,15 +17,15 @@ describe Docile do
         end
       end
 
-      it "executes the block against the DSL context object" do
+      it 'executes the block against the DSL context object' do
          array.should == [1, 3]
       end
 
-      it "returns the DSL object after executing block against it" do
+      it 'returns the DSL object after executing block against it' do
          result.should == array
       end
 
-      it "doesn't proxy #__id__"  do
+      it "doesn't proxy #__id__" do
         Docile.dsl_eval(array) { __id__.should_not == array.__id__ }
       end
 
@@ -46,7 +46,7 @@ describe Docile do
       end
     end
 
-    context "when DSL context object is a Builder pattern" do
+    context 'when DSL context object is a Builder pattern' do
       let(:builder) { PizzaBuilder.new }
       let(:result) { execute_dsl_against_builder_and_call_build }
 
@@ -59,7 +59,7 @@ describe Docile do
         end.build
       end
 
-      it "returns correctly built object" do
+      it 'returns correctly built object' do
         result.should == Pizza.new(true, false, true, :extra)
       end
     end
@@ -86,12 +86,12 @@ describe Docile do
       Docile.dsl_eval(OuterDSL.new, &block)
     end
 
-    context "when given parameters for the DSL block" do
+    context 'when given parameters for the DSL block' do
       def parameterized(*args, &block)
         Docile.dsl_eval(OuterDSL.new, *args, &block)
       end
 
-      it "passes parameters to the block" do
+      it 'passes parameters to the block' do
         parameterized(1,2,3) do |x,y,z|
           x.should == 1
           y.should == 2
@@ -99,11 +99,11 @@ describe Docile do
         end
       end
 
-      it "finds parameters before methods" do
+      it 'finds parameters before methods' do
         parameterized(1) { |a| a.should == 1 }
       end
 
-      it "find outer dsl parameters in inner dsl scope" do
+      it 'find outer dsl parameters in inner dsl scope' do
         parameterized(1,2,3) do |a,b,c|
           inner_with_params(c) do |d,e|
             a.should == 1
@@ -116,18 +116,18 @@ describe Docile do
       end
     end
 
-    context "when DSL blocks are nested" do
+    context 'when DSL blocks are nested' do
 
-      context "method lookup" do
-        it "finds method of outer dsl in outer dsl scope" do
+      context 'method lookup' do
+        it 'finds method of outer dsl in outer dsl scope' do
           outer { a.should == 'a' }
         end
 
-        it "finds method of inner dsl in inner dsl scope" do
+        it 'finds method of inner dsl in inner dsl scope' do
           outer { inner { b.should == 'b' } }
         end
 
-        it "finds method of outer dsl in inner dsl scope" do
+        it 'finds method of outer dsl in inner dsl scope' do
           outer { inner { a.should == 'a' } }
         end
 
@@ -141,27 +141,27 @@ describe Docile do
           outer { inner { c.should == 'c' } }
         end
 
-        it "finds method of outer dsl in preference to block context" do
+        it 'finds method of outer dsl in preference to block context' do
           def a; 'not a'; end
           outer { a.should == 'a' }
           outer { inner { a.should == 'a' } }
         end
       end
 
-      context "local variable lookup" do
-        it "finds local variable from block context in outer dsl scope" do
+      context 'local variable lookup' do
+        it 'finds local variable from block context in outer dsl scope' do
           foo = 'foo'
           outer { foo.should == 'foo' }
         end
 
-        it "finds local variable from block definition in inner dsl scope" do
+        it 'finds local variable from block definition in inner dsl scope' do
           bar = 'bar'
           outer { inner { bar.should == 'bar' } }
         end
       end
 
-      context "instance variable lookup" do
-        it "finds instance variable from block definition in outer dsl scope" do
+      context 'instance variable lookup' do
+        it 'finds instance variable from block definition in outer dsl scope' do
           @iv1 = 'iv1'; outer { @iv1.should == 'iv1' }
         end
 
@@ -169,7 +169,7 @@ describe Docile do
           @iv1 = 'foo'; outer { @iv1 = 'bar' }; @iv1.should == 'bar'
         end
 
-        it "finds instance variable from block definition in inner dsl scope" do
+        it 'finds instance variable from block definition in inner dsl scope' do
           @iv2 = 'iv2'; outer { inner { @iv2.should == 'iv2' } }
         end
 
@@ -180,7 +180,7 @@ describe Docile do
 
     end
 
-    context "when DSL context object is a Dispatch pattern" do
+    context 'when DSL context object is a Dispatch pattern' do
       class DispatchScope
         def params
           { :a => 1, :b => 2, :c => 3 }
@@ -211,7 +211,7 @@ describe Docile do
         MessageDispatch.instance.dispatch(path, request)
       end
 
-      it "dispatches correctly" do
+      it 'dispatches correctly' do
         @first = @second = nil
 
         respond '/path' do |request|
@@ -246,9 +246,9 @@ describe Docile do
 
   end
 
-  describe ".dsl_eval_immutable" do
+  describe '.dsl_eval_immutable' do
 
-    context "when DSL context object is a frozen String" do
+    context 'when DSL context object is a frozen String' do
       let(:original) { "I'm immutable!".freeze }
       let!(:result) { execute_non_mutating_dsl_against_string }
 
@@ -263,12 +263,12 @@ describe Docile do
          original.should == "I'm immutable!"
       end
 
-      it "chains the commands in the block against the DSL context object" do
+      it 'chains the commands in the block against the DSL context object' do
          result.should == "!ELBATUMMI M'I"
       end
     end
 
-    context "when DSL context object is a number" do
+    context 'when DSL context object is a number' do
       let(:original) { 84.5 }
       let!(:result) { execute_non_mutating_dsl_against_number }
 
@@ -279,7 +279,7 @@ describe Docile do
         end
       end
 
-      it "chains the commands in the block against the DSL context object" do
+      it 'chains the commands in the block against the DSL context object' do
          result.should == 42
       end
     end
@@ -297,7 +297,7 @@ describe Docile::FallbackContextProxy do
 
     def create_fcp_and_set_one_instance_variable
       fcp = Docile::FallbackContextProxy.new(nil, nil)
-      fcp.instance_variable_set(:@foo, "foo")
+      fcp.instance_variable_set(:@foo, 'foo')
       fcp
     end
 
@@ -306,7 +306,7 @@ describe Docile::FallbackContextProxy do
       instance_variables.first.class
     end
 
-    it "returns proxied instance variables" do
+    it 'returns proxied instance variables' do
       subject.map(&:to_sym).should include(:@foo)
     end
 
@@ -314,7 +314,7 @@ describe Docile::FallbackContextProxy do
       subject.map(&:to_sym).should_not include(*excluded)
     end
 
-    it "preserves the type (String or Symbol) of names on this ruby version" do
+    it 'preserves the type (String or Symbol) of names on this ruby version' do
       actual_type_of_names.should == expected_type_of_names
     end
   end
