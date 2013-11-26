@@ -1,5 +1,10 @@
 # HISTORY
 
+## [v1.1.1 (Nov 26, 2013)](http://github.com/ms-ati/docile/compare/v1.1.0...v1.1.1)
+
+  - documentation updates and corrections
+  - fix Rubinius build in Travis CI
+
 ## [v1.1.0 (Jul 29, 2013)](http://github.com/ms-ati/docile/compare/v1.0.5...v1.1.0)
 
   - add functional-style DSL objects via `Docile#dsl_eval_immutable`
