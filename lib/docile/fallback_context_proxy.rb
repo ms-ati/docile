@@ -54,7 +54,7 @@ module Docile
     # and then to `fallback` if not found.
     def method_missing(method, *args, &block)
       @__receiver__.__send__(method.to_sym, *args, &block)
-    rescue ::NoMethodError => e
+    rescue ::NoMethodError => _
       @__fallback__.__send__(method.to_sym, *args, &block)
     end
   end
