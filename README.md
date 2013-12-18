@@ -4,6 +4,7 @@
 [![Dependency Status](https://gemnasium.com/ms-ati/docile.png)](https://gemnasium.com/ms-ati/docile)
 [![Code Climate](https://codeclimate.com/github/ms-ati/docile.png)](https://codeclimate.com/github/ms-ati/docile)
 [![Coverage Status](https://coveralls.io/repos/ms-ati/docile/badge.png)](https://coveralls.io/r/ms-ati/docile)
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/ms-ati/docile/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 
 Ruby makes it possible to create very expressive **Domain Specific
 Languages**, or **DSL**'s for short. However, it requires some deep knowledge and
@@ -232,6 +233,4 @@ Works on [all ruby versions since 1.8.7](https://github.com/ms-ati/docile/blob/m
 
 Copyright (c) 2012-2013 Marc Siegel. See LICENSE for details.
 
-
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/ms-ati/docile/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 
