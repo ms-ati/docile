@@ -231,3 +231,7 @@ Works on [all ruby versions since 1.8.7](https://github.com/ms-ati/docile/blob/m
 ## Copyright
 
 Copyright (c) 2012-2013 Marc Siegel. See LICENSE for details.
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/ms-ati/docile/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
