@@ -231,6 +231,6 @@ Works on [all ruby versions since 1.8.7](https://github.com/ms-ati/docile/blob/m
 
 ## Copyright
 
-Copyright (c) 2012-2013 Marc Siegel. See LICENSE for details.
+Copyright (c) 2012-2014 Marc Siegel. See LICENSE for details.
 
 
