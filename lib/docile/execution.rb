@@ -16,7 +16,7 @@ module Docile
     # @return           [Object] the return value of the block
     def exec_in_proxy_context(dsl, proxy_type, *args, &block)
       block_context = eval('self', block.binding)
-      proxy_context = proxy_type.new(dsl, proxy_type.new(dsl, block_context))
+      proxy_context = proxy_type.new(dsl, block_context)
       begin
         block_context.instance_variables.each do |ivar|
           value_from_block = block_context.instance_variable_get(ivar)
