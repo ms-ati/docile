@@ -1,5 +1,10 @@
 # HISTORY
 
+## [v1.1.2 (Jan 10, 2014)](http://github.com/ms-ati/docile/compare/v1.1.1...v1.1.2)
+
+  - remove unnecessarily nested proxy objects (thanks @Ajedi32!
+  - documentation updates and corrections
+
 ## [v1.1.1 (Nov 26, 2013)](http://github.com/ms-ati/docile/compare/v1.1.0...v1.1.1)
 
   - documentation updates and corrections
