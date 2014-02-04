@@ -1,5 +1,5 @@
 language: ruby
-bundler_args: --without development
+cache: bundler
 rvm:
   - 2.1.0
   - 2.0.0
@@ -9,4 +9,4 @@ rvm:
   - ree
   - jruby-18mode
   - jruby-19mode
-  - rbx-2.2.0
+  - rbx

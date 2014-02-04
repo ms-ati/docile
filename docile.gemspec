@@ -19,14 +19,22 @@ Gem::Specification.new do |s|
   s.require_paths = %w(lib)
 
   # Running rspec tests from rake
-  s.add_development_dependency 'rake', '~> 0.9.2'
-  s.add_development_dependency 'rspec', '~> 2.11.0'
+  s.add_development_dependency 'rake', '~> 10.1.1'
+  s.add_development_dependency 'rspec', '~> 2.14.0'
+  s.add_development_dependency 'mime-types', '~> 1.25.1'
 
-  # Github flavored markdown in YARD documentation
-  # http://blog.nikosd.com/2011/11/github-flavored-markdown-in-yard.html
-  s.add_development_dependency 'yard'
-  s.add_development_dependency 'redcarpet'
-  s.add_development_dependency 'github-markup'
+  if defined?(RUBY_ENGINE) && 'rbx' == RUBY_ENGINE
+    s.add_development_dependency 'rubysl'
+    s.add_development_dependency 'rubinius-coverage'
+  end
+
+  if !(defined?(RUBY_ENGINE) && 'jruby' == RUBY_ENGINE)
+    # Github flavored markdown in YARD documentation
+    # http://blog.nikosd.com/2011/11/github-flavored-markdown-in-yard.html
+    s.add_development_dependency 'yard'
+    s.add_development_dependency 'redcarpet', '2.3.0' # because 1.8
+    s.add_development_dependency 'github-markup'
+  end
 
   # Coveralls test coverage tool
   s.add_development_dependency 'coveralls'
