@@ -53,9 +53,11 @@ module Docile
     # Proxy all methods, excluding {NON_PROXIED_METHODS}, first to `receiver`
     # and then to `fallback` if not found.
     def method_missing(method, *args, &block)
-      @__receiver__.__send__(method.to_sym, *args, &block)
-    rescue ::NoMethodError => _
-      @__fallback__.__send__(method.to_sym, *args, &block)
+      if @__receiver__.methods.include?(method.to_sym)
+        @__receiver__.__send__(method.to_sym, *args, &block)
+      else
+        @__fallback__.__send__(method.to_sym, *args, &block)
+      end
     end
   end
 end
