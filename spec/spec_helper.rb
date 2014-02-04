@@ -20,3 +20,9 @@ lib_dir = File.join(File.dirname(test_dir), 'lib')
 $LOAD_PATH.unshift lib_dir unless $LOAD_PATH.include?(lib_dir)
 
 require 'docile'
+
+RSpec.configure do |config|
+  config.expect_with :rspec do |c|
+    c.syntax = :expect
+  end
+end

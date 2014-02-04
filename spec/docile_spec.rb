@@ -18,15 +18,15 @@ describe Docile do
       end
 
       it 'executes the block against the DSL context object' do
-         array.should == [1, 3]
+         expect(array).to eq([1, 3])
       end
 
       it 'returns the DSL object after executing block against it' do
-         result.should == array
+         expect(result).to eq(array)
       end
 
       it "doesn't proxy #__id__" do
-        Docile.dsl_eval(array) { __id__.should_not == array.__id__ }
+        Docile.dsl_eval(array) { expect(__id__).not_to eq(array.__id__) }
       end
 
       it "raises NoMethodError if the DSL object doesn't implement the method" do
@@ -60,7 +60,7 @@ describe Docile do
       end
 
       it 'returns correctly built object' do
-        result.should == Pizza.new(true, false, true, :extra)
+        expect(result).to eq(Pizza.new(true, false, true, :extra))
       end
     end
 
@@ -93,24 +93,24 @@ describe Docile do
 
       it 'passes parameters to the block' do
         parameterized(1,2,3) do |x,y,z|
-          x.should == 1
-          y.should == 2
-          z.should == 3
+          expect(x).to eq(1)
+          expect(y).to eq(2)
+          expect(z).to eq(3)
         end
       end
 
       it 'finds parameters before methods' do
-        parameterized(1) { |a| a.should == 1 }
+        parameterized(1) { |a| expect(a).to eq(1) }
       end
 
       it 'find outer dsl parameters in inner dsl scope' do
         parameterized(1,2,3) do |a,b,c|
           inner_with_params(c) do |d,e|
-            a.should == 1
-            b.should == 2
-            c.should == 3
-            d.should == c
-            e.should == :foo
+            expect(a).to eq(1)
+            expect(b).to eq(2)
+            expect(c).to eq(3)
+            expect(d).to eq(c)
+            expect(e).to eq(:foo)
           end
         end
       end
@@ -120,61 +120,61 @@ describe Docile do
 
       context 'method lookup' do
         it 'finds method of outer dsl in outer dsl scope' do
-          outer { a.should == 'a' }
+          outer { expect(a).to eq('a') }
         end
 
         it 'finds method of inner dsl in inner dsl scope' do
-          outer { inner { b.should == 'b' } }
+          outer { inner { expect(b).to eq('b') } }
         end
 
         it 'finds method of outer dsl in inner dsl scope' do
-          outer { inner { a.should == 'a' } }
+          outer { inner { expect(a).to eq('a') } }
         end
 
         it "finds method of block's context in outer dsl scope" do
           def c; 'c'; end
-          outer { c.should == 'c' }
+          outer { expect(c).to eq('c') }
         end
 
         it "finds method of block's context in inner dsl scope" do
           def c; 'c'; end
-          outer { inner { c.should == 'c' } }
+          outer { inner { expect(c).to eq('c') } }
         end
 
         it 'finds method of outer dsl in preference to block context' do
           def a; 'not a'; end
-          outer { a.should == 'a' }
-          outer { inner { a.should == 'a' } }
+          outer { expect(a).to eq('a') }
+          outer { inner { expect(a).to eq('a') } }
         end
       end
 
       context 'local variable lookup' do
         it 'finds local variable from block context in outer dsl scope' do
           foo = 'foo'
-          outer { foo.should == 'foo' }
+          outer { expect(foo).to eq('foo') }
         end
 
         it 'finds local variable from block definition in inner dsl scope' do
           bar = 'bar'
-          outer { inner { bar.should == 'bar' } }
+          outer { inner { expect(bar).to eq('bar') } }
         end
       end
 
       context 'instance variable lookup' do
         it 'finds instance variable from block definition in outer dsl scope' do
-          @iv1 = 'iv1'; outer { @iv1.should == 'iv1' }
+          @iv1 = 'iv1'; outer { expect(@iv1).to eq('iv1') }
         end
 
         it "proxies instance variable assignments in block in outer dsl scope back into block's context" do
-          @iv1 = 'foo'; outer { @iv1 = 'bar' }; @iv1.should == 'bar'
+          @iv1 = 'foo'; outer { @iv1 = 'bar' }; expect(@iv1).to eq('bar')
         end
 
         it 'finds instance variable from block definition in inner dsl scope' do
-          @iv2 = 'iv2'; outer { inner { @iv2.should == 'iv2' } }
+          @iv2 = 'iv2'; outer { inner { expect(@iv2).to eq('iv2') } }
         end
 
         it "proxies instance variable assignments in block in inner dsl scope back into block's context" do
-          @iv2 = 'foo'; outer { inner { @iv2 = 'bar' } }; @iv2.should == 'bar'
+          @iv2 = 'foo'; outer { inner { @iv2 = 'bar' } }; expect(@iv2).to eq('bar')
         end
       end
 
@@ -224,7 +224,7 @@ describe Docile do
 
         def x(y) ; "Got a #{y}"; end
         respond '/third' do |third|
-          x(third).should == 'Got a third thing'
+          expect(x(third)).to eq('Got a third thing')
         end
 
         fourth = nil
@@ -237,9 +237,9 @@ describe Docile do
         send_request '/third', 'third thing'
         send_request '/params', :b
 
-        @first.should == 1
-        @second.should == 'Got a new ten speed'
-        fourth.should == 2
+        expect(@first).to eq(1)
+        expect(@second).to eq('Got a new ten speed')
+        expect(fourth).to eq(2)
       end
 
     end
@@ -260,11 +260,11 @@ describe Docile do
       end
 
       it "doesn't modify the original string" do
-         original.should == "I'm immutable!"
+         expect(original).to eq("I'm immutable!")
       end
 
       it 'chains the commands in the block against the DSL context object' do
-         result.should == "!ELBATUMMI M'I"
+         expect(result).to eq("!ELBATUMMI M'I")
       end
     end
 
@@ -280,7 +280,7 @@ describe Docile do
       end
 
       it 'chains the commands in the block against the DSL context object' do
-         result.should == 42
+         expect(result).to eq(42)
       end
     end
   end
@@ -307,15 +307,15 @@ describe Docile::FallbackContextProxy do
     end
 
     it 'returns proxied instance variables' do
-      subject.map(&:to_sym).should include(:@foo)
+      expect(subject.map(&:to_sym)).to include(:@foo)
     end
 
     it "doesn't return non-proxied instance variables" do
-      subject.map(&:to_sym).should_not include(*excluded)
+      expect(subject.map(&:to_sym)).not_to include(*excluded)
     end
 
     it 'preserves the type (String or Symbol) of names on this ruby version' do
-      actual_type_of_names.should == expected_type_of_names
+      expect(actual_type_of_names).to eq(expected_type_of_names)
     end
   end
 
