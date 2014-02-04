@@ -127,7 +127,7 @@ describe Docile do
     context 'when DSL have NoMethod error inside' do
       it 'raise error from nil' do
         Docile.dsl_eval(DSLWithNoMethod.new(nil)) do
-          expect { push_element }.to raise_error(NoMethodError, "undefined method `push' for nil:NilClass")
+          expect { push_element }.to raise_error(NoMethodError, /undefined method `push' (for|on) nil:NilClass/)
         end
       end
     end
