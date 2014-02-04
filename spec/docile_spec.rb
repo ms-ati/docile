@@ -116,6 +116,22 @@ describe Docile do
       end
     end
 
+    class DSLWithNoMethod
+      def initialize(b); @b = b; end
+      attr_accessor :b
+      def push_element
+        @b.push 1
+      end
+    end
+
+    context 'when DSL have NoMethod error inside' do
+      it 'raise error from nil' do
+        Docile.dsl_eval(DSLWithNoMethod.new(nil)) do
+          expect { push_element }.to raise_error(NoMethodError, "undefined method `push' for nil:NilClass")
+        end
+      end
+    end
+
     context 'when DSL blocks are nested' do
 
       context 'method lookup' do

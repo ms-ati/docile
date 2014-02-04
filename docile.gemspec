@@ -29,7 +29,9 @@ Gem::Specification.new do |s|
   if defined?(RUBY_ENGINE) && 'rbx' == RUBY_ENGINE
     s.add_development_dependency 'rubysl'
     s.add_development_dependency 'rubinius-coverage'
-  else
+  end
+
+  if !(defined?(RUBY_ENGINE) && 'jruby' == RUBY_ENGINE)
     # Github flavored markdown in YARD documentation
     # http://blog.nikosd.com/2011/11/github-flavored-markdown-in-yard.html
     s.add_development_dependency 'yard'
