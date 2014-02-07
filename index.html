@@ -58,18 +58,21 @@ Wouldn't it be great if we could just treat the methods of Array as a DSL?</p>
 <span class="k">end</span>
 </pre></div>
 
-<p>Big deal, right? Well guess what! It handles the rough edges for you, so you can use functions and instance variables in your DSL with no sweat:</p>
+<p>Big deal, right? Well guess what! It handles the rough edges for you, so you can use <em>functions</em>, <em>instance variables</em>, and <em>local variables</em> in your DSL with no sweat:</p>
 
-<div class="highlight highlight-ruby"><pre><span class="k">def</span> <span class="nf">question?</span>
+<div class="highlight highlight-ruby"><pre><span class="k">def</span> <span class="nf">question</span>
   <span class="s2">"What is the answer...?"</span>
 <span class="k">end</span>
 
 <span class="vi">@answer</span> <span class="o">=</span> <span class="mi">42</span>
 
+<span class="n">knowledge</span> <span class="o">=</span> <span class="p">{</span> <span class="s2">"towel"</span> <span class="o">=&gt;</span> <span class="kp">true</span> <span class="p">}</span>
+
 <span class="no">Docile</span><span class="o">.</span><span class="n">dsl_eval</span><span class="p">({})</span> <span class="k">do</span>
-  <span class="n">store</span> <span class="n">question?</span><span class="p">,</span> <span class="vi">@answer</span>
+  <span class="n">store</span> <span class="n">question</span><span class="p">,</span> <span class="vi">@answer</span>
+  <span class="n">merge!</span> <span class="n">knowledge</span>
 <span class="k">end</span>
-<span class="c1"># =&gt; {"What is the answer...?"=&gt;42}</span>
+<span class="c1"># =&gt; {"What is the answer...?"=&gt;42, "towel"=&gt;true}</span>
 </pre></div>
 
 <h3>
