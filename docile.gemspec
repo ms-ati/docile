@@ -36,6 +36,8 @@ Gem::Specification.new do |s|
     s.add_development_dependency 'github-markup'
   end
 
-  # Coveralls test coverage tool
-  s.add_development_dependency 'coveralls'
+  if !(defined?(RUBY_ENGINE) && 'rbx' == RUBY_ENGINE)
+    # Coveralls test coverage tool, doesn't seem to work well on rubinius
+    s.add_development_dependency 'coveralls'
+  end
 end
