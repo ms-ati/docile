@@ -9,4 +9,4 @@ rvm:
   - ree
   - jruby-18mode
   - jruby-19mode
-  - rbx
+  - rbx-2

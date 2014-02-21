@@ -23,11 +23,6 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'rspec', '~> 2.14.0'
   s.add_development_dependency 'mime-types', '~> 1.25.1'
 
-  if defined?(RUBY_ENGINE) && 'rbx' == RUBY_ENGINE
-    s.add_development_dependency 'rubysl'
-    s.add_development_dependency 'rubinius-coverage'
-  end
-
   if !(defined?(RUBY_ENGINE) && 'jruby' == RUBY_ENGINE)
     # Github flavored markdown in YARD documentation
     # http://blog.nikosd.com/2011/11/github-flavored-markdown-in-yard.html
