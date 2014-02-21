@@ -1,25 +1,29 @@
-require 'rubygems'
-require 'rspec'
-require 'singleton'
 require 'simplecov'
 require 'coveralls'
 
-# Both local SimpleCov and publish to Coveralls.io
-SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter[
-  SimpleCov::Formatter::HTMLFormatter,
-  Coveralls::SimpleCov::Formatter
-]
-SimpleCov.start do
-  add_filter "/spec/"
+# On Ruby 1.9+ use SimpleCov and publish to Coveralls.io
+if !RUBY_VERSION.start_with? '1.8'
+  SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter[
+    SimpleCov::Formatter::HTMLFormatter,
+    Coveralls::SimpleCov::Formatter
+  ]
+  SimpleCov.start do
+    add_filter "/spec/"
+  end
+
+  # Remove Docile, which was required by SimpleCov, to require again later
+  Object.send(:remove_const, :Docile)
+  $LOADED_FEATURES.reject! { |f| f =~ /\/docile\// }
 end
 
-test_dir = File.dirname(__FILE__)
-$LOAD_PATH.unshift test_dir unless $LOAD_PATH.include?(test_dir)
+lib_dir = File.join(File.dirname(File.dirname(__FILE__)), 'lib')
+$LOAD_PATH.unshift lib_dir unless $LOAD_PATH.include? lib_dir
 
-lib_dir = File.join(File.dirname(test_dir), 'lib')
-$LOAD_PATH.unshift lib_dir unless $LOAD_PATH.include?(lib_dir)
-
+# Require Docile again, now with coverage enabled on 1.9+
 require 'docile'
+
+require 'singleton'
+require 'rspec'
 
 RSpec.configure do |config|
   config.expect_with :rspec do |c|
