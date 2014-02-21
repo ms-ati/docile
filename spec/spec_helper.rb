@@ -8,7 +8,8 @@ if !RUBY_VERSION.start_with? '1.8'
     Coveralls::SimpleCov::Formatter
   ]
   SimpleCov.start do
-    add_filter "/spec/"
+    add_filter '/spec/'    # exclude test code
+    add_filter '/vendor/'  # exclude gems which are vendored on Travis CI
   end
 
   # Remove Docile, which was required by SimpleCov, to require again later
