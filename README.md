@@ -231,8 +231,10 @@ Used by some pretty cool gems to implement their DSLs, notably including [Simple
       commit by itself I can ignore when I pull)
   * Send me a pull request. Bonus points for topic branches.
 
-## Copyright
+## Copyright & License
 
-Copyright (c) 2012-2014 Marc Siegel. See LICENSE for details.
+Copyright (c) 2012-2014 Marc Siegel.
+
+Licensed under the [MIT License](http://choosealicense.com/licenses/mit/), see [LICENSE](LICENSE) for details.
 
 
