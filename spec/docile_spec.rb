@@ -305,7 +305,7 @@ end
 
 describe Docile::FallbackContextProxy do
 
-  describe "#instance_variables" do
+  describe '#instance_variables' do
     subject { create_fcp_and_set_one_instance_variable.instance_variables }
     let(:expected_type_of_names) { type_of_ivar_names_on_this_ruby }
     let(:actual_type_of_names) { subject.first.class }
