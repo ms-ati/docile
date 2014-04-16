@@ -18,11 +18,11 @@ describe Docile do
       end
 
       it 'executes the block against the DSL context object' do
-         expect(array).to eq([1, 3])
+        expect(array).to eq([1, 3])
       end
 
       it 'returns the DSL object after executing block against it' do
-         expect(result).to eq(array)
+        expect(result).to eq(array)
       end
 
       it "doesn't proxy #__id__" do
@@ -276,11 +276,11 @@ describe Docile do
       end
 
       it "doesn't modify the original string" do
-         expect(original).to eq("I'm immutable!")
+        expect(original).to eq("I'm immutable!")
       end
 
       it 'chains the commands in the block against the DSL context object' do
-         expect(result).to eq("!ELBATUMMI M'I")
+        expect(result).to eq("!ELBATUMMI M'I")
       end
     end
 
@@ -296,7 +296,7 @@ describe Docile do
       end
 
       it 'chains the commands in the block against the DSL context object' do
-         expect(result).to eq(42)
+        expect(result).to eq(42)
       end
     end
   end
