@@ -19,7 +19,7 @@ Gem::Specification.new do |s|
   s.require_paths = %w(lib)
 
   # Running rspec tests from rake
-  s.add_development_dependency 'rake', '~> 10.1.1'
+  s.add_development_dependency 'rake', '>= 10.1.1'
   s.add_development_dependency 'rspec', '~> 2.14.0'
   s.add_development_dependency 'mime-types', '~> 1.25.1'
 
