@@ -4,7 +4,7 @@
 [![Dependency Status](https://gemnasium.com/ms-ati/docile.png)](https://gemnasium.com/ms-ati/docile)
 [![Code Climate](https://codeclimate.com/github/ms-ati/docile.png)](https://codeclimate.com/github/ms-ati/docile)
 [![Coverage Status](https://coveralls.io/repos/ms-ati/docile/badge.png)](https://coveralls.io/r/ms-ati/docile)
-[![Inline docs](http://inch-pages.github.io/github/ms-ati/docile.png)](http://inch-pages.github.io/github/ms-ati/docile)
+[![Inline docs](http://inch-ci.org/github/ms-ati/docile.png)](http://inch-ci.org/github/ms-ati/docile)
 [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/ms-ati/docile/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 
 Ruby makes it possible to create very expressive **Domain Specific
