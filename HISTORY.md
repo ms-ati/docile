@@ -1,5 +1,11 @@
 # HISTORY
 
+## [v1.1.4 (Jun 11, 2014)](http://github.com/ms-ati/docile/compare/v1.1.3...v1.1.4)
+
+  - Special thanks to Ken Dreyer  (@ktdreyer):
+    - make simplecov/coveralls optional for running tests \[[33834852c7](https://github.com/ms-ati/docile/commit/33834852c7849912b97e109e8c5c193579cc5e98)\]
+    - update URL in gemspec \[[174e654a07](https://github.com/ms-ati/docile/commit/174e654a075c8350b3411b212cfb409bc605348a)\]
+
 ## [v1.1.3 (Feb 4, 2014)](http://github.com/ms-ati/docile/compare/v1.1.2...v1.1.3)
 
   - Special thanks to Alexey Vasiliev (@le0pard):
