@@ -6,7 +6,7 @@ Gem::Specification.new do |s|
   s.version     = Docile::VERSION
   s.authors     = ['Marc Siegel']
   s.email       = %w(msiegel@usainnov.com)
-  s.homepage    = 'http://ms-ati.github.com/docile/'
+  s.homepage    = 'https://ms-ati.github.io/docile/'
   s.summary     = 'Docile keeps your Ruby DSLs tame and well-behaved'
   s.description = 'Docile turns any Ruby object into a DSL. Especially useful with the Builder pattern.'
   s.license     = 'MIT'
