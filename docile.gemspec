@@ -30,7 +30,7 @@ Gem::Specification.new do |s|
     # Github flavored markdown in YARD documentation
     # http://blog.nikosd.com/2011/11/github-flavored-markdown-in-yard.html
     s.add_development_dependency 'yard'
-    s.add_development_dependency 'redcarpet', '2.3.0' # because 1.8
+    s.add_development_dependency 'redcarpet'
     s.add_development_dependency 'github-markup'
   end
 
