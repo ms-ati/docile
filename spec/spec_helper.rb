@@ -28,9 +28,3 @@ $LOAD_PATH.unshift lib_dir unless $LOAD_PATH.include? lib_dir
 
 # Require Docile again, now with coverage enabled on 1.9+
 require 'docile'
-
-RSpec.configure do |config|
-  config.expect_with :rspec do |c|
-    c.syntax = :expect
-  end
-end
