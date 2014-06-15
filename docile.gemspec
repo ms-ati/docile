@@ -5,21 +5,23 @@ require 'docile/version'
 Gem::Specification.new do |s|
   s.name        = 'docile'
   s.version     = Docile::VERSION
-  s.authors     = ['Marc Siegel']
-  s.email       = %w(msiegel@usainnov.com)
+  s.author      = 'Marc Siegel'
+  s.email       = 'marc@usainnov.com'
   s.homepage    = 'https://ms-ati.github.io/docile/'
   s.summary     = 'Docile keeps your Ruby DSLs tame and well-behaved'
   s.description = 'Docile turns any Ruby object into a DSL. Especially useful with the Builder pattern.'
   s.license     = 'MIT'
 
-  s.rubyforge_project = 'docile'
-
+  # Files included in the gem
   s.files         = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
   s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
   s.require_paths = %w(lib)
 
-  # Running rspec tests from rake
+  # Specify oldest supported Ruby version
+  s.required_ruby_version = '>= 1.8.7'
+
+  # Run rspec tests from rake
   s.add_development_dependency 'rake'
   s.add_development_dependency 'rspec', '~> 3.0.0'
 
@@ -36,6 +38,6 @@ Gem::Specification.new do |s|
     s.add_development_dependency 'github-markup'
   end
 
-  # Coveralls test coverage tool
+  # Coveralls test coverage tool, basically hosted SimpleCov
   s.add_development_dependency 'coveralls'
 end
