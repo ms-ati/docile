@@ -23,6 +23,9 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'rake'
   s.add_development_dependency 'rspec', '~> 3.0.0'
 
+  # NOTE: needed for Travis builds on 1.8, but can't yet reproduce failure locally
+  s.add_development_dependency 'mime-types', '~> 1.25.1' if on_1_8?
+
   # To limit needed compatibility with versions of dependencies, only configure
   #   yard doc generation when *not* on Travis, JRuby, or 1.8
   if !on_travis? && !on_jruby? && !on_1_8?
