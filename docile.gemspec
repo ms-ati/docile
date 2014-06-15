@@ -20,7 +20,7 @@ Gem::Specification.new do |s|
   s.require_paths = %w(lib)
 
   # Running rspec tests from rake
-  s.add_development_dependency 'rake', '>= 10.1.1'
+  s.add_development_dependency 'rake'
   s.add_development_dependency 'rspec', '~> 3.0.0'
 
   # To limit needed compatibility with versions of dependencies, only configure
