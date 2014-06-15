@@ -1,3 +1,4 @@
+require File.expand_path('on_what', File.dirname(__FILE__))
 $:.push File.expand_path('../lib', __FILE__)
 require 'docile/version'
 
@@ -23,7 +24,9 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'rspec', '~> 2.14.0'
   s.add_development_dependency 'mime-types', '~> 1.25.1'
 
-  if !(defined?(RUBY_ENGINE) && 'jruby' == RUBY_ENGINE)
+  # To limit needed compatibility with versions of dependencies, only configure
+  #   yard doc generation when *not* on Travis, JRuby, or 1.8
+  if !on_travis? && !on_jruby? && !on_1_8?
     # Github flavored markdown in YARD documentation
     # http://blog.nikosd.com/2011/11/github-flavored-markdown-in-yard.html
     s.add_development_dependency 'yard'

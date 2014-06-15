@@ -1,9 +1,11 @@
+require File.expand_path('on_what', File.dirname(File.dirname(__FILE__)))
+
 begin
   require 'simplecov'
   require 'coveralls'
 
   # On Ruby 1.9+ use SimpleCov and publish to Coveralls.io
-  if !RUBY_VERSION.start_with? '1.8'
+  if !on_1_8?
     SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter[
       SimpleCov::Formatter::HTMLFormatter,
       Coveralls::SimpleCov::Formatter

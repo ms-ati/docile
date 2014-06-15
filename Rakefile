@@ -1,6 +1,7 @@
 require 'rake/clean'
 require 'bundler/gem_tasks'
 require 'rspec/core/rake_task'
+require File.expand_path('on_what', File.dirname(__FILE__))
 
 # Default task for `rake` is to run rspec
 task :default => [:spec]
@@ -11,12 +12,13 @@ RSpec::Core::RakeTask.new
 # Configure `rake clobber` to delete all generated files
 CLOBBER.include('pkg', 'doc', 'coverage')
 
-# Only configure yard doc generation when *not* on Travis
-if ENV['CI'] != 'true'
-  require "github/markup"
-  require "redcarpet"
-  require "yard"
-  require "yard/rake/yardoc_task"
+# To limit needed compatibility with versions of dependencies, only configure
+#   yard doc generation when *not* on Travis, JRuby, or 1.8
+if !on_travis? && !on_jruby? && !on_1_8?
+  require 'github/markup'
+  require 'redcarpet'
+  require 'yard'
+  require 'yard/rake/yardoc_task'
 
   YARD::Rake::YardocTask.new do |t|
     OTHER_PATHS = %w()
