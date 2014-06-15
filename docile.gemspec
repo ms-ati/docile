@@ -21,8 +21,7 @@ Gem::Specification.new do |s|
 
   # Running rspec tests from rake
   s.add_development_dependency 'rake', '>= 10.1.1'
-  s.add_development_dependency 'rspec', '~> 2.14.0'
-  s.add_development_dependency 'mime-types', '~> 1.25.1'
+  s.add_development_dependency 'rspec', '~> 3.0.0'
 
   # To limit needed compatibility with versions of dependencies, only configure
   #   yard doc generation when *not* on Travis, JRuby, or 1.8
