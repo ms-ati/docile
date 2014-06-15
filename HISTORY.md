@@ -1,5 +1,11 @@
 # HISTORY
 
+## [v1.1.5 (Jun 15, 2014)](http://github.com/ms-ati/docile/compare/v1.1.4...v1.1.5)
+
+  - as much as possible, loosen version restrictions on development dependencies
+  - clarify gemspec settings as much as possible
+  - bump rspec dependency to 3.0.x
+
 ## [v1.1.4 (Jun 11, 2014)](http://github.com/ms-ati/docile/compare/v1.1.3...v1.1.4)
 
   - Special thanks to Ken Dreyer  (@ktdreyer):
