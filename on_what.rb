@@ -6,7 +6,7 @@ def on_travis?
 end
 
 def on_jruby?
-  (defined?(RUBY_ENGINE) && 'jruby' == RUBY_ENGINE)
+  defined?(RUBY_ENGINE) && 'jruby' == RUBY_ENGINE
 end
 
 def on_1_8?
