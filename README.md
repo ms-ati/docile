@@ -234,7 +234,7 @@ Used by some pretty cool gems to implement their DSLs, notably including [Simple
 
 ## Copyright & License
 
-Copyright (c) 2012-2014 Marc Siegel.
+Copyright (c) 2012-2015 Marc Siegel.
 
 Licensed under the [MIT License](http://choosealicense.com/licenses/mit/), see [LICENSE](LICENSE) for details.
 
