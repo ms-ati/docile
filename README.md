@@ -1,4 +1,6 @@
 # Docile
+
+[![Join the chat at https://gitter.im/ms-ati/docile](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/ms-ati/docile?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![Gem Version](https://badge.fury.io/rb/docile.png)](http://badge.fury.io/rb/docile)
 [![Build Status](https://travis-ci.org/ms-ati/docile.png)](https://travis-ci.org/ms-ati/docile)
 [![Dependency Status](https://gemnasium.com/ms-ati/docile.png)](https://gemnasium.com/ms-ati/docile)
