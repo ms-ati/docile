@@ -38,7 +38,4 @@ Gem::Specification.new do |s|
     s.add_development_dependency 'redcarpet'
     s.add_development_dependency 'github-markup'
   end
-
-  # Coveralls test coverage tool, basically hosted SimpleCov
-  s.add_development_dependency 'coveralls'
 end
