@@ -4,7 +4,7 @@ source 'https://rubygems.org'
 # Travis-only dependencies go here
 if on_travis? && !on_1_8?
   group :test do
-    gem 'codecov', :require => false
+    gem 'codecov', '>= 0.0.9', :require => false
   end
 end
 
