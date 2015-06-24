@@ -6,8 +6,8 @@
 
 [![Build Status](https://img.shields.io/travis/ms-ati/docile.svg)](https://travis-ci.org/ms-ati/docile)
 [![Dependency Status](https://gemnasium.com/ms-ati/docile.png)](https://gemnasium.com/ms-ati/docile)
-[![Code Climate](https://codeclimate.com/github/ms-ati/docile.png)](https://codeclimate.com/github/ms-ati/docile)
-[![Coverage Status](https://coveralls.io/repos/ms-ati/docile/badge.png)](https://coveralls.io/r/ms-ati/docile)
+[![Code Climate](https://img.shields.io/codeclimate/github/ms-ati/docile.svg)](https://codeclimate.com/github/ms-ati/docile)
+[![Coverage Status](https://img.shields.io/coveralls/ms-ati/docile.svg)](https://coveralls.io/r/ms-ati/docile)
 [![Inline docs](http://inch-ci.org/github/ms-ati/docile.png)](http://inch-ci.org/github/ms-ati/docile)
 
 
