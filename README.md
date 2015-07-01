@@ -2,6 +2,7 @@
 
 [![Gem Version](https://img.shields.io/gem/v/docile.svg)](https://rubygems.org/gems/docile)
 [![Gem Downloads](https://img.shields.io/gem/dt/docile.svg)](https://rubygems.org/gems/docile)
+[![Yard Docs](http://img.shields.io/badge/yard-docs-blue.svg)](http://rubydoc.info/github/ms-ati/docile)
 [![Join the chat at https://gitter.im/ms-ati/docile](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/ms-ati/docile?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 [![Build Status](https://img.shields.io/travis/ms-ati/docile.svg)](https://travis-ci.org/ms-ati/docile)
