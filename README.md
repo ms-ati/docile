@@ -25,7 +25,7 @@ coding a bit more docile...
 
 ## Usage
 
-### Basic
+### Basic: Ruby [Array][http://ruby-doc.org/core-2.2.2/Array.html] as DSL
 
 Let's say that we want to make a DSL for modifying Array objects.
 Wouldn't it be great if we could just treat the methods of Array as a DSL?
@@ -50,7 +50,7 @@ end
 
 Easy!
 
-### Advanced
+### Build a Pizza
 
 Mutating (changing) an Array instance is fine, but what usually makes a good DSL is a [Builder Pattern][2].
 
@@ -88,7 +88,7 @@ PizzaBuilder.new.cheese.pepperoni.sauce(:extra).build
 
 Then implement your DSL like this:
 
-``` ruby
+```ruby
 def pizza(&block)
   Docile.dsl_eval(PizzaBuilder.new, &block).build
 end
@@ -97,6 +97,38 @@ end
 It's just that easy!
 
 [2]: http://stackoverflow.com/questions/328496/when-would-you-use-the-builder-pattern  "Builder Pattern"
+
+### Multi-level and Recursive DSLs
+
+Docile is a very easy way to write a multi-level DSL in Ruby, even for
+a [recursive data structure such as a tree][4]:
+
+```ruby
+Person = Struct.new(:name, :mother, :father)
+
+person {
+  name 'John Smith'
+  mother {
+    name 'Mary Smith'
+  }
+  father {
+    name 'Tom Smith'
+    mother {
+      name 'Jane Smith'
+    }
+  }
+}
+
+#=> #<struct Person name="John Smith",
+#                   mother=#<struct Person name="Mary Smith", mother=nil, father=nil>,
+#                   father=#<struct Person name="Tom Smith",
+#                                          mother=#<struct Person name="Jane Smith", mother=nil, father=nil>,
+#                                          father=nil>>
+```
+
+See the full [person tree example][4] for details.
+
+[4]: https://gist.github.com/ms-ati/2bb17bdf10a430faba98
 
 ### Block parameters
 
@@ -158,7 +190,7 @@ end
 
 [3]: http://www.sinatrarb.com "Sinatra"
 
-### Functional-Style DSL Objects
+### Functional-Style Immutable DSL Objects
 
 Sometimes, you want to use an object as a DSL, but it doesn't quite fit the
 [imperative](http://en.wikipedia.org/wiki/Imperative_programming) pattern shown
