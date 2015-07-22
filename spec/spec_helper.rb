@@ -5,8 +5,9 @@ unless on_1_8?
   begin
     require 'simplecov'
     SimpleCov.start do
-      add_filter '/spec/'    # exclude test code
-      add_filter '/vendor/'  # exclude gems which are vendored on Travis CI
+      add_filter '/spec/'      # exclude test code
+      add_filter '/vendor/'    # exclude gems which are vendored on Travis CI
+      add_filter '/on_what.rb' # exclude help used only in gemspec
     end
 
     # On CI we publish simplecov results to codecov.io
