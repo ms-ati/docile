@@ -25,7 +25,7 @@ coding a bit more docile...
 
 ## Usage
 
-### Basic: Ruby [Array][http://ruby-doc.org/core-2.2.2/Array.html] as DSL
+### Basic: Ruby [Array](http://ruby-doc.org/core-2.2.2/Array.html) as DSL
 
 Let's say that we want to make a DSL for modifying Array objects.
 Wouldn't it be great if we could just treat the methods of Array as a DSL?
