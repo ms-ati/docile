@@ -12,3 +12,7 @@ end
 def on_1_8?
   RUBY_VERSION.start_with? '1.8'
 end
+
+def on_less_than_1_9_3?
+  RUBY_VERSION < '1.9.3'
+end
