@@ -1,4 +1,8 @@
+# Use container-based infrastructure
+sudo: false
 language: ruby
+# Travis bug, see https://github.com/bundler/bundler/pull/3559
+before_install: gem update bundler
 cache: bundler
 rvm:
   - ruby-head
