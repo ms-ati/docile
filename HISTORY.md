@@ -1,5 +1,10 @@
 # HISTORY
 
+## [Unreleased changes](http://github.com/ms-ati/docile/compare/v1.1.5...master)
+
+  - add an example to README
+  - keep travis builds passing on old ruby versions
+
 ## [v1.1.5 (Jun 15, 2014)](http://github.com/ms-ati/docile/compare/v1.1.4...v1.1.5)
 
   - as much as possible, loosen version restrictions on development dependencies
