@@ -48,7 +48,52 @@ def with_array(arr=[], &block)
 end
 ```
 
-Easy!
+**Easy!**
+
+### Wait! Can't I do that with just `instance_eval` or `instance_exec`?
+
+Good question!
+
+Let's be very specific. Docile internally uses `instance_exec` (see [execution.rb#25](lib/docile/execution.rb#L25)), adding a small layer to support referencing *local variables*, *instance variables*, and *methods* from the _block's context_ **or** the target _object's context_, interchangeably. This is "the **hard part**", where most folks making a DSL in Ruby throw up their hands.
+
+For example:
+
+```ruby
+class ContextOfBlock
+  def example_of_contexts
+    @block_instance_var = 1
+    block_local_var = 2
+
+    with_array do
+      push @block_instance_var
+      push block_local_var
+      pop
+      push block_sees_this_method 
+    end
+  end
+  
+  def block_sees_this_method
+    3
+  end  
+
+  def with_array(&block)
+    {
+      docile: Docile.dsl_eval([], &block),
+      instance_eval: ([].instance_eval(&block) rescue $!),
+      instance_exec: ([].instance_exec(&block) rescue $!)
+    }  
+  end
+end
+
+ContextOfBlock.new.example_of_contexts
+#=> {
+      :docile=>[1, 3],
+      :instance_eval=>#<NameError: undefined local variable or method `block_sees_this_method' for [nil]:Array>,
+      :instance_exec=>#<NameError: undefined local variable or method `block_sees_this_method' for [nil]:Array>
+    }
+```
+
+As you can see, it won't be possible to call methods or access instance variables defined in the block's context using just the raw `instance_eval` or `instance_exec` methods. And in fact, Docile goes further, making it easy to maintain this support even in multi-layered DSLs.
 
 ### Build a Pizza
 
