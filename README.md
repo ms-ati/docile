@@ -2,15 +2,15 @@
 
 [![Gem Version](https://img.shields.io/gem/v/docile.svg)](https://rubygems.org/gems/docile)
 [![Gem Downloads](https://img.shields.io/gem/dt/docile.svg)](https://rubygems.org/gems/docile)
-[![Yard Docs](http://img.shields.io/badge/yard-docs-blue.svg)](http://rubydoc.info/github/ms-ati/docile)
+
 [![Join the chat at https://gitter.im/ms-ati/docile](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/ms-ati/docile?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Yard Docs](http://img.shields.io/badge/yard-docs-blue.svg)](http://rubydoc.info/github/ms-ati/docile)
+[![Docs Coverage](http://inch-ci.org/github/ms-ati/docile.png)](http://inch-ci.org/github/ms-ati/docile)
 
 [![Build Status](https://img.shields.io/travis/ms-ati/docile/master.svg)](https://travis-ci.org/ms-ati/docile)
 [![Dependency Status](https://gemnasium.com/ms-ati/docile.svg)](https://gemnasium.com/ms-ati/docile)
 [![Code Climate](https://img.shields.io/codeclimate/github/ms-ati/docile.svg)](https://codeclimate.com/github/ms-ati/docile)
 [![Code Coverage](https://img.shields.io/codecov/c/github/ms-ati/docile.svg)](https://codecov.io/github/ms-ati/docile)
-[![Inline docs](http://inch-ci.org/github/ms-ati/docile.png)](http://inch-ci.org/github/ms-ati/docile)
-
 
 Ruby makes it possible to create very expressive **Domain Specific
 Languages**, or **DSL**'s for short. However, it requires some deep knowledge and
