@@ -7,3 +7,5 @@ doc
 .yardoc
 coverage
 vendor
+.ruby-gemset
+.ruby-version
