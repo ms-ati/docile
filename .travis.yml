@@ -18,9 +18,14 @@ rvm:
   - jruby-19mode
   - jruby-18mode
   - rbx-2
+  - rbx
+  - rbx-head
 matrix:
   allow_failures:
     - rvm: ruby-head
     - rvm: jruby-head
     - rvm: jruby-18mode # until we figure out failure in `bundle exec`, which is not our problem
+    - rvm: rbx-2 # until Travis fixes Rubinius again
+    - rvm: rbx
+    - rvm: rbx-head
   fast_finish: true
