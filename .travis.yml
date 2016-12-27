@@ -14,6 +14,7 @@ rvm:
   - 1.9.2
   - 1.8.7
   - ree
+  - jruby # this alias tracks JRuby 9k stable version
   - jruby-head
   - jruby-19mode
   - jruby-18mode
