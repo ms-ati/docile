@@ -23,7 +23,7 @@ Gem::Specification.new do |s|
 
   # Run rspec tests from rake
   s.add_development_dependency 'rake', '~> 10.5.0' if on_less_than_1_9_3? # Pin compatible rake on old rubies, see: https://github.com/travis-ci/travis.rb/issues/380
-  s.add_development_dependency 'rake'              unless on_less_than_1_9_3?
+  s.add_development_dependency 'rake', '< 11.0'    unless on_less_than_1_9_3? # See http://stackoverflow.com/questions/35893584/nomethoderror-undefined-method-last-comment-after-upgrading-to-rake-11
   s.add_development_dependency 'rspec', '~> 3.0.0'
 
   # NOTE: needed for Travis builds on 1.8, but can't yet reproduce failure locally
