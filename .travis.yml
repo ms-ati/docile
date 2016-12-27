@@ -24,8 +24,8 @@ rvm:
   - ree
 
   - jruby-head
-  - jruby-9.1.6.0
-  - jruby # still tracks JRuby 1.7.x on Travic
+  - jruby-9.1.6.0 # TODO: replace with 9k stable alias when it exists
+  - jruby # NOTE: still tracks JRuby 1.7.x (not 9k) on Travis
   - jruby-19mode
   - jruby-18mode
 
