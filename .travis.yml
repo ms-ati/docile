@@ -30,7 +30,8 @@ rvm:
   - jruby-18mode
 
   - rbx-head
-  - rbx # tracks Rubinius 3.x stable version
+  - rbx # tracks Rubinius 3.x stable version?
+  - rbx-3
   - rbx-2
 
 matrix:
@@ -39,6 +40,7 @@ matrix:
     - rvm: jruby-head
     - rvm: rbx-head
     - rvm: rbx # until Travis fixes Rubinius 3.x again
+    - rvm: rbx-3 # until Travis fixes Rubinius 3.x again
     - rvm: rbx-2 # until Travis fixes Rubinius 2.x again
 
   fast_finish: true
