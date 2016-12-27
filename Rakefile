@@ -13,8 +13,8 @@ RSpec::Core::RakeTask.new
 CLOBBER.include('pkg', 'doc', 'coverage')
 
 # To limit needed compatibility with versions of dependencies, only configure
-#   yard doc generation when *not* on Travis, JRuby, or 1.8
-if !on_travis? && !on_jruby? && !on_1_8?
+#   yard doc generation when *not* on Travis, JRuby, or < 2.0
+if !on_travis? && !on_jruby? && !on_less_than_2_0?
   require 'github/markup'
   require 'redcarpet'
   require 'yard'

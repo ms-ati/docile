@@ -26,13 +26,16 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'rake', '< 11.0'    unless on_less_than_1_9_3? # See http://stackoverflow.com/questions/35893584/nomethoderror-undefined-method-last-comment-after-upgrading-to-rake-11
   s.add_development_dependency 'rspec', '~> 3.0.0'
 
-  # NOTE: needed for Travis builds on 1.8, but can't yet reproduce failure locally
+  # Pin versions for Travis builds on 1.9
+  s.add_development_dependency 'json', '< 2.0' if on_less_than_2_0?
+
+  # Pin versions for Travis builds on 1.8
   s.add_development_dependency 'mime-types' , '~> 1.25.1' if on_1_8?
   s.add_development_dependency 'rest-client', '~> 1.6.8'  if on_1_8?
 
   # To limit needed compatibility with versions of dependencies, only configure
-  #   yard doc generation when *not* on Travis, JRuby, or 1.8
-  if !on_travis? && !on_jruby? && !on_1_8?
+  #   yard doc generation when *not* on Travis, JRuby, or < 2.0
+  if !on_travis? && !on_jruby? && !on_less_than_2_0?
     # Github flavored markdown in YARD documentation
     # http://blog.nikosd.com/2011/11/github-flavored-markdown-in-yard.html
     s.add_development_dependency 'yard'
