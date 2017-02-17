@@ -1,46 +1,36 @@
-# Use container-based infrastructure
-sudo: false
-
 language: ruby
 
-before_install:
-  # bundler installation needed for jruby-head
-  # https://github.com/travis-ci/travis-ci/issues/5861
-  - gem install bundler
+# Apparently sudo is required to test on Rubinius and JRuby-head
+sudo: required
 
-cache: bundler
+# See https://docs.travis-ci.com/user/languages/ruby/#Rubinius
+dist: trusty
 
 rvm:
+  # MRI
   - ruby-head
-  - 2.3.3 # Travis lacking 2.3 alias, see https://github.com/travis-ci/travis-ci/issues/5361
+  - 2.4
+  - 2.3
   - 2.2
   - 2.1
-  - 2.0.0
-
+  - 2.0
+  - 1.9.2 # allowed to fail until Travis binary for this is fixed
   - 1.9.3
-  - 1.9.2
-
   - 1.8.7
   - ree
-
+  # JRuby
   - jruby-head
-  - jruby-9.1.6.0 # TODO: replace with 9k stable alias when it exists
-  - jruby # NOTE: still tracks JRuby 1.7.x (not 9k) on Travis
+  - jruby-9.1
+  - jruby-9.0
   - jruby-19mode
   - jruby-18mode
-
-  - rbx-head
-  - rbx # tracks Rubinius 3.x stable version?
-  - rbx-3
-  - rbx-2
+  # Rubinius
+  - rubinius-3
 
 matrix:
   allow_failures:
     - rvm: ruby-head
+    - rvm: 1.9.2 # See build error https://travis-ci.org/tcrayford/Values/jobs/202728857
     - rvm: jruby-head
-    - rvm: rbx-head
-    - rvm: rbx # until Travis fixes Rubinius 3.x again
-    - rvm: rbx-3 # until Travis fixes Rubinius 3.x again
-    - rvm: rbx-2 # until Travis fixes Rubinius 2.x again
-
+    - rvm: rubinius-3
   fast_finish: true
