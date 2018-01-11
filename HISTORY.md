@@ -1,7 +1,11 @@
 # HISTORY
 
-## [Unreleased changes](http://github.com/ms-ati/docile/compare/v1.1.5...master)
+## [Unreleased changes](http://github.com/ms-ati/docile/compare/v1.2.0...master)
 
+## [v1.2.0 (Jan 11, 2018)](http://github.com/ms-ati/docile/compare/v1.1.5...v1.2.0)
+
+  - Special thanks to Christina Koller (@cmkoller)
+    - add DSL evaluation returning *return value of the block* (see `.dsl_eval_with_block_return`)
   - add an example to README
   - keep travis builds passing on old ruby versions
 
