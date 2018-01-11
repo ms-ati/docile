@@ -45,6 +45,45 @@ module Docile
   end
   module_function :dsl_eval
 
+  # Execute a block in the context of an object whose methods represent the
+  # commands in a DSL, and return the block's return value.
+  #
+  # @note Use with an *imperative* DSL (commands modify the context object)
+  #
+  # Use this method to execute an *imperative* DSL, which means that:
+  #
+  #   1. Each command mutates the state of the DSL context object
+  #   2. The return value of each command is ignored
+  #   3. The final return value is the original context object
+  #
+  # @example Use a String as a DSL
+  #   Docile.dsl_eval("Hello, world!") do
+  #     reverse!
+  #     upcase!
+  #     first
+  #   end
+  #   #=> "!"
+  #
+  # @example Use an Array as a DSL
+  #   Docile.dsl_eval([]) do
+  #     push "a"
+  #     push "b"
+  #     pop
+  #     push "c"
+  #     length
+  #   end
+  #   #=> 2
+  #
+  # @param dsl   [Object] context object whose methods make up the DSL
+  # @param args  [Array]  arguments to be passed to the block
+  # @param block [Proc]   the block of DSL commands to be executed against the
+  #                         `dsl` context object
+  # @return      [Object] the return value from executing the block
+  def dsl_eval_with_block_return(dsl, *args, &block)
+    exec_in_proxy_context(dsl, FallbackContextProxy, *args, &block)
+  end
+  module_function :dsl_eval_with_block_return
+
   # Execute a block in the context of an immutable object whose methods,
   # and the methods of their return values, represent the commands in a DSL.
   #

@@ -274,6 +274,33 @@ end
 
 All set!
 
+### Accessing the block's return value
+
+Sometimes you might want to access the return value of your provided block,
+as opposed to the DSL object itself. In these cases, use
+`dsl_eval_with_block_return`. It behaves exactly like `dsl_eval`, but returns
+the output from executing the block, rather than the DSL object.
+
+```ruby
+arr = []
+with_array(arr) do
+  push "a"
+  push "b"
+  push "c"
+  length
+end
+#=> 3
+
+arr
+#=> ["a", "b", "c"]
+```
+
+```ruby
+def with_array(arr=[], &block)
+  Docile.dsl_eval_with_block_return(arr, &block)
+end
+```
+
 ## Features
 
   1.  Method lookup falls back from the DSL object to the block's context
