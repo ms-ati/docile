@@ -263,6 +263,29 @@ describe Docile do
 
   end
 
+  describe '.dsl_eval_with_block_return' do
+    let(:array) { [] }
+    let!(:result) { execute_dsl_against_array }
+
+    def execute_dsl_against_array
+      Docile.dsl_eval_with_block_return(array) do
+        push 1
+        push 2
+        pop
+        push 3
+        'Return me!'
+      end
+    end
+
+    it 'executes the block against the DSL context object' do
+      expect(array).to eq([1, 3])
+    end
+
+    it "returns the block's return value" do
+      expect(result).to eq('Return me!')
+    end
+  end
+
   describe '.dsl_eval_immutable' do
 
     context 'when DSL context object is a frozen String' do
