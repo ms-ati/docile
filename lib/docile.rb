@@ -46,7 +46,7 @@ module Docile
   module_function :dsl_eval
 
   # Execute a block in the context of an object whose methods represent the
-  # commands in a DSL, and return the block's return value.
+  # commands in a DSL, and return *the block's return value*.
   #
   # @note Use with an *imperative* DSL (commands modify the context object)
   #
@@ -57,7 +57,7 @@ module Docile
   #   3. The final return value is the original context object
   #
   # @example Use a String as a DSL
-  #   Docile.dsl_eval("Hello, world!") do
+  #   Docile.dsl_eval_with_block_return("Hello, world!") do
   #     reverse!
   #     upcase!
   #     first
@@ -65,7 +65,7 @@ module Docile
   #   #=> "!"
   #
   # @example Use an Array as a DSL
-  #   Docile.dsl_eval([]) do
+  #   Docile.dsl_eval_with_block_return([]) do
   #     push "a"
   #     push "b"
   #     pop
