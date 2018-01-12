@@ -9,6 +9,10 @@ def on_jruby?
   defined?(RUBY_ENGINE) && 'jruby' == RUBY_ENGINE
 end
 
+def on_rubinius?
+  defined?(RUBY_ENGINE) && 'rbx' == RUBY_ENGINE
+end
+
 def on_1_8?
   RUBY_VERSION.start_with? '1.8'
 end
