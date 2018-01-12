@@ -8,9 +8,9 @@
 [![Docs Coverage](http://inch-ci.org/github/ms-ati/docile.png)](http://inch-ci.org/github/ms-ati/docile)
 
 [![Build Status](https://img.shields.io/travis/ms-ati/docile/master.svg)](https://travis-ci.org/ms-ati/docile)
-[![Dependency Status](https://gemnasium.com/ms-ati/docile.svg)](https://gemnasium.com/ms-ati/docile)
-[![Code Climate](https://img.shields.io/codeclimate/github/ms-ati/docile.svg)](https://codeclimate.com/github/ms-ati/docile)
 [![Code Coverage](https://img.shields.io/codecov/c/github/ms-ati/docile.svg)](https://codecov.io/github/ms-ati/docile)
+[![Dependency Status](https://gemnasium.com/ms-ati/docile.svg)](https://gemnasium.com/ms-ati/docile)
+[![Maintainability](https://api.codeclimate.com/v1/badges/79ca631bc123f7b83b34/maintainability)](https://codeclimate.com/github/ms-ati/docile/maintainability)
 
 Ruby makes it possible to create very expressive **Domain Specific
 Languages**, or **DSL**'s for short. However, it requires some deep knowledge and
