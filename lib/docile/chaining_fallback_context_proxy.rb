@@ -1,4 +1,4 @@
-require 'docile/fallback_context_proxy'
+require "docile/fallback_context_proxy"
 
 module Docile
   # @api private

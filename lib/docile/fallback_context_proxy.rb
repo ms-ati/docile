@@ -1,4 +1,4 @@
-require 'set'
+require "set"
 
 module Docile
   # @api private
@@ -17,7 +17,7 @@ module Docile
     # The set of methods which will **not** be proxied, but instead answered
     # by this object directly.
     NON_PROXIED_METHODS = Set[:__send__, :object_id, :__id__, :==, :equal?,
-                              :'!', :'!=', :instance_exec, :instance_variables,
+                              :"!", :"!=", :instance_exec, :instance_variables,
                               :instance_variable_get, :instance_variable_set,
                               :remove_instance_variable]
 

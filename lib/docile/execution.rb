@@ -15,7 +15,7 @@ module Docile
     # @param block      [Proc]   the block of DSL commands to be executed
     # @return           [Object] the return value of the block
     def exec_in_proxy_context(dsl, proxy_type, *args, &block)
-      block_context = eval('self', block.binding)
+      block_context = eval("self", block.binding)
       proxy_context = proxy_type.new(dsl, block_context)
       begin
         block_context.instance_variables.each do |ivar|
