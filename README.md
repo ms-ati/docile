@@ -328,6 +328,10 @@ Works on [all ruby versions since 1.8.7](https://github.com/ms-ati/docile/blob/m
 
 Used by some pretty cool gems to implement their DSLs, notably including [SimpleCov](https://github.com/colszowka/simplecov). Keep an eye out for new gems using Docile at the [Ruby Toolbox](https://www.ruby-toolbox.com/projects/docile).
 
+## Release Policy
+
+Docile releases follow [Semantic Versioning 2.0.0](https://semver.org/spec/v2.0.0.html).
+
 ## Note on Patches/Pull Requests
 
   * Fork the project.
