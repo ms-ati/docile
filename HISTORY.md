@@ -2,6 +2,10 @@
 
 ## [Unreleased changes](http://github.com/ms-ati/docile/compare/v1.2.0...master)
 
+  - Add SemVer release policy explicitly
+  - Standardize on double-quoted string literals
+  - Workaround some more Travis CI shenanigans
+
 ## [v1.2.0 (Jan 11, 2018)](http://github.com/ms-ati/docile/compare/v1.1.5...v1.2.0)
 
   - Special thanks to Christina Koller (@cmkoller)
