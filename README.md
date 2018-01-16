@@ -48,7 +48,7 @@ def with_array(arr=[], &block)
 end
 ```
 
-**Easy!**
+Easy!
 
 ### Wait! Can't I do that with just `instance_eval` or `instance_exec`?
 
@@ -59,7 +59,7 @@ In short: **No**.
 Not if you want the code in the block to be able to refer to anything
 the block would normally have access to from the surrounding context.
 
-Let's be very specific. Docile internally uses `instance_exec` (see [execution.rb#25](lib/docile/execution.rb#L25)), adding a small layer to support referencing *local variables*, *instance variables*, and *methods* from the _block's context_ **or** the target _object's context_, interchangeably. This is "the **hard part**", where most folks making a DSL in Ruby throw up their hands.
+Let's be very specific. Docile internally uses `instance_exec` (see [execution.rb#25](lib/docile/execution.rb#L25)), adding a small layer to support referencing *local variables*, *instance variables*, and *methods* from the _block's context_ **or** the target _object's context_, interchangeably. This is "**the hard part**", where most folks making a DSL in Ruby throw up their hands.
 
 For example:
 
