@@ -22,8 +22,13 @@ module Docile
           value_from_block = block_context.instance_variable_get(ivar)
           proxy_context.instance_variable_set(ivar, value_from_block)
         end
+
         proxy_context.instance_exec(*args, &block)
       ensure
+        if block_context.respond_to?(:__docile_undo_fallback__)
+          block_context.send(:__docile_undo_fallback__)
+        end
+
         block_context.instance_variables.each do |ivar|
           value_from_dsl_proxy = proxy_context.instance_variable_get(ivar)
           block_context.instance_variable_set(ivar, value_from_dsl_proxy)
