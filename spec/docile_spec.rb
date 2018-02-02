@@ -117,18 +117,106 @@ describe Docile do
       end
     end
 
-    class DSLWithNoMethod
-      def initialize(b); @b = b; end
-      attr_accessor :b
-      def push_element
-        @b.push 1
+    context "when block's context has helper methods which call DSL methods" do
+      class BlockContextWithHelperMethods
+        def initialize(array_as_dsl)
+          @array_as_dsl = array_as_dsl
+        end
+
+        # Classic dynamic programming factorial, using the methods of {Array}
+        # as a DSL to implement it, via helper methods {#calculate_factorials}
+        # and {#save_factorials} which are defined in this class, so therefore
+        # outside the block.
+        def factorial_as_dsl_against_array(n)
+          Docile.dsl_eval(@array_as_dsl) { calculate_factorials(n) }.last
+        end
+
+        # Uses the helper method {#save_factorials} below.
+        def calculate_factorials(n)
+          (2..n).each { |i| save_factorial(i) }
+        end
+
+        # Uses the methods {Array#push} and {Array#at} as a DSL from a helper
+        # method defined in the block's context. Successfully calling this
+        # proves that we can find helper methods from outside the block, and
+        # then find DSL methods from inside those helper methods.
+        def save_factorial(i)
+          push(i * at(i - 1))
+        end
+      end
+
+      subject { context.method(:factorial_as_dsl_against_array) }
+
+      let(:context) { BlockContextWithHelperMethods.new(array_as_dsl) }
+
+      let(:array_as_dsl) { [1, 1] }
+
+      it "finds DSL methods within helper method defined in block's context" do
+        # see https://en.wikipedia.org/wiki/Factorial
+        [
+          [0,                  1],
+          [1,                  1],
+          [2,                  2],
+          [3,                  6],
+          [4,                 24],
+          [5,                120],
+          [6,                720],
+          [7,              5_040],
+          [8,             40_320],
+          [9,            362_880],
+          [10,         3_628_800],
+          [11,        39_916_800],
+          [12,       479_001_600],
+          [13,     6_227_020_800],
+          [14,    87_178_291_200],
+          [15, 1_307_674_368_000]
+        ].each do |n, expected_factorial|
+          array_as_dsl.replace([1, 1])
+          expect(subject.call(n)).to eq expected_factorial
+        end
+      end
+
+      it "removes fallback instrumentation from the DSL object after block" do
+        expect { subject.call(5) }.
+          not_to change { context.respond_to?(:method_missing) }.
+          from(false)
+      end
+
+      it "removes method to remove fallbacl from the DSL object after block" do
+        expect { subject.call(5) }.
+          not_to change { context.respond_to?(:__docile_undo_fallback__) }.
+          from(false)
+      end
+
+      context "when helper methods call methods that are undefined" do
+        let(:array_as_dsl) { "not an array" }
+
+        it "raises NoMethodError" do
+          expect { subject.call(5) }.
+            to raise_error(NoMethodError, /undefined method `at' /)
+        end
+
+        it "removes fallback instrumentation from the DSL object after block" do
+          expect { subject.call(5) rescue nil }.
+            not_to change { context.respond_to?(:method_missing) }.
+            from(false)
+        end
       end
     end
 
     context "when DSL have NoMethod error inside" do
-      it "raise error from nil" do
+      class DSLWithNoMethod
+        def initialize(b); @b = b; end
+        attr_accessor :b
+        def push_element
+          @b.push 1
+        end
+      end
+
+      it "raise NoMethodError error from nil" do
         Docile.dsl_eval(DSLWithNoMethod.new(nil)) do
-          expect { push_element }.to raise_error(NoMethodError, /undefined method `push' (for|on) nil:NilClass/)
+          expect { push_element }.
+            to raise_error(NoMethodError, /undefined method `push' (for|on) nil:NilClass/)
         end
       end
     end

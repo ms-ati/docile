@@ -38,6 +38,31 @@ module Docile
     def initialize(receiver, fallback)
       @__receiver__ = receiver
       @__fallback__ = fallback
+
+      # Enables calling DSL methods from helper methods in the block's context
+      unless fallback.respond_to?(:method_missing)
+        # NOTE: There's no {#define_singleton_method} on Ruby 1.8.x
+        singleton_class = (class << fallback; self; end)
+
+        # instrument {#method_missing} on the block's context to fallback to
+        # the DSL object. This allows helper methods in the block's context to
+        # contain calls to methods on the DSL object.
+        singleton_class.
+          send(:define_method, :method_missing) do |method, *args, &block|
+            if receiver.respond_to?(method.to_sym)
+              receiver.__send__(method.to_sym, *args, &block)
+            else
+              super(method, *args, &block)
+            end
+          end
+
+        # instrument a helper method to remove the above instrumentation
+        singleton_class.
+          send(:define_method, :__docile_undo_fallback__) do
+            singleton_class.send(:remove_method, :method_missing)
+            singleton_class.send(:remove_method, :__docile_undo_fallback__)
+          end
+      end
     end
 
     # @return [Array<Symbol>]  Instance variable names, excluding
