@@ -50,6 +50,29 @@ end
 
 Easy!
 
+### Next step: Allow helper methods to call DSL methods
+
+What if, in our use of the methods of Array as a DSL, we want to extract
+helper methods which in turn call DSL methods?
+
+```ruby
+def pop_sum_and_push(n)
+  sum = 0
+  n.times { sum += pop }
+  push sum
+end
+
+Docile.dsl_eval([]) do
+  push 5
+  push 6
+  pop_sum_and_push(2)
+end
+#=> [11]
+```
+
+Without Docile, you may find this sort of code extraction to be more
+challenging.
+
 ### Wait! Can't I do that with just `instance_eval` or `instance_exec`?
 
 Good question!
