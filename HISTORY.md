@@ -1,7 +1,12 @@
 # HISTORY
 
-## [Unreleased changes](http://github.com/ms-ati/docile/compare/v1.2.0...master)
+## [Unreleased changes](http://github.com/ms-ati/docile/compare/v1.3.0...master)
 
+  - ...
+
+## [v1.3.0 (Feb 7, 2018)](http://github.com/ms-ati/docile/compare/v1.2.0...v1.3.0)
+
+  - Allow helper methods in block's context to call DSL methods
   - Add SemVer release policy explicitly
   - Standardize on double-quoted string literals
   - Workaround some more Travis CI shenanigans
