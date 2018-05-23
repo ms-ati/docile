@@ -30,6 +30,7 @@ module Docile
         end
 
         block_context.instance_variables.each do |ivar|
+          next unless proxy_context.instance_variables.include?(ivar)
           value_from_dsl_proxy = proxy_context.instance_variable_get(ivar)
           block_context.instance_variable_set(ivar, value_from_dsl_proxy)
         end
