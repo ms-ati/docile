@@ -349,6 +349,38 @@ describe Docile do
 
     end
 
+    context "when DSL context object is the same as the block's context object" do
+      class DSLContextSameAsBlockContext
+        def foo(v = nil)
+          @foo = v if v
+          @foo
+        end
+
+        def bar(v = nil)
+          @bar = v if v
+          @bar
+        end
+
+        def dsl_eval(block)
+          Docile.dsl_eval(self, &block)
+        end
+
+        def dsl_eval_string(string)
+          block = binding.eval("proc { #{string} }")
+          dsl_eval(block)
+        end
+      end
+
+      let(:dsl) { DSLContextSameAsBlockContext.new }
+
+      it "calls DSL methods and sets instance variables on the DSL conetxt object" do
+        dsl.dsl_eval_string('foo 0; bar 1')
+        expect(dsl.foo).to eq(0)
+        expect(dsl.bar).to eq(1)
+      end
+
+    end
+
   end
 
   describe ".dsl_eval_with_block_return" do
