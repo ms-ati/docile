@@ -1,8 +1,13 @@
 # HISTORY
 
-## [Unreleased changes](http://github.com/ms-ati/docile/compare/v1.3.0...master)
+## [Unreleased changes](http://github.com/ms-ati/docile/compare/v1.3.1...master)
 
   - ...
+
+## [v1.3.1 (May 24, 2018)](http://github.com/ms-ati/docile/compare/v1.3.0...v1.3.1)
+
+  - Special thanks to Taichi Ishitani (@taichi-ishitani):
+    - Fix for when DSL object is also the block's context (#30)
 
 ## [v1.3.0 (Feb 7, 2018)](http://github.com/ms-ati/docile/compare/v1.2.0...v1.3.0)
 
