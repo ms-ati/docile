@@ -373,12 +373,11 @@ describe Docile do
 
       let(:dsl) { DSLContextSameAsBlockContext.new }
 
-      it "calls DSL methods and sets instance variables on the DSL conetxt object" do
+      it "calls DSL methods and sets instance variables on the DSL context object" do
         dsl.dsl_eval_string('foo 0; bar 1')
         expect(dsl.foo).to eq(0)
         expect(dsl.bar).to eq(1)
       end
-
     end
 
   end
