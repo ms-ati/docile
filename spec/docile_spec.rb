@@ -283,6 +283,37 @@ describe Docile do
         end
       end
 
+      context "identity of 'self' inside nested dsl blocks" do
+        # see https://github.com/ms-ati/docile/issues/31
+        subject do
+          identified_selves = {}
+
+          outer do
+            identified_selves[:a] = self
+
+            inner do
+              identified_selves[:b] = self
+            end
+
+            identified_selves[:c] = self
+          end
+
+          identified_selves
+        end
+
+        it "identifies self inside outer dsl block" do
+          expect(subject[:a]).to be_instance_of(OuterDSL)
+        end
+
+        it "replaces self inside inner dsl block" do
+          expect(subject[:b]).to be_instance_of(InnerDSL)
+        end
+
+        it "restores self to the outer dsl object after the inner dsl block" do
+          expect(subject[:c]).to be_instance_of(OuterDSL)
+          expect(subject[:c]).to be(subject[:a])
+        end
+      end
     end
 
     context "when DSL context object is a Dispatch pattern" do

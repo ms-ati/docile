@@ -21,6 +21,10 @@ module Docile
                               :instance_variable_get, :instance_variable_set,
                               :remove_instance_variable]
 
+    # The set of methods which will **not** fallback from the block's context
+    # to the dsl object.
+    NON_FALLBACK_METHODS = Set[:class, :self, :respond_to?, :instance_of?]
+
     # The set of instance variables which are local to this object and hidden.
     # All other instance variables will be copied in and out of this object
     # from the scope in which this proxy was created.
@@ -49,7 +53,8 @@ module Docile
         # contain calls to methods on the DSL object.
         singleton_class.
           send(:define_method, :method_missing) do |method, *args, &block|
-            if receiver.respond_to?(method.to_sym)
+            m = method.to_sym
+            if !NON_FALLBACK_METHODS.include?(m) && receiver.respond_to?(m)
               receiver.__send__(method.to_sym, *args, &block)
             else
               super(method, *args, &block)
