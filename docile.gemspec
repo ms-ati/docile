@@ -31,6 +31,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency "rake", "~> 10.5" if on_less_than_1_9_3? # Pin compatible rake on old rubies, see: https://github.com/travis-ci/travis.rb/issues/380
   s.add_development_dependency "rake", "< 11.0"  unless on_less_than_1_9_3? # See http://stackoverflow.com/questions/35893584/nomethoderror-undefined-method-last-comment-after-upgrading-to-rake-11
   s.add_development_dependency "rspec", "~> 3.0"
+  s.add_development_dependency "rspec-expectations", "!= 3.8.3" # Workaround for RSpec's issue, see: https://github.com/rspec/rspec-expectations/issues/1111
 
   # Run code coverage where possible - not on Rubinius
   unless on_rubinius?
