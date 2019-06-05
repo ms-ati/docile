@@ -68,11 +68,14 @@ describe Docile do
     class InnerDSL
       def initialize; @b = "b"; end
       attr_accessor :b
+      def c; "inner c"; end
     end
 
     class OuterDSL
       def initialize; @a = "a"; end
       attr_accessor :a
+
+      def c; "outer c"; end
 
       def inner(&block)
         Docile.dsl_eval(InnerDSL.new, &block)
@@ -226,10 +229,12 @@ describe Docile do
       context "method lookup" do
         it "finds method of outer dsl in outer dsl scope" do
           outer { expect(a).to eq("a") }
+          outer { inner {}; expect(c).to eq("outer c") }
         end
 
         it "finds method of inner dsl in inner dsl scope" do
           outer { inner { expect(b).to eq("b") } }
+          outer { inner { expect(c).to eq("inner c") } }
         end
 
         it "finds method of outer dsl in inner dsl scope" do
@@ -237,13 +242,13 @@ describe Docile do
         end
 
         it "finds method of block's context in outer dsl scope" do
-          def c; "c"; end
-          outer { expect(c).to eq("c") }
+          def d; "d"; end
+          outer { expect(d).to eq("d") }
         end
 
         it "finds method of block's context in inner dsl scope" do
-          def c; "c"; end
-          outer { inner { expect(c).to eq("c") } }
+          def d; "d"; end
+          outer { inner { expect(d).to eq("d") } }
         end
 
         it "finds method of outer dsl in preference to block context" do
