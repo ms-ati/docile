@@ -54,7 +54,7 @@ module Docile
         singleton_class.
           send(:define_method, :method_missing) do |method, *args, &block|
             m = method.to_sym
-            if !NON_FALLBACK_METHODS.include?(m) && receiver.respond_to?(m)
+            if !NON_FALLBACK_METHODS.include?(m) && !fallback.respond_to?(m) && receiver.respond_to?(m)
               receiver.__send__(method.to_sym, *args, &block)
             else
               super(method, *args, &block)
