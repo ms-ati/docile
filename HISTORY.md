@@ -1,8 +1,13 @@
 # HISTORY
 
-## [Unreleased changes](http://github.com/ms-ati/docile/compare/v1.3.1...master)
+## [Unreleased changes](http://github.com/ms-ati/docile/compare/v1.3.2...master)
 
   - ...
+
+## [v1.3.2 (Jun 12, 2019)](http://github.com/ms-ati/docile/compare/v1.3.1...v1.3.2)
+
+  - Special thanks (again!) to Taichi Ishitani (@taichi-ishitani):
+    - Fix for DSL object is replaced when #dsl_eval is nested (#33, PR #34)
 
 ## [v1.3.1 (May 24, 2018)](http://github.com/ms-ati/docile/compare/v1.3.0...v1.3.1)
 
