@@ -196,7 +196,7 @@ describe Docile do
 
         it "raises NoMethodError" do
           expect { subject.call(5) }.
-            to raise_error(NoMethodError, /undefined method `at' /)
+            to raise_error(NoMethodError, /method `at' /)
         end
 
         it "removes fallback instrumentation from the DSL object after block" do
