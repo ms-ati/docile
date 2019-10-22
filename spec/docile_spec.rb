@@ -416,6 +416,25 @@ describe Docile do
       end
     end
 
+    context "when NoMethodError is raised" do
+      specify "#backtrace does not include path to Docile's source file" do
+        begin
+          Docile.dsl_eval(Object.new) { foo }
+        rescue NoMethodError => e
+          expect(e.backtrace).not_to include(match(/lib\/docile/))
+        end
+      end
+
+      if ::Exception.public_method_defined?(:backtrace_locations)
+        specify "#backtrace_locations also does not include path to Docile's source file" do
+          begin
+            Docile.dsl_eval(Object.new) { foo }
+          rescue NoMethodError => e
+            expect(e.backtrace_locations.map(&:absolute_path)).not_to include(match(/lib\/docile/))
+          end
+        end
+      end
+    end
   end
 
   describe ".dsl_eval_with_block_return" do

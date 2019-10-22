@@ -86,7 +86,12 @@ module Docile
       if @__receiver__.respond_to?(method.to_sym)
         @__receiver__.__send__(method.to_sym, *args, &block)
       else
-        @__fallback__.__send__(method.to_sym, *args, &block)
+        begin
+          @__fallback__.__send__(method.to_sym, *args, &block)
+        rescue NoMethodError => e
+          e.extend(BacktraceFilter)
+          raise e
+        end
       end
     end
   end
