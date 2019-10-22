@@ -2,9 +2,9 @@ module Docile
   # @api private
   #
   # This is used to remove entries pointing to Docile's source files
-  # from Exception#backtrace/Exception#backtrace_locations.
+  # from {Exception#backtrace} and {Exception#backtrace_locations}.
   #
-  # If NoMethodError is catched then the exception object will be extended
+  # If {NoMethodError} is caught then the exception object will be extended
   # by this module to add filter functionalities.
   module BacktraceFilter
     FILTER_PATTERN = /lib\/docile/
