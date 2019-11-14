@@ -16,6 +16,13 @@ module Docile
     # @return           [Object] the return value of the block
     def exec_in_proxy_context(dsl, proxy_type, *args, &block)
       block_context = eval("self", block.binding)
+
+      # Use #equal? to test strict object identity (assuming that this dictum
+      # from the Ruby docs holds: "[u]nlike ==, the equal? method should never
+      # be overridden by subclasses as it is used to determine object
+      # identity")
+      return dsl.instance_exec(*args, &block) if dsl.equal?(block_context)
+
       proxy_context = proxy_type.new(dsl, block_context)
       begin
         block_context.instance_variables.each do |ivar|
