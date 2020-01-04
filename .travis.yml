@@ -9,6 +9,7 @@ dist: trusty
 rvm:
   # MRI
   - ruby-head
+  - 2.7
   - 2.6
   - 2.5
   - 2.4
@@ -20,6 +21,7 @@ rvm:
   - ree
   # JRuby
   - jruby-head
+  - jruby-9.2
   - jruby-9.1
   - jruby-9.0
   # Rubinius
