@@ -26,6 +26,8 @@ rvm:
   - jruby-9.0
   # Rubinius
   - rubinius-3
+  # Truffleruby
+  - truffleruby-head
 
 matrix:
   allow_failures:
