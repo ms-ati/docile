@@ -24,8 +24,6 @@ rvm:
   - jruby-9.2
   - jruby-9.1
   - jruby-9.0
-  # Rubinius
-  - rbx-3
   # Truffleruby
   - truffleruby-head
   - truffleruby
@@ -36,5 +34,4 @@ matrix:
     - rvm: ruby-head
     - rvm: jruby-head
     - rvm: truffleruby-head
-    - rvm: rbx-3
   fast_finish: true
