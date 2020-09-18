@@ -25,13 +25,16 @@ rvm:
   - jruby-9.1
   - jruby-9.0
   # Rubinius
-  - rubinius-3
+  - rbx-3
   # Truffleruby
   - truffleruby-head
+  - truffleruby
+  - truffleruby-20.2.0
 
 matrix:
   allow_failures:
     - rvm: ruby-head
     - rvm: jruby-head
-    - rvm: rubinius-3
+    - rvm: truffleruby-head
+    - rvm: rbx-3
   fast_finish: true
