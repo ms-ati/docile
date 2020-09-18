@@ -374,7 +374,7 @@ Docile releases follow [Semantic Versioning 2.0.0](https://semver.org/spec/v2.0.
 
 ## Copyright & License
 
-Copyright (c) 2012-2019 Marc Siegel.
+Copyright (c) 2012-2020 Marc Siegel.
 
 Licensed under the [MIT License](http://choosealicense.com/licenses/mit/), see [LICENSE](LICENSE) for details.
 
