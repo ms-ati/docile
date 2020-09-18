@@ -2,7 +2,7 @@ require File.expand_path("on_what", File.dirname(__FILE__))
 source "https://rubygems.org"
 
 # Travis-only dependencies go here
-if on_travis? && !on_1_8? && !on_rubinius?
+if on_travis? && !on_less_than_2_3? && !on_rubinius?
   group :test do
     gem "codecov", ">= 0.0.9", :require => false
   end

@@ -24,3 +24,7 @@ end
 def on_less_than_2_0?
   RUBY_VERSION < "2.0.0"
 end
+
+def on_less_than_2_3?
+  RUBY_VERSION < "2.3.0"
+end
