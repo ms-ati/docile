@@ -435,6 +435,36 @@ describe Docile do
         end
       end
     end
+
+    if RUBY_VERSION >= "2.0.0"
+      context "when a DSL method has a keyword argument" do
+        class DSLMethodWithKeywordArgument
+          attr_reader :v0, :v1, :v2
+          class_eval(<<-METHOD)
+            def set(v0, v1:, v2:)
+              @v0 = v0
+              @v1 = v1
+              @v2 = v2
+            end
+          METHOD
+        end
+
+        let(:dsl) do
+          DSLMethodWithKeywordArgument.new
+        end
+
+        it "calls such DLS methods with no stderr output" do
+          # This is to check warnings related to keyword argument is not output.
+          # See: https://www.ruby-lang.org/en/news/2019/12/12/separation-of-positional-and-keyword-arguments-in-ruby-3-0/
+          expect { Docile.dsl_eval(dsl) { set(0, v2: 2, v1: 1) } }.
+            not_to output.to_stderr
+
+          expect(dsl.v0).to eq 0
+          expect(dsl.v1).to eq 1
+          expect(dsl.v2).to eq 2
+        end
+      end
+    end
   end
 
   describe ".dsl_eval_with_block_return" do
