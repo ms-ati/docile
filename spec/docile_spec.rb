@@ -453,7 +453,7 @@ describe Docile do
           DSLMethodWithKeywordArgument.new
         end
 
-        it "calls such DLS methods with no stderr output" do
+        it "calls such DSL methods with no stderr output" do
           # This is to check warnings related to keyword argument is not output.
           # See: https://www.ruby-lang.org/en/news/2019/12/12/separation-of-positional-and-keyword-arguments-in-ruby-3-0/
           expect { Docile.dsl_eval(dsl) { set(0, v2: 2, v1: 1) } }.
