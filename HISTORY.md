@@ -1,8 +1,14 @@
 # HISTORY
 
-## [Unreleased changes](http://github.com/ms-ati/docile/compare/v1.3.2...master)
+## [Unreleased changes](http://github.com/ms-ati/docile/compare/v1.3.3...master)
 
   - ...
+
+## [v1.3.3 (Dec 18, 2020)](http://github.com/ms-ati/docile/compare/v1.3.2...v1.3.3)
+
+- Special thanks (again!) to Taichi Ishitani (@taichi-ishitani):
+    - Fix keyword arg warnings on Ruby 2.7 (issue #44, PR #45)
+    - Filter Docile's source files from backtrace (issue #35, PR #36)
 
 ## [v1.3.2 (Jun 12, 2019)](http://github.com/ms-ati/docile/compare/v1.3.1...v1.3.2)
 
