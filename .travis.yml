@@ -32,6 +32,10 @@ matrix:
     # NOTE (2020-12-18): Failing access to Rubygems with following error:
     #   Unable to download data from https://rubygems.org/ - hostname was not
     #   match with the server certificate (https://rubygems.org/specs.4.8.gz)
+    #
+    #   See Travis CI topic here:
+    #   https://travis-ci.community/t/ruby-1-8-7-and-ree-builds-broken-by-ssl-certificate-failure/10866
+    #
     # TODO (2020-12-18): Either find a fix or remove testing of 1.8 versions
     - rvm: 1.8.7
     - rvm: ree
