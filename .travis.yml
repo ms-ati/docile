@@ -1,5 +1,7 @@
 language: ruby
 
+os: linux
+
 dist: focal
 
 rvm:
@@ -20,7 +22,7 @@ rvm:
   - truffleruby-head
   - truffleruby-20.3.0
 
-matrix:
+jobs:
   allow_failures:
     - rvm: ruby-head
     - rvm: jruby-head
