@@ -1,10 +1,6 @@
 language: ruby
 
-# Apparently sudo is required to test on Rubinius and JRuby-head
-sudo: required
-
-# See https://docs.travis-ci.com/user/languages/ruby/#Rubinius
-dist: trusty
+dist: focal
 
 rvm:
   # MRI
@@ -17,8 +13,6 @@ rvm:
   - 2.2
   - 2.1
   - 1.9.3
-  - 1.8.7
-  - ree
   # JRuby
   - jruby-head
   - jruby-9.2
@@ -31,4 +25,15 @@ matrix:
     - rvm: ruby-head
     - rvm: jruby-head
     - rvm: truffleruby-head
+    # NOTE (2020-12-18): Failing access to Rubygems with following error:
+    #   Unable to download data from https://rubygems.org/ - hostname was not
+    #   match with the server certificate (https://rubygems.org/specs.4.8.gz)
+    #
+    #   See Travis CI topic here:
+    #   https://travis-ci.community/t/ruby-1-8-7-and-ree-builds-broken-by-ssl-certificate-failure/10866
+    #
+    # TODO (2020-12-18): Either find a fix or remove testing of 1.8 versions
+    - rvm: 1.8.7
+    - rvm: ree
+
   fast_finish: true
