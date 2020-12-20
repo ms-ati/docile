@@ -14,6 +14,8 @@ module Docile
   #
   # @see Docile.dsl_eval
   class FallbackContextProxy
+    ARGS_STRING = RUBY_VERSION >= "2.7.0" ? "*args, **kwargs, &block" : "*args, &block"
+
     # The set of methods which will **not** be proxied, but instead answered
     # by this object directly.
     NON_PROXIED_METHODS = Set[:__send__, :object_id, :__id__, :==, :equal?,
@@ -51,15 +53,16 @@ module Docile
         # instrument {#method_missing} on the block's context to fallback to
         # the DSL object. This allows helper methods in the block's context to
         # contain calls to methods on the DSL object.
-        singleton_class.
-          send(:define_method, :method_missing) do |method, *args, &block|
+        singleton_class.class_eval(<<~METHOD, __FILE__, __LINE__ + 1)
+          send(:define_method, :method_missing) do |method, #{ARGS_STRING}|
             m = method.to_sym
             if !NON_FALLBACK_METHODS.include?(m) && !fallback.respond_to?(m) && receiver.respond_to?(m)
-              receiver.__send__(method.to_sym, *args, &block)
+              receiver.__send__(m, #{ARGS_STRING})
             else
-              super(method, *args, &block)
+              super(m, #{ARGS_STRING})
             end
           end
+        METHOD
 
         # instrument a helper method to remove the above instrumentation
         singleton_class.
@@ -82,19 +85,13 @@ module Docile
 
     # Proxy all methods, excluding {NON_PROXIED_METHODS}, first to `receiver`
     # and then to `fallback` if not found.
-    args_string =
-      if RUBY_VERSION >= "2.7.0"
-        "*args, **kwargs, &block"
-      else
-        "*args, &block"
-      end
-    class_eval(<<-METHOD)
-      def method_missing(method, #{args_string})
+    class_eval(<<-METHOD, __FILE__, __LINE__ + 1)
+      def method_missing(method, #{ARGS_STRING})
         if @__receiver__.respond_to?(method.to_sym)
-          @__receiver__.__send__(method.to_sym, #{args_string})
+          @__receiver__.__send__(method.to_sym, #{ARGS_STRING})
         else
           begin
-            @__fallback__.__send__(method.to_sym, #{args_string})
+            @__fallback__.__send__(method.to_sym, #{ARGS_STRING})
           rescue NoMethodError => e
             e.extend(BacktraceFilter)
             raise e
