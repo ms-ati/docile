@@ -440,7 +440,7 @@ describe Docile do
       context "when a DSL method has a keyword argument" do
         class DSLMethodWithKeywordArgument
           attr_reader :v0, :v1, :v2
-          class_eval(<<-METHOD)
+          class_eval(<<-METHOD, __FILE__, __LINE__ + 1)
             def set(v0, v1:, v2:)
               @v0 = v0
               @v1 = v1

@@ -88,7 +88,7 @@ module Docile
       else
         "*args, &block"
       end
-    class_eval(<<-METHOD)
+    class_eval(<<-METHOD, __FILE__, __LINE__ + 1)
       def method_missing(method, #{args_string})
         if @__receiver__.respond_to?(method.to_sym)
           @__receiver__.__send__(method.to_sym, #{args_string})
