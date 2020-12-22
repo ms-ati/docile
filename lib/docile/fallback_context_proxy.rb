@@ -82,25 +82,18 @@ module Docile
 
     # Proxy all methods, excluding {NON_PROXIED_METHODS}, first to `receiver`
     # and then to `fallback` if not found.
-    args_string =
-      if RUBY_VERSION >= "2.7.0"
-        "*args, **kwargs, &block"
+    def method_missing(method, *args, &block)
+      if @__receiver__.respond_to?(method.to_sym)
+        @__receiver__.__send__(method.to_sym, *args, &block)
       else
-        "*args, &block"
-      end
-    class_eval(<<-METHOD)
-      def method_missing(method, #{args_string})
-        if @__receiver__.respond_to?(method.to_sym)
-          @__receiver__.__send__(method.to_sym, #{args_string})
-        else
-          begin
-            @__fallback__.__send__(method.to_sym, #{args_string})
-          rescue NoMethodError => e
-            e.extend(BacktraceFilter)
-            raise e
-          end
+        begin
+          @__fallback__.__send__(method.to_sym, *args, &block)
+        rescue NoMethodError => e
+          e.extend(BacktraceFilter)
+          raise e
         end
       end
-    METHOD
+    end
+    ruby2_keywords :method_missing if respond_to?(:ruby2_keywords, true)
   end
 end
