@@ -1,8 +1,13 @@
 # HISTORY
 
-## [Unreleased changes](http://github.com/ms-ati/docile/compare/v1.3.3...master)
+## [Unreleased changes](http://github.com/ms-ati/docile/compare/v1.3.4...master)
 
   - ...
+
+## [v1.3.4 (Dec 22, 2020)](http://github.com/ms-ati/docile/compare/v1.3.3...v1.3.4)
+
+- Special thanks to Benoit Daloze (@eregon):
+    - Fix delegation on Ruby 2.7 (issues #45 and #44, PR #52)
 
 ## [v1.3.3 (Dec 18, 2020)](http://github.com/ms-ati/docile/compare/v1.3.2...v1.3.3)
 
