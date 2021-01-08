@@ -467,6 +467,50 @@ describe Docile do
     end
   end
 
+  context "when a DSL method has a double splat" do
+    class DSLMethodWithDoubleSplat
+      attr_reader :arguments, :options
+
+      def configure(*arguments, **options)
+        @arguments = arguments.dup
+        @options = options.dup
+      end
+    end
+
+    let(:dsl) do
+      DSLMethodWithDoubleSplat.new
+    end
+
+    it "correctly passes keyword arguments" do
+      Docile.dsl_eval(dsl) do
+        configure(1, a: 1)
+      end
+
+      expect(dsl.arguments).to eq [1]
+      expect(dsl.options).to eq({ a: 1 })
+    end
+
+    if RUBY_VERSION < "3.0.0"
+      it "correctly passes hash arguments on Ruby 2" do
+        Docile.dsl_eval(dsl) do
+          configure(1, { a: 1 })
+        end
+
+        expect(dsl.arguments).to eq [1]
+        expect(dsl.options).to eq({ a: 1 })
+      end
+    else
+      it "correctly passes hash arguments on Ruby 3+" do
+        Docile.dsl_eval(dsl) do
+          configure(1, { a: 1 })
+        end
+
+        expect(dsl.arguments).to eq [1, { a: 1 }]
+        expect(dsl.options).to eq({})
+      end
+    end
+  end
+
   describe ".dsl_eval_with_block_return" do
     let(:array) { [] }
     let!(:result) { execute_dsl_against_array }

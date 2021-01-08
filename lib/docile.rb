@@ -44,6 +44,8 @@ module Docile
     exec_in_proxy_context(dsl, FallbackContextProxy, *args, &block)
     dsl
   end
+
+  ruby2_keywords :dsl_eval if respond_to?(:ruby2_keywords, true)
   module_function :dsl_eval
 
   # Execute a block in the context of an object whose methods represent the
@@ -83,6 +85,8 @@ module Docile
   def dsl_eval_with_block_return(dsl, *args, &block)
     exec_in_proxy_context(dsl, FallbackContextProxy, *args, &block)
   end
+
+  ruby2_keywords :dsl_eval_with_block_return if respond_to?(:ruby2_keywords, true)
   module_function :dsl_eval_with_block_return
 
   # Execute a block in the context of an immutable object whose methods,
@@ -120,5 +124,7 @@ module Docile
   def dsl_eval_immutable(dsl, *args, &block)
     exec_in_proxy_context(dsl, ChainingFallbackContextProxy, *args, &block)
   end
+  
+  ruby2_keywords :dsl_eval_immutable if respond_to?(:ruby2_keywords, true)
   module_function :dsl_eval_immutable
 end
