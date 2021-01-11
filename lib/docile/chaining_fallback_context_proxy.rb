@@ -16,5 +16,7 @@ module Docile
     def method_missing(method, *args, &block)
       @__receiver__ = super(method, *args, &block)
     end
+    
+    ruby2_keywords :method_missing if respond_to?(:ruby2_keywords, true)
   end
 end

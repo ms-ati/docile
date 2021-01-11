@@ -61,6 +61,8 @@ module Docile
             end
           end
 
+        singleton_class.send(:ruby2_keywords, :method_missing) if singleton_class.respond_to?(:ruby2_keywords, true)
+
         # instrument a helper method to remove the above instrumentation
         singleton_class.
           send(:define_method, :__docile_undo_fallback__) do
@@ -94,6 +96,7 @@ module Docile
         end
       end
     end
+
     ruby2_keywords :method_missing if respond_to?(:ruby2_keywords, true)
   end
 end
