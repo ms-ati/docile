@@ -351,7 +351,7 @@ $ gem install docile
 
 ## Status
 
-Works on [all ruby versions since 1.8.7](https://github.com/ms-ati/docile/blob/master/.travis.yml), or so Travis CI [tells us](https://travis-ci.org/ms-ati/docile).
+Works on [all ruby versions since 1.9.3](https://github.com/ms-ati/docile/blob/master/.travis.yml), or so Travis CI [tells us](https://travis-ci.org/ms-ati/docile).
 
 Used by some pretty cool gems to implement their DSLs, notably including [SimpleCov](https://github.com/colszowka/simplecov). Keep an eye out for new gems using Docile at the [Ruby Toolbox](https://www.ruby-toolbox.com/projects/docile).
 
