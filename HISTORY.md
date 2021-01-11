@@ -2,16 +2,18 @@
 
 ## [Unreleased changes](http://github.com/ms-ati/docile/compare/v1.3.4...master)
 
-  - ...
+  - Remove support for Ruby 1.8.7 and REE
+  - Special thanks to Jochen Seeber (@jochenseeber)
+    - Fix remaining delegation on Ruby 2.7 (PR #62)
 
 ## [v1.3.4 (Dec 22, 2020)](http://github.com/ms-ati/docile/compare/v1.3.3...v1.3.4)
 
-- Special thanks to Benoit Daloze (@eregon):
+  - Special thanks to Benoit Daloze (@eregon):
     - Fix delegation on Ruby 2.7 (issues #45 and #44, PR #52)
 
 ## [v1.3.3 (Dec 18, 2020)](http://github.com/ms-ati/docile/compare/v1.3.2...v1.3.3)
 
-- Special thanks (again!) to Taichi Ishitani (@taichi-ishitani):
+  - Special thanks (again!) to Taichi Ishitani (@taichi-ishitani):
     - Fix keyword arg warnings on Ruby 2.7 (issue #44, PR #45)
     - Filter Docile's source files from backtrace (issue #35, PR #36)
 
