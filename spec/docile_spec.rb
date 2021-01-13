@@ -414,6 +414,12 @@ describe Docile do
         expect(dsl.foo).to eq(0)
         expect(dsl.bar).to eq(1)
       end
+
+      context "when the DSL object is frozen" do
+        it "can call non-mutative code without raising an exception" do
+          expect { dsl.freeze.dsl_eval_string('1 + 2') }.not_to raise_error
+        end
+      end
     end
 
     context "when NoMethodError is raised" do
