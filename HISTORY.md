@@ -1,10 +1,18 @@
 # HISTORY
 
-## [Unreleased changes](http://github.com/ms-ati/docile/compare/v1.3.4...master)
+## [Unreleased changes](http://github.com/ms-ati/docile/compare/v1.3.5...master)
 
-  - Remove support for Ruby 1.8.7 and REE
-  - Special thanks to Jochen Seeber (@jochenseeber)
+  ...
+
+## [v1.3.5 (Jan 13, 2021)](http://github.com/ms-ati/docile/compare/v1.3.4...v1.3.5)
+
+  - Special thanks to Jochen Seeber (@jochenseeber):
     - Fix remaining delegation on Ruby 2.7 (PR #62)
+  - Remove support for Ruby 1.8.7 and REE, because they
+    [are no longer runnable on Travis CI](https://travis-ci.community/t/ruby-1-8-7-and-ree-builds-broken-by-ssl-certificate-failure/10866)
+  - Announce that continued support for any EOL Ruby versions (that is, versions
+    prior to Ruby 2.5 as of Jan 13 2021) will be decided on **Feb 1, 2021**
+    based on comments to [issue #58](https://github.com/ms-ati/docile/issues/58)
 
 ## [v1.3.4 (Dec 22, 2020)](http://github.com/ms-ati/docile/compare/v1.3.3...v1.3.4)
 
