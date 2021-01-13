@@ -2,9 +2,10 @@
 
 ## [Unreleased changes](http://github.com/ms-ati/docile/compare/v1.3.5...master)
 
-  - Short-circuit to calling #instance_exec directly on the DSL object (prior to
-    constructing a proxy object) when the DSL object and block context object are
-    identical
+  - Special thanks to Matt Schreiber (@tomeon):
+    - Short-circuit to calling #instance_exec directly on the DSL object (prior to
+      constructing a proxy object) when the DSL object and block context object are
+      identical (*Sorry it took over a year to review and merge this!*)
 
 ## [v1.3.5 (Jan 13, 2021)](http://github.com/ms-ati/docile/compare/v1.3.4...v1.3.5)
 
