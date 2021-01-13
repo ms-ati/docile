@@ -43,6 +43,8 @@ module Docile
         end
       end
     end
+
+    ruby2_keywords :exec_in_proxy_context if respond_to?(:ruby2_keywords, true)
     module_function :exec_in_proxy_context
   end
 end

@@ -1,3 +1,8 @@
+## ⚠️WARNING⚠️, 🔴IMPORTANT❗🔴
+### Using Docile on an [end-of-life Ruby version (< **2.5**)](https://www.ruby-lang.org/en/downloads/branches/)?
+#### Please comment on [issue #58](https://github.com/ms-ati/docile/issues/58) this month 📅!
+We'll decide which Ruby versions to continue supporting on **Feb 1st 2021**.
+
 # Docile
 
 [![Gem Version](https://img.shields.io/gem/v/docile.svg)](https://rubygems.org/gems/docile)
@@ -351,7 +356,7 @@ $ gem install docile
 
 ## Status
 
-Works on [all ruby versions since 1.8.7](https://github.com/ms-ati/docile/blob/master/.travis.yml), or so Travis CI [tells us](https://travis-ci.org/ms-ati/docile).
+Works on [all ruby versions since 1.9.3](https://github.com/ms-ati/docile/blob/master/.travis.yml), or so Travis CI [tells us](https://travis-ci.org/ms-ati/docile).
 
 Used by some pretty cool gems to implement their DSLs, notably including [SimpleCov](https://github.com/colszowka/simplecov). Keep an eye out for new gems using Docile at the [Ruby Toolbox](https://www.ruby-toolbox.com/projects/docile).
 

@@ -1,19 +1,29 @@
 # HISTORY
 
-## [Unreleased changes](http://github.com/ms-ati/docile/compare/v1.3.4...master)
+## [Unreleased changes](http://github.com/ms-ati/docile/compare/v1.3.5...master)
 
   - Short-circuit to calling #instance_exec directly on the DSL object (prior to
     constructing a proxy object) when the DSL object and block context object are
     identical
 
+## [v1.3.5 (Jan 13, 2021)](http://github.com/ms-ati/docile/compare/v1.3.4...v1.3.5)
+
+  - Special thanks to Jochen Seeber (@jochenseeber):
+    - Fix remaining delegation on Ruby 2.7 (PR #62)
+  - Remove support for Ruby 1.8.7 and REE, because they
+    [are no longer runnable on Travis CI](https://travis-ci.community/t/ruby-1-8-7-and-ree-builds-broken-by-ssl-certificate-failure/10866)
+  - Announce that continued support for any EOL Ruby versions (that is, versions
+    prior to Ruby 2.5 as of Jan 13 2021) will be decided on **Feb 1, 2021**
+    based on comments to [issue #58](https://github.com/ms-ati/docile/issues/58)
+
 ## [v1.3.4 (Dec 22, 2020)](http://github.com/ms-ati/docile/compare/v1.3.3...v1.3.4)
 
-- Special thanks to Benoit Daloze (@eregon):
+  - Special thanks to Benoit Daloze (@eregon):
     - Fix delegation on Ruby 2.7 (issues #45 and #44, PR #52)
 
 ## [v1.3.3 (Dec 18, 2020)](http://github.com/ms-ati/docile/compare/v1.3.2...v1.3.3)
 
-- Special thanks (again!) to Taichi Ishitani (@taichi-ishitani):
+  - Special thanks (again!) to Taichi Ishitani (@taichi-ishitani):
     - Fix keyword arg warnings on Ruby 2.7 (issue #44, PR #45)
     - Filter Docile's source files from backtrace (issue #35, PR #36)
 
