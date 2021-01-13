@@ -1,3 +1,8 @@
+## ⚠️WARNING⚠️, 🔴IMPORTANT❗🔴
+### Using Docile on an end-of-life Ruby version (< **2.5**)?
+#### Please comment on [issue #58](https://github.com/ms-ati/docile/issues/58) this month 📅!
+We'll decide which Ruby versions to continue supporting on **Feb 1st 2021**.
+
 # Docile
 
 [![Gem Version](https://img.shields.io/gem/v/docile.svg)](https://rubygems.org/gems/docile)
