@@ -1,5 +1,5 @@
 ## ⚠️WARNING⚠️, 🔴IMPORTANT❗🔴
-### Using Docile on an end-of-life Ruby version (< **2.5**)?
+### Using Docile on an [end-of-life Ruby version (< **2.5**)](https://www.ruby-lang.org/en/downloads/branches/)?
 #### Please comment on [issue #58](https://github.com/ms-ati/docile/issues/58) this month 📅!
 We'll decide which Ruby versions to continue supporting on **Feb 1st 2021**.
 
