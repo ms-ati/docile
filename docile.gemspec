@@ -25,27 +25,16 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
 
   # Specify oldest supported Ruby version
-  s.required_ruby_version = ">= 1.8.7"
+  s.required_ruby_version = ">= 1.9.3"
 
   # Run rspec tests from rake even on old Ruby versions
-  s.add_development_dependency "rake", "~> 10.5" if on_less_than_1_9_3? # Pin compatible rake on old rubies, see: https://github.com/travis-ci/travis.rb/issues/380
-  s.add_development_dependency "rake", "< 11.0"  unless on_less_than_1_9_3? # See http://stackoverflow.com/questions/35893584/nomethoderror-undefined-method-last-comment-after-upgrading-to-rake-11
+  s.add_development_dependency "rake", "< 11.0" # See http://stackoverflow.com/questions/35893584/nomethoderror-undefined-method-last-comment-after-upgrading-to-rake-11
   s.add_development_dependency "rspec", "~> 3.0"
   s.add_development_dependency "rspec-expectations", "!= 3.8.3" # Workaround for RSpec's issue, see: https://github.com/rspec/rspec-expectations/issues/1111
 
-  # Run code coverage where possible - not on Rubinius
-  unless on_rubinius?
-    # Pin versions for Travis builds on 1.9
-    s.add_development_dependency "json", "< 2.0" if on_less_than_2_0?
-
-    # Pin versions for Travis builds on 1.8
-    s.add_development_dependency "mime-types" , "~> 1.25.1" if on_1_8?
-    s.add_development_dependency "rest-client", "~> 1.6.8"  if on_1_8?
-  end
-
   # To limit needed compatibility with versions of dependencies, only configure
-  #   yard doc generation when *not* on Travis, JRuby, Rubinius, or < 2.0
-  if !on_travis? && !on_jruby? && !on_rubinius? && !on_less_than_2_0?
+  #   yard doc generation when *not* on Travis, JRuby, or < 2.3
+  if !on_travis? && !on_jruby? && !on_less_than_2_3?
     # Github flavored markdown in YARD documentation
     # http://blog.nikosd.com/2011/11/github-flavored-markdown-in-yard.html
     s.add_development_dependency "yard"
