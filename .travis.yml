@@ -2,7 +2,7 @@ language: ruby
 
 branches:
   only:
-    - master
+    - main
 
 rvm:
   # MRI
