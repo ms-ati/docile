@@ -1,7 +1,7 @@
 source "https://rubygems.org"
 
 # Travis-only dependencies go here
-if ENV["CI"] == "true"
+if ENV["CI"] == "true" && RUBY_ENGINE == "ruby"
   gem "codecov", require: false, group: "test"
 end
 

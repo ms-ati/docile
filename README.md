@@ -7,6 +7,7 @@
 [![Yard Docs](http://img.shields.io/badge/yard-docs-blue.svg)](http://rubydoc.info/github/ms-ati/docile)
 [![Docs Coverage](http://inch-ci.org/github/ms-ati/docile.png)](http://inch-ci.org/github/ms-ati/docile)
 
+[![Build Status](https://github.com/ms-ati/docile/actions/workflows/main.yml/badge.svg)](https://github.com/ms-ati/docile/actions/workflows/main.yml)
 [![Build Status](https://img.shields.io/travis/ms-ati/docile/master.svg)](https://travis-ci.org/ms-ati/docile)
 [![Code Coverage](https://img.shields.io/codecov/c/github/ms-ati/docile.svg)](https://codecov.io/github/ms-ati/docile)
 [![Maintainability](https://api.codeclimate.com/v1/badges/79ca631bc123f7b83b34/maintainability)](https://codeclimate.com/github/ms-ati/docile/maintainability)
@@ -351,13 +352,20 @@ $ gem install docile
 
 ## Status
 
-Works on [all currently supported ruby versions](https://github.com/ms-ati/docile/blob/master/.travis.yml), or so Travis CI [tells us](https://travis-ci.org/ms-ati/docile).
+Works on [all currently supported ruby versions](https://github.com/ms-ati/docile/blob/master/.github/workflows/main.yml),
+or so [Github Actions](https://github.com/ms-ati/docile/actions)
+and [Travis CI](https://travis-ci.org/ms-ati/docile)
+tell us.
 
-Used by some pretty cool gems to implement their DSLs, notably including [SimpleCov](https://github.com/colszowka/simplecov). Keep an eye out for new gems using Docile at the [Ruby Toolbox](https://www.ruby-toolbox.com/projects/docile).
+Used by some pretty cool gems to implement their DSLs, notably including
+[SimpleCov](https://github.com/colszowka/simplecov). Keep an eye out for new
+gems using Docile at the
+[Ruby Toolbox](https://www.ruby-toolbox.com/projects/docile).
 
 ## Release Policy
 
-Docile releases follow [Semantic Versioning 2.0.0](https://semver.org/spec/v2.0.0.html).
+Docile releases follow
+[Semantic Versioning 2.0.0](https://semver.org/spec/v2.0.0.html).
 
 ## Note on Patches/Pull Requests
 
@@ -376,4 +384,5 @@ Docile releases follow [Semantic Versioning 2.0.0](https://semver.org/spec/v2.0.
 
 Copyright (c) 2012-2021 Marc Siegel.
 
-Licensed under the [MIT License](http://choosealicense.com/licenses/mit/), see [LICENSE](LICENSE) for details.
+Licensed under the [MIT License](http://choosealicense.com/licenses/mit/),
+see [LICENSE](LICENSE) for details.

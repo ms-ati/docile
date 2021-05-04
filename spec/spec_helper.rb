@@ -6,8 +6,8 @@ begin
     add_filter "/vendor/"    # exclude gems which are vendored on Travis CI
   end
 
-  # On CI we publish simplecov results to codecov.io
-  if ENV["CI"] == "true"
+  # On CI we publish coverage to codecov.io, except on JRuby and TruffleRuby
+  if ENV["CI"] == "true" && RUBY_ENGINE == "ruby"
     require "codecov"
     SimpleCov.formatter = SimpleCov::Formatter::Codecov
   end

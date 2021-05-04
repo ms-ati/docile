@@ -23,8 +23,8 @@ Gem::Specification.new do |s|
   end
   s.require_paths = ["lib"]
 
-  # Specify oldest supported Ruby version
-  s.required_ruby_version = ">= 2.6.0"
+  # Specify oldest supported Ruby version (2.5 to support JRuby 9.2.17.0)
+  s.required_ruby_version = ">= 2.5.0"
 
   s.add_development_dependency "rake", "~> 12.3.3"
   s.add_development_dependency "rspec", "~> 3.9"
