@@ -124,7 +124,7 @@ module Docile
   def dsl_eval_immutable(dsl, *args, &block)
     exec_in_proxy_context(dsl, ChainingFallbackContextProxy, *args, &block)
   end
-  
+
   ruby2_keywords :dsl_eval_immutable if respond_to?(:ruby2_keywords, true)
   module_function :dsl_eval_immutable
 end

@@ -7,25 +7,16 @@ branches:
 rvm:
   # MRI
   - ruby-head
+  - 3.0
   - 2.7
   - 2.6
-  - 2.5
-  - 2.4
-  - 2.3
-  - 2.2
-  - 2.1
-  - 1.9.3
-  # JRuby
-  - jruby-head
-  - jruby-9.2
-  # Truffleruby
-  - truffleruby-head
-  - truffleruby-20.3.0
+  - jruby
+  - truffleruby
 
 jobs:
   allow_failures:
     - rvm: ruby-head
-    - rvm: jruby-head
-    - rvm: truffleruby-head
+    - rvm: jruby
+    - rvm: truffleruby
 
   fast_finish: true
