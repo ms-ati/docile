@@ -1,8 +1,3 @@
-## ⚠️WARNING⚠️, 🔴IMPORTANT❗🔴
-### Using Docile on an [end-of-life Ruby version (< **2.5**)](https://www.ruby-lang.org/en/downloads/branches/)?
-#### Please comment on [issue #58](https://github.com/ms-ati/docile/issues/58) this month 📅!
-We'll decide which Ruby versions to continue supporting on **Feb 1st 2021**.
-
 # Docile
 
 [![Gem Version](https://img.shields.io/gem/v/docile.svg)](https://rubygems.org/gems/docile)
@@ -29,7 +24,7 @@ coding a bit more docile...
 
 ## Usage
 
-### Basic: Ruby [Array](http://ruby-doc.org/core-2.2.2/Array.html) as DSL
+### Basic: Ruby [Array](http://ruby-doc.org/core-3.0.0/Array.html) as DSL
 
 Let's say that we want to make a DSL for modifying Array objects.
 Wouldn't it be great if we could just treat the methods of Array as a DSL?
@@ -274,11 +269,11 @@ Sometimes, you want to use an object as a DSL, but it doesn't quite fit the
 above.
 
 Instead of methods like
-[Array#push](http://www.ruby-doc.org/core-2.0/Array.html#method-i-push), which
+[Array#push](http://www.ruby-doc.org/core-3.0.0/Array.html#method-i-push), which
 modifies the object at hand, it has methods like
-[String#reverse](http://www.ruby-doc.org/core-2.0/String.html#method-i-reverse),
+[String#reverse](http://www.ruby-doc.org/core-3.0.0/String.html#method-i-reverse),
 which returns a new object without touching the original. Perhaps it's even
-[frozen](http://www.ruby-doc.org/core-2.0/Object.html#method-i-freeze) in
+[frozen](http://www.ruby-doc.org/core-3.0.0/Object.html#method-i-freeze) in
 order to enforce [immutability](http://en.wikipedia.org/wiki/Immutable_object).
 
 Wouldn't it be great if we could just treat these methods as a DSL as well?
@@ -356,7 +351,7 @@ $ gem install docile
 
 ## Status
 
-Works on [all ruby versions since 1.9.3](https://github.com/ms-ati/docile/blob/master/.travis.yml), or so Travis CI [tells us](https://travis-ci.org/ms-ati/docile).
+Works on [all currently supported ruby versions](https://github.com/ms-ati/docile/blob/master/.travis.yml), or so Travis CI [tells us](https://travis-ci.org/ms-ati/docile).
 
 Used by some pretty cool gems to implement their DSLs, notably including [SimpleCov](https://github.com/colszowka/simplecov). Keep an eye out for new gems using Docile at the [Ruby Toolbox](https://www.ruby-toolbox.com/projects/docile).
 
@@ -382,5 +377,3 @@ Docile releases follow [Semantic Versioning 2.0.0](https://semver.org/spec/v2.0.
 Copyright (c) 2012-2021 Marc Siegel.
 
 Licensed under the [MIT License](http://choosealicense.com/licenses/mit/), see [LICENSE](LICENSE) for details.
-
-

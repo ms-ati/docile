@@ -1,16 +1,13 @@
-require File.expand_path("on_what", File.dirname(File.dirname(__FILE__)))
-
 # Code coverage (via SimpleCov)
 begin
   require "simplecov"
   SimpleCov.start do
     add_filter "/spec/"      # exclude test code
     add_filter "/vendor/"    # exclude gems which are vendored on Travis CI
-    add_filter "/on_what.rb" # exclude help used only in gemspec
   end
 
   # On CI we publish simplecov results to codecov.io
-  if on_travis?
+  if ENV["CI"] == "true"
     require "codecov"
     SimpleCov.formatter = SimpleCov::Formatter::Codecov
   end
