@@ -3,7 +3,7 @@ begin
   require "simplecov"
   SimpleCov.start do
     add_filter "/spec/"      # exclude test code
-    add_filter "/vendor/"    # exclude gems which are vendored on Travis CI
+    add_filter "/vendor/"    # exclude gems which are cached in CI
   end
 
   # On CI we publish coverage to codecov.io, except on JRuby and TruffleRuby

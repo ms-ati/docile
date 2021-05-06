@@ -8,7 +8,6 @@
 [![Docs Coverage](http://inch-ci.org/github/ms-ati/docile.png)](http://inch-ci.org/github/ms-ati/docile)
 
 [![Build Status](https://github.com/ms-ati/docile/actions/workflows/main.yml/badge.svg)](https://github.com/ms-ati/docile/actions/workflows/main.yml)
-[![Build Status](https://img.shields.io/travis/ms-ati/docile/master.svg)](https://travis-ci.org/ms-ati/docile)
 [![Code Coverage](https://img.shields.io/codecov/c/github/ms-ati/docile.svg)](https://codecov.io/github/ms-ati/docile)
 [![Maintainability](https://api.codeclimate.com/v1/badges/79ca631bc123f7b83b34/maintainability)](https://codeclimate.com/github/ms-ati/docile/maintainability)
 
@@ -354,8 +353,7 @@ $ gem install docile
 
 Works on [all currently supported ruby versions](https://github.com/ms-ati/docile/blob/master/.github/workflows/main.yml),
 or so [Github Actions](https://github.com/ms-ati/docile/actions)
-and [Travis CI](https://travis-ci.org/ms-ati/docile)
-tell us.
+tells us.
 
 Used by some pretty cool gems to implement their DSLs, notably including
 [SimpleCov](https://github.com/colszowka/simplecov). Keep an eye out for new
