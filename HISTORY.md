@@ -9,7 +9,8 @@
   - Renamed default branch from master to main, see: https://github.com/github/renaming
   - Temporarily removed YARD doc configuration, to replace after
     migration to Github Actions
-  - Removed support for all EOL Rubies < 2.6  
+  - Removed support for all EOL Rubies < 2.6
+  - Migrate CI from Travis to Github Actions
 
 ## [v1.3.5 (Jan 13, 2021)](http://github.com/ms-ati/docile/compare/v1.3.4...v1.3.5)
 
