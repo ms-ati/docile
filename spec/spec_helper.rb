@@ -14,7 +14,7 @@ begin
 
   # Due to circular dependency (simplecov depends on docile), remove docile and require again below
   Object.send(:remove_const, :Docile)
-  $LOADED_FEATURES.reject! { |f| f =~ /\/docile\// }
+  $LOADED_FEATURES.reject! { |f| f =~ /\/lib\/docile/ }
 rescue LoadError
   warn "warning: simplecov or codecov gems not found; skipping coverage"
 end
