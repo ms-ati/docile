@@ -6,10 +6,11 @@ begin
     add_filter "/vendor/"    # exclude gems which are cached in CI
   end
 
-  # On CI we publish coverage to codecov.io, except on JRuby and TruffleRuby
-  if ENV["CI"] == "true" && RUBY_ENGINE == "ruby"
-    require "codecov"
-    SimpleCov.formatter = SimpleCov::Formatter::Codecov
+  # On CI we publish coverage to codecov.io
+  # To use codecov-action, we need to generate XML based covarage report
+  if ENV["CI"] == "true"
+    require "simplecov-cobertura"
+    SimpleCov.formatter = SimpleCov::Formatter::CoberturaFormatter
   end
 
   # Due to circular dependency (simplecov depends on docile), remove docile and require again below

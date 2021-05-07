@@ -24,3 +24,7 @@ jobs:
           bundler-cache: false
       - run: bundle install
       - run: bundle exec rspec
+      - uses: codecov/codecov-action@v1
+        with:
+          name: ${{ matrix.ruby }}
+          file: ./coverage/coverage.xml
