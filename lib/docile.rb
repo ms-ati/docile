@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "docile/version"
 require "docile/execution"
 require "docile/fallback_context_proxy"
@@ -86,7 +88,9 @@ module Docile
     exec_in_proxy_context(dsl, FallbackContextProxy, *args, &block)
   end
 
-  ruby2_keywords :dsl_eval_with_block_return if respond_to?(:ruby2_keywords, true)
+  if respond_to?(:ruby2_keywords, true)
+    ruby2_keywords :dsl_eval_with_block_return
+  end
   module_function :dsl_eval_with_block_return
 
   # Execute a block in the context of an immutable object whose methods,

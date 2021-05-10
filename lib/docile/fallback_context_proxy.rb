@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "set"
 
 module Docile
@@ -13,11 +15,13 @@ module Docile
   # This is useful for implementing DSL evaluation in the context of an object.
   #
   # @see Docile.dsl_eval
+  #
+  # rubocop:disable Style/MissingRespondToMissing
   class FallbackContextProxy
     # The set of methods which will **not** be proxied, but instead answered
     # by this object directly.
     NON_PROXIED_METHODS = Set[:__send__, :object_id, :__id__, :==, :equal?,
-                              :"!", :"!=", :instance_exec, :instance_variables,
+                              :!, :!=, :instance_exec, :instance_variables,
                               :instance_variable_get, :instance_variable_set,
                               :remove_instance_variable]
 
@@ -54,14 +58,18 @@ module Docile
         singleton_class.
           send(:define_method, :method_missing) do |method, *args, &block|
             m = method.to_sym
-            if !NON_FALLBACK_METHODS.include?(m) && !fallback.respond_to?(m) && receiver.respond_to?(m)
+            if !NON_FALLBACK_METHODS.member?(m) &&
+               !fallback.respond_to?(m) &&
+               receiver.respond_to?(m)
               receiver.__send__(method.to_sym, *args, &block)
             else
               super(method, *args, &block)
             end
           end
 
-        singleton_class.send(:ruby2_keywords, :method_missing) if singleton_class.respond_to?(:ruby2_keywords, true)
+        if singleton_class.respond_to?(:ruby2_keywords, true)
+          singleton_class.send(:ruby2_keywords, :method_missing)
+        end
 
         # instrument a helper method to remove the above instrumentation
         singleton_class.
@@ -74,12 +82,8 @@ module Docile
 
     # @return [Array<Symbol>]  Instance variable names, excluding
     #                            {NON_PROXIED_INSTANCE_VARIABLES}
-    #
-    # @note on Ruby 1.8.x, the instance variable names are actually of
-    #   type `String`.
     def instance_variables
-      # Ruby 1.8.x returns string names, convert to symbols for compatibility
-      super.select { |v| !NON_PROXIED_INSTANCE_VARIABLES.include?(v.to_sym) }
+      super.reject { |v| NON_PROXIED_INSTANCE_VARIABLES.include?(v) }
     end
 
     # Proxy all methods, excluding {NON_PROXIED_METHODS}, first to `receiver`
@@ -99,4 +103,5 @@ module Docile
 
     ruby2_keywords :method_missing if respond_to?(:ruby2_keywords, true)
   end
+  # rubocop:enable Style/MissingRespondToMissing
 end
