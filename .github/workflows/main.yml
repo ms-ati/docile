@@ -27,3 +27,5 @@ jobs:
         with:
           name: ${{ matrix.ruby }}
           file: ./coverage/coverage.xml
+      - run: bundle exec rubocop
+        if: matrix.ruby == '3.0'

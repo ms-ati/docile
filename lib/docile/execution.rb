@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Docile
   # @api private
   #
@@ -15,7 +17,7 @@ module Docile
     # @param block      [Proc]   the block of DSL commands to be executed
     # @return           [Object] the return value of the block
     def exec_in_proxy_context(dsl, proxy_type, *args, &block)
-      block_context = eval("self", block.binding)
+      block_context = eval("self", block.binding) # rubocop:disable Style/EvalWithLocation
 
       # Use #equal? to test strict object identity (assuming that this dictum
       # from the Ruby docs holds: "[u]nlike ==, the equal? method should never
@@ -38,6 +40,7 @@ module Docile
 
         block_context.instance_variables.each do |ivar|
           next unless proxy_context.instance_variables.include?(ivar)
+
           value_from_dsl_proxy = proxy_context.instance_variable_get(ivar)
           block_context.instance_variable_set(ivar, value_from_dsl_proxy)
         end

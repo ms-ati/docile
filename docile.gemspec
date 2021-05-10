@@ -1,5 +1,6 @@
-$:.push File.expand_path("../lib", __FILE__)
-require "docile/version"
+# frozen_string_literal: true
+
+require_relative "lib/docile/version"
 
 Gem::Specification.new do |s|
   s.name        = "docile"
@@ -17,15 +18,12 @@ Gem::Specification.new do |s|
                   "semver.org."
   s.license     = "MIT"
 
-  # Files included in the gem
-  s.files         = `git ls-files -z`.split("\x0").reject do |f|
-    f.match(%r{^(test|spec|features)/})
-  end
-  s.require_paths = ["lib"]
-
   # Specify oldest supported Ruby version (2.5 to support JRuby 9.2.17.0)
   s.required_ruby_version = ">= 2.5.0"
 
-  s.add_development_dependency "rake", "~> 12.3.3"
-  s.add_development_dependency "rspec", "~> 3.9"
+  # Files included in the gem
+  s.files = `git ls-files -z`.split("\x0").reject do |f|
+    f.match(%r{^(test|spec|features)/})
+  end
+  s.require_paths = ["lib"]
 end
