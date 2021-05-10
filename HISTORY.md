@@ -14,7 +14,8 @@
   - Special thanks (again!) to Taichi Ishitani (@taichi-ishitani):
     - Use more reliable codecov github action (via simplecov-cobertura)
       rather than less reliable codecov gem
-    - Enable bundle caching in github action setup-ruby  
+    - Enable bundle caching in github action setup-ruby 
+  - Add Rubocop, and configure it to run in CI
 
 ## [v1.3.5 (Jan 13, 2021)](http://github.com/ms-ati/docile/compare/v1.3.4...v1.3.5)
 
