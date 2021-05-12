@@ -49,7 +49,7 @@ module Docile
 
       # Enables calling DSL methods from helper methods in the block's context
       unless fallback.respond_to?(:method_missing)
-        # NOTE: There's no {#define_singleton_method} on Ruby 1.8.x
+        # NOTE: We could switch to {#define_singleton_method} on current Rubies
         singleton_class = (class << fallback; self; end)
 
         # instrument {#method_missing} on the block's context to fallback to
