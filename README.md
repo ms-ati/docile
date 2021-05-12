@@ -378,6 +378,30 @@ Docile releases follow
       commit by itself I can ignore when I pull)
   * Send me a pull request. Bonus points for topic branches.
 
+## Releasing
+
+To make a new release of `Dile` to
+[RubyGems](https://rubygems.org/gems/docile), first install the release
+dependencies (e.g. `rake`) as follows:
+
+```shell
+bundle config set --local with 'release'
+bundle install
+```
+
+Then carry out these steps:
+
+1. Update `HISTORY.md`:
+    - Add an entry for the upcoming version _x.y.z_
+    - Move content from _Unreleased_ to the upcoming version _x.y.z_
+    - Commit with title `Update HISTORY.md for x.y.z`
+
+2. Update `lib/docile/version.rb`
+    - Replace with upcoming version _x.y.z_
+    - Commit with title `Bump version to x.y.z`
+
+3. `bundle exec rake release`
+
 ## Copyright & License
 
 Copyright (c) 2012-2021 Marc Siegel.
