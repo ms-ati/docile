@@ -1,6 +1,8 @@
 # HISTORY
 
-## [Unreleased changes](http://github.com/ms-ati/docile/compare/v1.3.5...master)
+## [Unreleased changes](http://github.com/ms-ati/docile/compare/v1.4.0...main)
+
+## [v1.4.0 (May 12, 2021)](http://github.com/ms-ati/docile/compare/v1.3.5...v1.4.0)
 
   - Special thanks to Matt Schreiber (@tomeon):
     - Short-circuit to calling #instance_exec directly on the DSL object (prior to
