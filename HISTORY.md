@@ -10,12 +10,14 @@
   - Temporarily removed YARD doc configuration, to replace after
     migration to Github Actions
   - Removed support for all EOL Rubies < 2.6
-  - Migrate CI from Travis to Github Actions
+  - Migrated CI from Travis to Github Actions
   - Special thanks (again!) to Taichi Ishitani (@taichi-ishitani):
     - Use more reliable codecov github action (via simplecov-cobertura)
       rather than less reliable codecov gem
     - Enable bundle caching in github action setup-ruby 
-  - Add Rubocop, and configure it to run in CI
+  - Added Rubocop, and configured it to run in CI
+  - Added Dependabot, and configured it to run daily
+  - Added SECURITY.md for vulnerability reporting policy
 
 ## [v1.3.5 (Jan 13, 2021)](http://github.com/ms-ati/docile/compare/v1.3.4...v1.3.5)
 
