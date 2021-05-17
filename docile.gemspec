@@ -26,4 +26,10 @@ Gem::Specification.new do |s|
     f.match(%r{^(test|spec|features)/})
   end
   s.require_paths = ["lib"]
+
+  s.metadata = {
+    "homepage_uri" => "https://ms-ati.github.io/docile/",
+    "changelog_uri" => "https://github.com/ms-ati/docile/blob/main/HISTORY.md",
+    "source_code_uri" => "https://github.com/ms-ati/docile",
+  }
 end
