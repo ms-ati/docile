@@ -380,7 +380,7 @@ Docile releases follow
 
 ## Releasing
 
-To make a new release of `Dile` to
+To make a new release of `Docile` to
 [RubyGems](https://rubygems.org/gems/docile), first install the release
 dependencies (e.g. `rake`) as follows:
 
