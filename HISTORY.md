@@ -11,7 +11,7 @@
   - Renamed default branch from master to main, see: https://github.com/github/renaming
   - Temporarily removed YARD doc configuration, to replace after
     migration to Github Actions
-  - Removed support for all EOL Rubies < 2.6
+  - Removed support for all EOL Rubies < 2.5
   - Migrated CI from Travis to Github Actions
   - Special thanks (again!) to Taichi Ishitani (@taichi-ishitani):
     - Use more reliable codecov github action (via simplecov-cobertura)
