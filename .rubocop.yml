@@ -1,2 +1,2 @@
 inherit_gem:
-  panolint: rubocop.yml
+  panolint: panolint-rubocop.yml

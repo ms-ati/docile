@@ -12,7 +12,7 @@ module Docile
     FILTER_PATTERN = %r{/lib/docile/}.freeze
 
     def backtrace
-      super.reject { |trace| trace =~ FILTER_PATTERN }
+      super.grep_v(FILTER_PATTERN)
     end
 
     if ::Exception.public_method_defined?(:backtrace_locations)
