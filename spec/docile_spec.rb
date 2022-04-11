@@ -546,7 +546,8 @@ describe Docile do
       it "correctly passes hash arguments" do
         described_class.dsl_eval(dsl) { configure(1, { a: 1 }) }
 
-        if RUBY_VERSION >= "3.0.0"
+        # TruffleRuby 22.0.0.2 has RUBY_VERSION of 3.0.2, but behaves as 2.x
+        if RUBY_VERSION >= "3.0.0" && RUBY_ENGINE != "truffleruby"
           expect(dsl.arguments).to eq [1, { a: 1 }]
           expect(dsl.options).to eq({})
         else
