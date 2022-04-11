@@ -31,5 +31,6 @@ Gem::Specification.new do |s|
     "homepage_uri" => "https://ms-ati.github.io/docile/",
     "changelog_uri" => "https://github.com/ms-ati/docile/blob/main/HISTORY.md",
     "source_code_uri" => "https://github.com/ms-ati/docile",
+    "rubygems_mfa_required" => "true",
   }
 end
