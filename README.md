@@ -5,7 +5,6 @@
 
 [![Join the chat at https://gitter.im/ms-ati/docile](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/ms-ati/docile?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![Yard Docs](http://img.shields.io/badge/yard-docs-blue.svg)](http://rubydoc.info/github/ms-ati/docile)
-[![Docs Coverage](http://inch-ci.org/github/ms-ati/docile.png)](http://inch-ci.org/github/ms-ati/docile)
 
 [![Build Status](https://github.com/ms-ati/docile/actions/workflows/main.yml/badge.svg)](https://github.com/ms-ati/docile/actions/workflows/main.yml)
 [![Code Coverage](https://img.shields.io/codecov/c/github/ms-ati/docile.svg)](https://codecov.io/github/ms-ati/docile)
@@ -404,7 +403,7 @@ Then carry out these steps:
 
 ## Copyright & License
 
-Copyright (c) 2012-2021 Marc Siegel.
+Copyright (c) 2012-2022 Marc Siegel.
 
 Licensed under the [MIT License](http://choosealicense.com/licenses/mit/),
 see [LICENSE](LICENSE) for details.
