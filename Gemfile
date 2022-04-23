@@ -10,7 +10,7 @@ group :test do
   gem "simplecov", require: false
 
   # CI-only test dependencies go here
-  if ENV["CI"] == "true"
+  if ENV.fetch("CI", nil) == "true"
     gem "simplecov-cobertura", require: false, group: "test"
   end
 end
