@@ -10,7 +10,7 @@ end
 
 # On CI we publish coverage to codecov.io
 # To use the codecov action, we need to generate XML based coverage report
-if ENV["CI"] == "true"
+if ENV.fetch("CI", nil) == "true"
   begin
     require "simplecov-cobertura"
     SimpleCov.formatter = SimpleCov::Formatter::CoberturaFormatter
