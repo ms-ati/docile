@@ -249,7 +249,7 @@ describe Docile do
           expect { push_element }.
             to raise_error(
               NoMethodError,
-              /undefined method `push' (for|on) nil:NilClass/
+              /undefined method `push' (for|on) nil/
             )
         end
       end
