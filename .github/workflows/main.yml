@@ -14,7 +14,7 @@ jobs:
       matrix:
         os: [ubuntu-latest]
         # Due to https://github.com/actions/runner/issues/849, we have to use quotes for '3.0'
-        ruby: [jruby, truffleruby, 2.5, 2.6, 2.7, '3.0', 3.1, head]
+        ruby: [jruby, 2.7, '3.0', 3.1, 3.2, 3.3, head]
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v3.3.0
@@ -24,7 +24,7 @@ jobs:
       - name: Set bundler environment variables
         run: |
           echo "BUNDLE_WITHOUT=checks" >> $GITHUB_ENV
-        if: matrix.ruby != 3.1
+        if: matrix.ruby != 3.3
 
       - uses: ruby/setup-ruby@v1
         with:
@@ -39,4 +39,4 @@ jobs:
           file: ./coverage/coverage.xml
 
       - run: bundle exec rubocop
-        if: matrix.ruby == 3.1
+        if: matrix.ruby == 3.3

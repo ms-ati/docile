@@ -18,7 +18,7 @@ module Docile
     # Proxy methods as in {FallbackContextProxy#method_missing}, replacing
     # `receiver` with the returned value.
     def method_missing(method, *args, &block)
-      @__receiver__ = super(method, *args, &block)
+      @__receiver__ = super
     end
 
     ruby2_keywords :method_missing if respond_to?(:ruby2_keywords, true)

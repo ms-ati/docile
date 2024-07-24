@@ -9,12 +9,12 @@ Gem::Specification.new do |s|
   s.email       = "marc@usainnov.com"
   s.homepage    = "https://ms-ati.github.io/docile/"
   s.summary     = "Docile keeps your Ruby DSLs tame and well-behaved."
-  s.description = "Docile treats the methods of a given ruby object as a DSL " \
-                  "(domain specific language) within a given block. \n\n"      \
-                  "Killer feature: you can also reference methods, instance "  \
+  s.description = "Docile treats the methods of a given ruby object as a DSL "\
+                  "(domain specific language) within a given block. \n\n"\
+                  "Killer feature: you can also reference methods, instance "\
                   "variables, and local variables from the original (non-DSL) "\
-                  "context within the block. \n\n"                             \
-                  "Docile releases follow Semantic Versioning as defined at "  \
+                  "context within the block. \n\n"\
+                  "Docile releases follow Semantic Versioning as defined at "\
                   "semver.org."
   s.license     = "MIT"
 
