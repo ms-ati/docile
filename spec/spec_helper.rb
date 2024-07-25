@@ -21,7 +21,7 @@ end
 
 # Due to circular dependency (SimpleCov depends on Docile), remove docile and
 # then require the docile gem again below.
-Object.send(:remove_const, :Docile)
+Object.send(:remove_const, :Docile) # rubocop:disable RSpec/RemoveConst
 $LOADED_FEATURES.reject! { |f| f.include?("/lib/docile") }
 
 # Require Docile again, now with coverage enabled
