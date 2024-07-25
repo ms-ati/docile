@@ -403,7 +403,7 @@ Then carry out these steps:
 
 ## Copyright & License
 
-Copyright (c) 2012-2022 Marc Siegel.
+Copyright (c) 2012-2024 Marc Siegel.
 
 Licensed under the [MIT License](http://choosealicense.com/licenses/mit/),
 see [LICENSE](LICENSE) for details.
