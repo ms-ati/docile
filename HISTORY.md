@@ -2,7 +2,7 @@
 
 ## [Unreleased changes](http://github.com/ms-ati/docile/compare/v1.4.1...main)
 
-## [v1.4.1 (May 12, 2021)](http://github.com/ms-ati/docile/compare/v1.4.0...v1.4.1)
+## [v1.4.1 (July 25, 2024)](http://github.com/ms-ati/docile/compare/v1.4.0...v1.4.1)
 
   - Special thanks to Mamoru TASAKA (@mtasaka):
     - Starting point for a fix on the tests to pass on Ruby 3.3
