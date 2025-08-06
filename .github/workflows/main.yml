@@ -36,7 +36,7 @@ jobs:
       - uses: codecov/codecov-action@v5.4.3
         with:
           name: ${{ matrix.ruby }}
-          file: ./coverage/coverage.xml
+          files: ./coverage/coverage.xml
 
       - run: bundle exec rubocop
         if: matrix.ruby == 3.3
