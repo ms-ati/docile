@@ -33,10 +33,10 @@ jobs:
 
       - run: bundle exec rspec
 
-      - uses: codecov/codecov-action@v4.6.0
+      - uses: codecov/codecov-action@v5.4.3
         with:
           name: ${{ matrix.ruby }}
-          file: ./coverage/coverage.xml
+          files: ./coverage/coverage.xml
 
       - run: bundle exec rubocop
         if: matrix.ruby == 3.3
