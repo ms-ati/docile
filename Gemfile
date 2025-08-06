@@ -6,7 +6,7 @@ source "https://rubygems.org"
 gemspec
 
 group :test do
-  gem "rspec", "~> 3.10"
+  gem "rspec", "~> 3.13"
   gem "simplecov", require: false
 
   # CI-only test dependencies go here
@@ -17,7 +17,8 @@ end
 
 # Excluded from CI except on latest MRI Ruby, to reduce compatibility burden
 group :checks do
-  gem "panolint", github: "panorama-ed/panolint", branch: "main"
+  gem "panolint-ruby", github: "panorama-ed/panolint-ruby", branch: "main"
+  gem "rubocop-rake", require: false
 end
 
 # Optional, only used locally to release to rubygems.org
