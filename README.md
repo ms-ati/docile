@@ -2,13 +2,9 @@
 
 [![Gem Version](https://img.shields.io/gem/v/docile.svg)](https://rubygems.org/gems/docile)
 [![Gem Downloads](https://img.shields.io/gem/dt/docile.svg)](https://rubygems.org/gems/docile)
-
-[![Join the chat at https://gitter.im/ms-ati/docile](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/ms-ati/docile?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-[![Yard Docs](http://img.shields.io/badge/yard-docs-blue.svg)](http://rubydoc.info/github/ms-ati/docile)
-
+[![Yard Docs](http://img.shields.io/badge/yard-docs-blue.svg)](https://rubydoc.info/gems/docile)
 [![Build Status](https://github.com/ms-ati/docile/actions/workflows/main.yml/badge.svg)](https://github.com/ms-ati/docile/actions/workflows/main.yml)
 [![Code Coverage](https://img.shields.io/codecov/c/github/ms-ati/docile.svg)](https://codecov.io/github/ms-ati/docile)
-[![Maintainability](https://api.codeclimate.com/v1/badges/79ca631bc123f7b83b34/maintainability)](https://codeclimate.com/github/ms-ati/docile/maintainability)
 
 Ruby makes it possible to create very expressive **Domain Specific
 Languages**, or **DSL**'s for short. However, it requires some deep knowledge and
