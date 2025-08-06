@@ -23,7 +23,7 @@
   - Special thanks (again!) to Taichi Ishitani (@taichi-ishitani):
     - Use more reliable codecov github action (via simplecov-cobertura)
       rather than less reliable codecov gem
-    - Enable bundle caching in github action setup-ruby 
+    - Enable bundle caching in github action setup-ruby
   - Added Rubocop, and configured it to run in CI
   - Added Dependabot, and configured it to run daily
   - Added SECURITY.md for vulnerability reporting policy

@@ -75,7 +75,7 @@ challenging.
 
 Good question!
 
-In short: **No**. 
+In short: **No**.
 
 Not if you want the code in the block to be able to refer to anything
 the block would normally have access to from the surrounding context.
@@ -94,20 +94,20 @@ class ContextOfBlock
       push @block_instance_var
       push block_local_var
       pop
-      push block_sees_this_method 
+      push block_sees_this_method
     end
   end
-  
+
   def block_sees_this_method
     3
-  end  
+  end
 
   def with_array(&block)
     {
       docile: Docile.dsl_eval([], &block),
       instance_eval: ([].instance_eval(&block) rescue $!),
       instance_exec: ([].instance_exec(&block) rescue $!)
-    }  
+    }
   end
 end
 
@@ -403,7 +403,7 @@ Then carry out these steps:
 
 ## Copyright & License
 
-Copyright (c) 2012-2024 Marc Siegel.
+Copyright (c) 2012-2025 Marc Siegel.
 
 Licensed under the [MIT License](http://choosealicense.com/licenses/mit/),
 see [LICENSE](LICENSE) for details.
